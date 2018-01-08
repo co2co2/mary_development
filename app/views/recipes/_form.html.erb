@@ -1,0 +1,82 @@
+<%= form_with(model: recipe, local: true) do |form| %>
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :category_id %>
+    <%= form.number_field :category_id, id: :recipe_category_id %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :recommended_strain_id %>
+    <%= form.number_field :recommended_strain_id, id: :recipe_recommended_strain_id %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :recipe_title %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :image %>
+    <%= form.text_field :image, id: :recipe_image %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :video %>
+    <%= form.text_field :video, id: :recipe_video %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :recipe_description %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :prep_time %>
+    <%= form.number_field :prep_time, id: :recipe_prep_time %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :views %>
+    <%= form.number_field :views, id: :recipe_views %>
+  </div>
+
+  <div class="form-group">
+    <h3>Instructions</h3>
+    <%= form.nested_fields_for :instructions do |step| %>
+      <%= step.text_field :step %>
+      <%= step.remove_nested_fields_link %>
+      <% end %>
+      <%= form.add_nested_fields_link :instructions, 'Add step' %>
+  </div>
+
+
+  <div class="form-group">
+  <h3>Add Ingredients</h3>
+  <%= form.nested_fields_for :measurements do |measurement| %>
+    <%= measurement.text_field :quantity %>
+    <%= measurement.nested_fields_for :ingredient do |measurement_ingredient| %>
+    <%= measurement_ingredient.text_field :name %>
+    <%= measurement.ingredient.remove_nested_fields_link %>
+    <% end %>
+    <%= form.add_nested_fields_link :ingredients %>
+  <% end %>
+
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

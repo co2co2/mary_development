@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Steps</h3>
+  <ol>
+  <% for @instruction in @recipe.instructions %>
+      <li><%= @instruction.step %></li>
+  <% end %>
+  </ol>
+
+<p>
+  <strong>Category:</strong>
+  <%= @recipe.category_id %>
+</p>
+
+<p>
+  <strong>Recommended strain:</strong>
+  <%= @recipe.recommended_strain_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @recipe.title %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @recipe.image %>
+</p>
+
+<p>
+  <strong>Video:</strong>
+  <%= @recipe.video %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @recipe.description %>
+</p>
+
+<p>
+  <strong>Prep time:</strong>
+  <%= @recipe.prep_time %>
+</p>
+
+<p>
+  <strong>Views:</strong>
+  <%= @recipe.views %>
+</p>
+
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %>
