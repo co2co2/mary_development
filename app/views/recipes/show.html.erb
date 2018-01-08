@@ -1,12 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Steps</h3>
-  <ol>
-  <% for @instruction in @recipe.instructions %>
-      <li><%= @instruction.step %></li>
-  <% end %>
-  </ol>
-
 <p>
   <strong>Category:</strong>
   <%= @recipe.category_id %>
@@ -46,6 +39,24 @@
   <strong>Views:</strong>
   <%= @recipe.views %>
 </p>
+
+<h3>Steps</h3>
+<ol>
+<% @recipe.instructions.each do |instruction| %>
+    <li><%= instruction.step %></li>
+<% end %>
+</ol>
+
+<p>
+<strong>Ingredients</strong>
+<ul>
+  <% @recipe.measurements.each do |measurement| %>
+    <li><%= measurement.ingredient.name %> <%= measurement.quantity %></li>
+  <% end %>
+</ul>
+</p>
+
+
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
