@@ -56,7 +56,17 @@
 </ul>
 </p>
 
+<% if  user_signed_in? && current_user == @recipe.user%>
+  <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<% end %>
+  <%= link_to 'Back', recipes_path %>
+<% if user_signed_in? %>
 
-
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+<% end %>
+<% if @reviews %>
+  <% @reviews.each do |review|%>
+    <p><%= review.user.email %></p>
+    <p><%= review.comment %></p>
+    <p><%= review.updated_at %></p>
+  <% end %>
+<% end %>
