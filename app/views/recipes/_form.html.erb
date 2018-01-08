@@ -1,4 +1,4 @@
-<%= form_with(model: recipe, local: true) do |form| %>
+<%= form_for recipe do |form| %>
   <% if recipe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -62,18 +62,16 @@
 
 
   <div class="form-group">
-  <h3>Add Ingredients</h3>
-  <%= form.nested_fields_for :measurements do |measurement| %>
-    <%= measurement.text_field :quantity %>
-    <%= measurement.nested_fields_for :ingredient do |measurement_ingredient| %>
-    <%= measurement_ingredient.text_field :name %>
-    <%= measurement.ingredient.remove_nested_fields_link %>
+  <h3>Ingredients</h3>
+  <fieldset id="recipe-ingredients">
+  <ul>
+    <%= form.fields_for :measurements do |measurement| %>
+      <%= render 'measurement_fields', f: measurement %>
     <% end %>
-    <%= form.add_nested_fields_link :ingredients %>
-  <% end %>
-
+  </ul>
+    <%= link_to_add_association 'Add ingredient', form, :measurements, 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %>
+  </fieldset>
   </div>
-
 
 
   <div class="actions">
