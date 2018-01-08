@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'nested_form_fields'
+gem 'cocoon'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
