@@ -1,6 +1,19 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
+
+  def favourite
+    type = params[:type]
+    if type == "favourite"
+      @favourite = current_user.favourites.build(recipe_id: params[:recipe_id]) 
+      @favourite.save
+    else type == "unfavourite"
+      @favourite = Favourite.where(user_id: current_user.id, recipe_id: params[:recipe_id])
+      current_user.favourites.delete(@favourite)
+    end
+    redirect_back(fallback_location: 'recipes#show')  
+  end
+
   # GET /recipes
   # GET /recipes.json
   def index
@@ -12,6 +25,13 @@ class RecipesController < ApplicationController
   def show
     @reviews = @recipe.reviews
     @new_review = Review.new
+    if user_signed_in?
+      if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
+        @favourite_link = "unfavourite"
+      else
+        @favourite_link = "favourite"
+      end
+    end
   end
 
   # GET /recipes/new
