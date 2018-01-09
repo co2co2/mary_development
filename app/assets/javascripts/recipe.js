@@ -1,17 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
-
+function hideConcentrateLink() {
   var addConcentrate = document.querySelector('a#addConcentrate')
 
   addConcentrate.addEventListener('click', function(e) {
     e.preventDefault();
-    this.style.display = 'none';
-
-    removeBtn = document.querySelector('#showAddConcentrate')
-    removeBtn.addEventListener('click', function() {
-      addConcentrate.style.display = 'inline';
-    })
   })
+  addConcentrate.style.display = 'none';
+}
 
-
-
-})
+function addConcentrateLink() {
+  addConcentrate.style.display = 'inline';
+}

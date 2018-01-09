@@ -70,9 +70,9 @@
       <%= render 'measurement_fields', f: measurement %>
     <% end %>
   </ul>
-    <%= link_to_add_association 'Add ingredient', form, :measurements, 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %> | 
+    <%= link_to_add_association 'Add ingredient', form, :measurements, 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %> |
 
-    <%= link_to_add_association 'Add concentrate', form, :measurements, partial: 'concentrate_fields', 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", id: 'addConcentrate', :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %>
+    <%= link_to_add_association 'Add concentrate', form, :measurements, partial: 'concentrate_fields', 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", id: 'addConcentrate', onclick: 'hideConcentrateLink()', :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %>
   </fieldset>
   </div>
 
