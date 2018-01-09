@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
 	has_many :instructions, dependent: :destroy
 	has_many :reviews
+	has_many :favourites
 	accepts_nested_attributes_for :instructions, allow_destroy: true
 
 	has_many :measurements, dependent: :destroy
