@@ -21,6 +21,7 @@
     <%= form.number_field :recommended_strain_id, id: :recipe_recommended_strain_id %>
   </div>
 
+
   <div class="form-group">
     <%= form.label :title %>
     <%= form.text_field :title, id: :recipe_title %>
@@ -69,7 +70,9 @@
       <%= render 'measurement_fields', f: measurement %>
     <% end %>
   </ul>
-    <%= link_to_add_association 'Add ingredient', form, :measurements, 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %>
+    <%= link_to_add_association 'Add ingredient', form, :measurements, 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %> |
+
+    <%= link_to_add_association 'Add concentrate', form, :measurements, partial: 'concentrate_fields', 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", id: 'addConcentrate', onclick: 'hideConcentrateLink()', :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %>
   </fieldset>
   </div>
 
