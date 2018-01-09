@@ -1,7 +1,24 @@
+<h2>Most Recent</h2>
+<div class="recent">
+  <% Recipe.recent.each do |recipe|  %>
+  <div class="">
+  <h4><%= link_to recipe.title, recipe %></h4>
+  <p>By: <%= recipe.user.username %></p>
+  </div>
+  <a href="<%= recipe_path(recipe.id) %>">
+    <% if recipe.image %>
+      <%=image_tag recipe.image, alt: recipe.title %>
+      <% else %>
+      <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w' %>
+    <% end %>
+  </a>
+    <p><%= recipe.description %></p>
 
-
-<h1>Recipes</h1>
-
+  <% end %>
+</div>
+<br>
+<br><br>
+<h3>Recipes</h3>
 <table>
   <thead>
     <tr>
@@ -29,7 +46,7 @@
         <td><%= recipe.prep_time %></td>
         <td><%= recipe.views %></td>
         <td><%= link_to 'Show', recipe %></td>
-       
+
         <% if  user_signed_in? && current_user == recipe.user%>
           <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
           <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>

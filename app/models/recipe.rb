@@ -15,4 +15,5 @@ class Recipe < ApplicationRecord
 	belongs_to :user
 
   scope :concentrates, -> { where(concentrate: true)}
+  scope :recent, -> { order('created_at DESC').limit(3) }
 end
