@@ -200,7 +200,6 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   cocoon
-  coffee-rails (~> 4.2)
   devise
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.1)
