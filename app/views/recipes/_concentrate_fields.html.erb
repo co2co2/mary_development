@@ -7,6 +7,6 @@
       <%= concentrate.select :name, Recipe.concentrates.collect {|c| [ c.title, c.title ] }, { include_blank: true } %>
     <% end %>
 
-    <%= link_to_remove_association "remove", f, id: 'showAddConcentrate' %>
+    <%= link_to_remove_association "remove", f, id: 'showAddConcentrate', onclick: 'addConcentrateLink()' %>
   </div>
 </li>
