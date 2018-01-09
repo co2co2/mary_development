@@ -1,6 +1,5 @@
 class Recipe < ApplicationRecord
 
-
   validates :category_id, :title, :description, :prep_time, :user_id, :instructions, :measurements, presence: true
 
   has_many :instructions, dependent: :destroy
@@ -15,4 +14,5 @@ class Recipe < ApplicationRecord
 
 	belongs_to :user
 
+  scope :concentrates, -> { where(concentrate: true)}
 end

@@ -66,14 +66,13 @@
   <h3>Ingredients</h3>
   <fieldset id="recipe-ingredients">
   <ul>
-    <li class="control-group nested-fields">
-      <a href="#" id="concentrateCheck">Add concentrate</a>
-    </li>
     <%= form.fields_for :measurements do |measurement| %>
       <%= render 'measurement_fields', f: measurement %>
     <% end %>
   </ul>
-    <%= link_to_add_association 'Add ingredient', form, :measurements, 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %>
+    <%= link_to_add_association 'Add ingredient', form, :measurements, 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %> | 
+
+    <%= link_to_add_association 'Add concentrate', form, :measurements, partial: 'concentrate_fields', 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", id: 'addConcentrate', :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %>
   </fieldset>
   </div>
 

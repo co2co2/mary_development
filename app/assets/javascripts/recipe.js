@@ -1,19 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  var addConcentrate = document.querySelector('a#concentrateCheck')
+  var addConcentrate = document.querySelector('a#addConcentrate')
 
   addConcentrate.addEventListener('click', function(e) {
     e.preventDefault();
-    // add measurement field
-    var concentrateMeasurement = document.createElement('input'),
-        concentrateIngredients = document.createElement('select');
-    concentrateMeasurement.setAttribute('type', 'text')
-    concentrateMeasurement.setAttribute('name', 'name' )
+    this.style.display = 'none';
 
-
-      // add ingredient concentrate dropbox
-      // remove button
-      // hide this link
+    removeBtn = document.querySelector('#showAddConcentrate')
+    removeBtn.addEventListener('click', function() {
+      addConcentrate.style.display = 'inline';
+    })
   })
+
+
 
 })
