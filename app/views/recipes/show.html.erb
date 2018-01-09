@@ -56,7 +56,26 @@
 </ul>
 </p>
 
+<% if  user_signed_in? && current_user == @recipe.user%>
+  <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<% end %>
+  <%= link_to 'Back', recipes_path %>
 
+<% if user_signed_in? %>
+  <%= form_for([@recipe, @new_review]) do |f|%>
+    <div class="review-form">
+      <%= f.label :comment %>
+      <%= f.text_area :comment %><br>
+      <%= f.submit %>
+    </div>
+  <% end %>
+<% end %>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+<% if @reviews %>
+  <% @reviews.each do |review|%>
+    <p><%= review.user.username %></p>
+    <p><%= review.comment %></p>
+    <p><%= review.updated_at %></p>
+    <%= link_to "Delete", recipe_review_path(@recipe, review), method: :delete %>
+  <% end %>
+<% end %>

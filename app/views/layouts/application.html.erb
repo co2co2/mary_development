@@ -20,7 +20,7 @@
     </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <p><% if user_signed_in? %> Welcome <%= current_user.email %> <% end %></p>
+    <p><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
 
     <%= yield %>
   </body>

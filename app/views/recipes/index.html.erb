@@ -29,13 +29,19 @@
         <td><%= recipe.prep_time %></td>
         <td><%= recipe.views %></td>
         <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       
+        <% if  user_signed_in? && current_user == recipe.user%>
+          <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+          <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Recipe', new_recipe_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Recipe', new_recipe_path %>
+<% else %>
+  <%= link_to 'New Recipe', new_user_registration_path %>
+<% end %>
