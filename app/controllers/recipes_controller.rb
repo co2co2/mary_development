@@ -1,17 +1,17 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: %i[index show]
 
   def favourite
     type = params[:type]
     if type == "favourite"
-      @favourite = current_user.favourites.build(recipe_id: params[:recipe_id]) 
+      @favourite = current_user.favourites.build(recipe_id: params[:recipe_id])
       @favourite.save
     else type == "unfavourite"
       @favourite = Favourite.where(user_id: current_user.id, recipe_id: params[:recipe_id])
       current_user.favourites.delete(@favourite)
     end
-    redirect_back(fallback_location: 'recipes#show')  
+    redirect_back(fallback_location: 'recipes#show')
   end
 
   # GET /recipes
@@ -98,6 +98,6 @@ class RecipesController < ApplicationController
     def recipe_params
       params.require(:recipe).permit(:category_id, :recommended_strain_id, :title, :image, :video, :description, :prep_time, :views, :user_id, instructions_attributes:[:id, :recipe_id ,:step, :_destroy],
         measurements_attributes:[:id, :ingredient_id, :recipe_id, :quantity, :_destroy, ingredient_attributes:[
-        :id, :name, :_destroy]])
+        :id, :name, :concentrate_recipe_id, :_destroy]])
     end
 end
