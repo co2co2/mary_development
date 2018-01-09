@@ -4,7 +4,6 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-
     if params[:search]
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
     else
