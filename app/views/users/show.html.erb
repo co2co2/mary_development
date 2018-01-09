@@ -1,0 +1,24 @@
+<%= @user.username %>
+
+<br>
+<%= @user.email %>
+
+<h2>Recipes</h2>
+<% if  !@recipes.empty?%>
+	<% @recipes.each do |recipe|%>
+		<%= link_to(recipe.title, recipe_path(recipe.id))  %>
+	<% end %>
+<% else %>
+	<p>This user has no recipes! </p>
+<% end %>
+<% if  user_signed_in? && current_user == @user%>
+	<h2>Favourites</h2>
+	<% if !@fav_recipes.empty? %>
+		<% @fav_recipes.each do |recipe| %>
+				<%= link_to(recipe.title, recipe_path(recipe.id))  %>
+		<% end %>
+	<% else %>
+		<p>You have no favourite recipes!</p>
+	<% end %>
+
+<% end %>
