@@ -17,4 +17,11 @@ class Recipe < ApplicationRecord
 	belongs_to :user
 
   scope :concentrates, -> { where(concentrate: true)}
+
+
+  def self.search(search)
+    where("lower(title) LIKE ?", "%#{search.downcase}%")
+  end
+
+
 end
