@@ -3,6 +3,7 @@
 <%= submit_tag "Search" %>
 <% end %>
 
+
 <h2>Most Recent</h2>
 <div class="recent">
   <% Recipe.recent.each do |recipe|  %>
@@ -28,3 +29,4 @@
 <br>
 
 <%= link_to 'New Recipe', new_recipe_path %>
+
