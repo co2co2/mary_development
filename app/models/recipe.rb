@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  validates :category_id, :title, :description, :prep_time, :user_id, :instructions, :measurements, presence: true
+  validates :recipe_category_id, :title, :description, :prep_time, :user_id, :instructions, :measurements, presence: true
 
   has_many :instructions, dependent: :destroy
   has_many :reviews
@@ -15,6 +15,7 @@ class Recipe < ApplicationRecord
 	accepts_nested_attributes_for :ingredients
 
 	belongs_to :user
+  belongs_to :recipe_category
 
   scope :concentrates, -> { where(concentrate: true)}
   scope :recent, -> { order('created_at DESC').limit(3) }
