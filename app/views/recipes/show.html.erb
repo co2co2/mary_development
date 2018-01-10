@@ -75,7 +75,8 @@
     </div>
   <% end %>
   <%= link_to @favourite_link,   recipe_favourite_path(@recipe, type: @favourite_link), method: :put %>
-
+  <% else %>
+  <%= link_to "Favourite", new_user_session_path %>
 
 <% end %>
 
