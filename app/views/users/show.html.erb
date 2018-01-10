@@ -4,8 +4,8 @@
 <%= @user.email %>
 
 <h2>Recipes</h2>
-<% if  !@recipes.empty?%>
-	<% @recipes.each do |recipe|%>
+<% if  !@user.recipes.empty?%>
+	<% @user.recipes.each do |recipe|%>
 		<%= link_to(recipe.title, recipe_path(recipe.id))  %>
 	<% end %>
 <% else %>
