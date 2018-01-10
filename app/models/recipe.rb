@@ -19,11 +19,16 @@ class Recipe < ApplicationRecord
 
   scope :concentrates, -> { where(concentrate: true)}
   scope :recent, -> { order('created_at DESC').limit(3) }
-  
+  # scope :most_favourite, -> { order('favourites.count').limit(1) }
 
   def self.search(search)
     where("lower(title) LIKE ?", "%#{search.downcase}%")
   end
 
+  def self.most_favourite
+    Recipe.all.sort_by{|r| r.favourites.count}.reverse[0..2]
+  end
+
+    # Author.left_outer_joins(:posts).distinct.select('authors.*, COUNT(posts.*) AS posts_count').group('authors.id')
 
 end

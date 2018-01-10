@@ -10,7 +10,7 @@ user2 = User.create(id:2, email:'dog@gmail.com', username: 'dog', password:'vali
 user3 = User.create(id:3, email:'coco@gmail.com', username: 'coco', password:'valid_password', password_confirmation: 'valid_password')
 user4 = User.create(id:4, email:'lena@gmail.com', username: 'lena', password:'valid_password', password_confirmation: 'valid_password')
 user5 = User.create(id:5, email:'william@gmail.com', username: 'william', password:'valid_password', password_confirmation: 'valid_password')
-user5 = User.create(id:6, email:'tyler@gmail.com', username: 'tyler', password:'valid_password', password_confirmation: 'valid_password')
+user6 = User.create(id:6, email:'tyler@gmail.com', username: 'tyler', password:'valid_password', password_confirmation: 'valid_password')
 
 
 concentrate1 = user1.recipes.create(id:1, category_id:1, recommended_strain_id:nil, title:'Cannabis Coconut Oil', image:'https://s3.amazonaws.com/leafly-s3/content/cannabis-and-coconut-oil-uses-benefits-and-a-recipe-to-make-your/QqYwInfNQHedUETFu2Dm_Subhead-2.jpg', description:'coconut oil has among the highest concentration of fatty acids (saturated fats). The surplus of these fatty acids in the coconut oil create a stronger binding agent for cannabinoids. ', prep_time: 360, concentrate: true,
