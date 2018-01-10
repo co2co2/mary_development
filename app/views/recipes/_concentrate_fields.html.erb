@@ -13,7 +13,7 @@ $(function(){
     <%= f.text_field :quantity, placeholder: '22 units' %>
 
     <%= f.fields_for :ingredient do |concentrate| %>
-      <%= concentrate.select :concentrate_recipe_id, Recipe.concentrates.collect {|c| [ c.title, c.id] }, { include_blank: true }, id:  'concentrateSelect' %>
+      <%= concentrate.select :concentrate_recipe_id, Recipe.concentrates.collect {|c| [ c.title, c.id] }, { prompt: true }, id:  'concentrateSelect' %>
       <%= concentrate.hidden_field :name, id: 'concentrateName'%>
     <% end %>
 

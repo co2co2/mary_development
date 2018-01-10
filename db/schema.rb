@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180109042902) do
+ActiveRecord::Schema.define(version: 20180110184919) do
 
   create_table "favourites", force: :cascade do |t|
     t.integer "user_id"
@@ -44,8 +44,14 @@ ActiveRecord::Schema.define(version: 20180109042902) do
     t.index ["recipe_id"], name: "index_measurements_on_recipe_id"
   end
 
+  create_table "recipe_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "recipes", force: :cascade do |t|
-    t.integer "category_id"
+    t.integer "recipe_category_id"
     t.integer "recommended_strain_id"
     t.string "title"
     t.string "image"
@@ -63,6 +69,15 @@ ActiveRecord::Schema.define(version: 20180109042902) do
     t.integer "recipe_id"
     t.integer "user_id"
     t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "strains", force: :cascade do |t|
+    t.string "name"
+    t.string "race"
+    t.string "flavours"
+    t.string "effect"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
