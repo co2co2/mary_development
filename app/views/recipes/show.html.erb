@@ -25,7 +25,9 @@
 
 <p>
   <strong>Video:</strong>
-  <%= @recipe.video %>
+  <% if @recipe.video %>
+    <iframe width="635" height="357" src='https://www.youtube.com/embed/hEz0zkzGQGQ' frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+    <% end %>
 </p>
 
 <p>
