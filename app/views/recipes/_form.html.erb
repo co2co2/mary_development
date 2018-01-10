@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :category_id %>
-    <%= form.number_field :category_id, id: :recipe_category_id %>
+    <%= form.label :recipe_category_id %>
+    <%= form.select :recipe_category_id, RecipeCategory.all.collect {|category| [ category.name, category.id ] }, include_blank: true, id: :recipe_category_id %>
   </div>
 
   <div class="form-group">
@@ -53,27 +53,14 @@
   </div>
 
   <div class="form-group">
-    <h3>Instructions</h3>
-    <%= form.nested_fields_for :instructions do |step| %>
-      <%= step.text_field :step %>
-      <%= step.remove_nested_fields_link %>
-      <% end %>
-      <%= form.add_nested_fields_link :instructions, 'Add step' %>
-  </div>
-
-
-  <div class="form-group">
   <h3>Ingredients</h3>
   <fieldset id="recipe-ingredients">
   <ul>
-    <% i = 0 %>
+
     <%= form.fields_for :measurements do |measurement| %>
-      <% if recipe.ingredients[i].concentrate_recipe_id == nil %>
+
           <%= render 'measurement_fields', f: measurement %>
-        <% else %>
-          <%= render 'concentrate_fields', f: measurement %>
-      <% end %>
-       <% i += 1 %>
+
     <% end %>
   </ul>
     <%= link_to_add_association 'Add ingredient', form, :measurements, 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %> |
@@ -82,6 +69,15 @@
   </fieldset>
   </div>
 
+
+  <div class="form-group">
+    <h3>Instructions</h3>
+    <%= form.nested_fields_for :instructions do |step| %>
+      <%= step.text_field :step %>
+      <%= step.remove_nested_fields_link %>
+      <% end %>
+      <%= form.add_nested_fields_link :instructions, 'Add step' %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
