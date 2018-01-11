@@ -9,6 +9,7 @@
   </head>
 
   <body>
+
     <nav>
       <%= link_to 'Home', root_path %>
       <% if user_signed_in? %>
@@ -18,11 +19,33 @@
         <%= link_to 'Sign In', new_user_session_path %>
         <%= link_to 'Sign Up', new_user_registration_path %>
       <% end %>
+      <a href="" id="categoryBtn">Recipes</a>
+    </nav>
+    <nav id="categories" style="display: none">
+      <% RecipeCategory.all.each do |category| %>
+      <%= link_to category.name, recipe_category_path(category)  %>
+      <% end %>
     </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <p><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
 
+    <script type ='text/javascript'>
+      var categoryBtn = document.querySelector('#categoryBtn'),
+          categoryNav = document.getElementById('categories')
+    categoryBtn.addEventListener('click', function(e) {
+      //console.log("helloooo");
+        e.preventDefault();
+      if (categoryNav.style.display === 'none') {
+        categoryNav.style.display = 'block';
+      } else {
+        categoryNav.style.display = 'none';
+      }
+    })
+    </script>
+    
     <%= yield %>
+
+
   </body>
 </html>

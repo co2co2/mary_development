@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function() {
+
+})
+
 function hideConcentrateLink() {
   var addConcentrate = document.querySelector('a#addConcentrate')
 
