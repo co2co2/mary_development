@@ -10,6 +10,16 @@
 
   <body>
 
+      <div id="dialog">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Are you 21 years old?</p>
+
+      </div>
+
+
+    <p><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
+
     <nav>
       <%= link_to 'Home', root_path %>
       <% if user_signed_in? %>
@@ -28,7 +38,7 @@
     </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <p><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
+
 
     <script type ='text/javascript'>
       var categoryBtn = document.querySelector('#categoryBtn'),
@@ -43,7 +53,7 @@
       }
     })
     </script>
-    
+
     <%= yield %>
 
 

@@ -17,7 +17,7 @@ class Recipe < ApplicationRecord
 
 	belongs_to :user
   belongs_to :recipe_category
-  belongs_to :strain
+  # belongs_to :strain
 
   scope :concentrates, -> { where(concentrate: true)}
   scope :recent, -> { order('created_at DESC').limit(3) }
