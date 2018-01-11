@@ -1,3 +1,8 @@
+<p>
+  <h2><%= @recipe.title %></h2>
+</p>
+
+<p>By: <%= link_to @recipe.user.username, user_path(@recipe.user) %></p>
 
 <p>
   <strong>Category:</strong>
@@ -9,17 +14,13 @@
   <%= @recipe.recommended_strain_id %>
 </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @recipe.title %>
-</p>
 
 <p>
   <strong>Image:</strong>
-  <% if @recipe.image %>
-    <%=image_tag @recipe.image, alt: @recipe.title %>
-    <% else %>
+  <% if @recipe.image == "" || @recipe.image == nil %>
     <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w' %>
+  <% else %>
+    <%=image_tag @recipe.image, alt: @recipe.title %>
   <% end %>
 </p>
 
@@ -36,7 +37,7 @@
 </p>
 
 <p>
-  <strong>Prep time:</strong>
+  <strong>Cook time:</strong>
   <%= @recipe.prep_time %>
 </p>
 
@@ -45,20 +46,22 @@
   <%= @recipe.views %>
 </p>
 
-<h3>Steps</h3>
-<ol>
-<% @recipe.instructions.each do |instruction| %>
-    <li><%= instruction.step %></li>
-<% end %>
-</ol>
+<p>
+  <strong>Ingredients</strong>
+  <ul>
+    <% @recipe.measurements.each do |measurement| %>
+    <li><%= measurement.ingredient.name %> <%= measurement.quantity %></li>
+    <% end %>
+  </ul>
+</p>
 
 <p>
-<strong>Ingredients</strong>
-<ul>
-  <% @recipe.measurements.each do |measurement| %>
-    <li><%= measurement.ingredient.name %> <%= measurement.quantity %></li>
-  <% end %>
-</ul>
+  <h3>Steps</h3>
+    <ol>
+    <% @recipe.instructions.each do |instruction| %>
+        <li><%= instruction.step %></li>
+    <% end %>
+  </ol>
 </p>
 
 <% if  user_signed_in? && current_user == @recipe.user%>
