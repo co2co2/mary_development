@@ -17,6 +17,7 @@ class Recipe < ApplicationRecord
 
 	belongs_to :user
   belongs_to :recipe_category
+  belongs_to :strain
 
   scope :concentrates, -> { where(concentrate: true)}
   scope :recent, -> { order('created_at DESC').limit(3) }
@@ -28,6 +29,14 @@ class Recipe < ApplicationRecord
 
   def self.most_favourite
     Recipe.all.sort_by{|r| r.favourites.count}.reverse[0..2]
+  end
+
+  def strain_name
+    strain.try(:name)
+  end
+
+  def strain_name=(name)
+    self.strain = Strain.find_by(name: name) if name.present?
   end
 
     # Author.left_outer_joins(:posts).distinct.select('authors.*, COUNT(posts.*) AS posts_count').group('authors.id')
