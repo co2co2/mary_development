@@ -25,7 +25,7 @@ snacks = RecipeCategory.create(name: 'Snacks')
 sides = RecipeCategory.create(name: 'Sides')
 
 # Predefined Concentrate Recipes
-concentrate1 = user1.recipes.create(id:1, recipe_category_id: concentrate_category.id, recommended_strain_id:nil, title:'Cannabis Coconut Oil', image:'https://s3.amazonaws.com/leafly-s3/content/cannabis-and-coconut-oil-uses-benefits-and-a-recipe-to-make-your/QqYwInfNQHedUETFu2Dm_Subhead-2.jpg', description:'coconut oil has among the highest concentration of fatty acids (saturated fats). The surplus of these fatty acids in the coconut oil create a stronger binding agent for cannabinoids. ', prep_time: 360, concentrate: true,
+concentrate1 = user1.recipes.create(id:1, recipe_category_id: concentrate_category.id, strain_id:nil, title:'Cannabis Coconut Oil', image:'https://s3.amazonaws.com/leafly-s3/content/cannabis-and-coconut-oil-uses-benefits-and-a-recipe-to-make-your/QqYwInfNQHedUETFu2Dm_Subhead-2.jpg', description:'coconut oil has among the highest concentration of fatty acids (saturated fats). The surplus of these fatty acids in the coconut oil create a stronger binding agent for cannabinoids. ', prep_time: 360, concentrate: true,
 instructions_attributes: [
   { step: 'Grind the cannabis. You can include the entire plant, just the flower, a little bit of both — this is all a matter of preference. Just keep in mind that anything small enough to fit through the strainer will end up in your finished product, so again, do not grind your cannabis to a fine powder.'},
   {step: 'Combine oil and cannabis in your double-boiler or slow cooker, and heat the two together on low or warm for a few hours. This allows for decarboxylation (activation of THC) without scorching (which destroys the active ingredients). Cooking can be done a variety of ways: in a slow cooker on low for 4-6 hours, stirring occasionally; in a double-boiler on low for at least 6 hours (8 is better), stirring occasionally; or in a simple saucepan on low for at least three hours, stirring frequently (a saucepan is most susceptible to scorching). In all cases, a small amount of water can be added to the mixture to help avoid burning. Note: whatever method you choose, temperature of the oil should not exceed 245°F.'},
@@ -40,7 +40,7 @@ measurements_attributes: [
   ]
 )
 # Rick Simpson Oil
-concentrate2 = user1.recipes.create(id:2, recipe_category_id:concentrate_category.id, recommended_strain_id:nil, title:'Rick Simpson Oil', image:nil, description:'Rick Simpson Oil, or RSO is a concentrated form of cannabis oil known to have medical benefits, particularly for cancer.', prep_time: 360, concentrate: true,
+concentrate2 = user1.recipes.create(id:2, recipe_category_id:concentrate_category.id, strain_id:nil, title:'Rick Simpson Oil', image:nil, description:'Rick Simpson Oil, or RSO is a concentrated form of cannabis oil known to have medical benefits, particularly for cancer.', prep_time: 360, concentrate: true,
 instructions_attributes: [
   {step: 'Place dry cannabis material into the 5-gallon bucket and pour in the solvent until the plant matter is covered.'},
   {step: 'Stir and crush the plant material with your wooden spoon while adding the solvent to your mixture. Continue stirring the mixture for about three minutes while the THC dissolves into the solvent. This will dissolve about 80% of the THC into the solvent.'},
@@ -60,7 +60,7 @@ measurements_attributes: [
 #  Cannabutter
 
 
-concentrate3 = user1.recipes.create(id:3, recipe_category_id:concentrate_category.id, recommended_strain_id:nil, title:'Cannabis-Infused Butter', image:'https://s3.amazonaws.com/leafly-s3/content/recipe-how-to-make-basic-cannabutter/HyiZ4sSkVIDtbpo9tnA6_Cannabutter-Body.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
+concentrate3 = user1.recipes.create(id:3, recipe_category_id:concentrate_category.id, strain_id:nil, title:'Cannabis-Infused Butter', image:'https://s3.amazonaws.com/leafly-s3/content/recipe-how-to-make-basic-cannabutter/HyiZ4sSkVIDtbpo9tnA6_Cannabutter-Body.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
 instructions_attributes: [
   { step: 'Add one cup of water and 1 lb of butter into a stock pot or sauce pan; let the butter melt and begin to simmer on low. Adding water helps to regulate the temperature and prevents the butter from scorching.'},
   {step: 'As butter begins to melt, add in your ground cannabis product.'},
@@ -80,7 +80,7 @@ measurements_attributes: [
 )
 
 
-concentrate4 = user2.recipes.create(id:4, recipe_category_id:concentrate_category.id, recommended_strain_id:nil, title:'Cannabis-Infused Olive Oil', image:nil, video:'https://www.youtube.com/embed/hEz0zkzGQGQ', description:'It is super easy to infuse cannabis into your olive oil with the sous vide technique. Since you can fit many mason jars in a sous vide water bath, imagine the all the different flavored oil concoctions you can whip up all in one sitting! This technique is simple and discreet--no smell! ', prep_time: 240, concentrate: true,
+concentrate4 = user2.recipes.create(id:4, recipe_category_id:concentrate_category.id, strain_id:nil, title:'Cannabis-Infused Olive Oil', image:nil, video:'https://www.youtube.com/embed/hEz0zkzGQGQ', description:'It is super easy to infuse cannabis into your olive oil with the sous vide technique. Since you can fit many mason jars in a sous vide water bath, imagine the all the different flavored oil concoctions you can whip up all in one sitting! This technique is simple and discreet--no smell! ', prep_time: 240, concentrate: true,
 instructions_attributes: [
   { step: 'Pour olive oil in two 12oz mason jars. It is important to use jars specific to canning, so please no repurposed mayo jars. Inspect the jar for cracks. A freezer-safe zip bag may be used as well.'},
   {step: 'Decarb your cannabis to activate the THC and pour half into each jar of olive oil. Seal the jars finger tight.'},
@@ -98,7 +98,7 @@ measurements_attributes: [
   ]
 )
 
-concentrate5 = user2.recipes.create(id:5, recipe_category_id:concentrate_category.id, recommended_strain_id:nil, title:'Cannabis Cooking Oil', image:'https://s3.amazonaws.com/leafly/content/recipe-how-to-make-cannabis-cooking-oil/TRaosPRdRpOyuSZfpMWe_large_6896388410.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
+concentrate5 = user2.recipes.create(id:5, recipe_category_id:concentrate_category.id, strain_id:nil, title:'Cannabis Cooking Oil', image:'https://s3.amazonaws.com/leafly/content/recipe-how-to-make-cannabis-cooking-oil/TRaosPRdRpOyuSZfpMWe_large_6896388410.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
 instructions_attributes: [
   {step: 'Add one cup of water and 1 lb of butter into a stock pot or sauce pan; let the butter melt and begin to simmer on low. Adding water helps to regulate the temperature and prevents the butter from scorching.'},
   {step: 'As butter begins to melt, add in your ground cannabis product.'},
@@ -113,7 +113,7 @@ measurements_attributes: [
     }
   ]
 )
-recipe1 = user3.recipes.create(id:6, recipe_category_id: snacks.id, recommended_strain_id:nil, title:'Dope Beets: A Hummus Collab with Bloom Farms', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4c326f085229be305f2d51/5a4c326f53450a16cf26d26f/1514943104198/SousWeed_DopeBeetHummus_6B7A9340_LoRes.jpg?format=300w', description:'The roasted beets add a mellow sweetness and rosy color to a basic hummus recipe. The texture is sultry smooth and goes great with warm pita or crisp veggies. If you have your Sous Weed olive oil prepared, it’s quick to throw together in a blender and is sure to be a hit at your next get-together.', prep_time: 70, concentrate: true,
+recipe1 = user3.recipes.create(id:6, recipe_category_id: snacks.id, strain_id:nil, title:'Dope Beets: A Hummus Collab with Bloom Farms', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4c326f085229be305f2d51/5a4c326f53450a16cf26d26f/1514943104198/SousWeed_DopeBeetHummus_6B7A9340_LoRes.jpg?format=300w', description:'The roasted beets add a mellow sweetness and rosy color to a basic hummus recipe. The texture is sultry smooth and goes great with warm pita or crisp veggies. If you have your Sous Weed olive oil prepared, it’s quick to throw together in a blender and is sure to be a hit at your next get-together.', prep_time: 70, concentrate: true,
 instructions_attributes: [
   {step: 'Pre-heat oven to 375ºF.'},
   {step: 'Lightly wrap peeled beets in foil and roast for about an hour.'},
@@ -153,7 +153,7 @@ measurements_attributes: [
   ]
 )
 
-recipe2 = user4.recipes.create(id:7, recipe_category_id:desserts.id, recommended_strain_id:nil, title:'Smoky-Sweet Pineapple Fruitcake', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c699424a694df8674714c/1513908659466/SousWeed_BloomFarms_HolidayPairing-3842.jpg?format=300w', description:'Woodsy, Earthy, Fruity!CBD-heavy to bring down the high, chill-out.', prep_time: 60, concentrate: true,
+recipe2 = user4.recipes.create(id:7, recipe_category_id:desserts.id, strain_id:nil, title:'Smoky-Sweet Pineapple Fruitcake', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c699424a694df8674714c/1513908659466/SousWeed_BloomFarms_HolidayPairing-3842.jpg?format=300w', description:'Woodsy, Earthy, Fruity!CBD-heavy to bring down the high, chill-out.', prep_time: 60, concentrate: true,
 instructions_attributes: [
   {step: 'Preheat oven to 350ºF and grease an 8-in non-stick bundt pan.'},
   {step: 'Melt 3 Tbsp butter in a skillet over medium-high and add brown sugar. Cook until you see bubbles then add pineapple and cook for 2-3 minutes, until softened. Remove from heat and pour into the prepared cake pan.'},
@@ -209,7 +209,7 @@ measurements_attributes: [
     }
   ]
 )
-recipe3 = user5.recipes.create(id:8, recipe_category_id:sides.id, recommended_strain_id:nil, title:'Stuffed Portabella Mushrooms with Sundried Tomatoes', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c69690d92975090bdbc1f/1513908631359/SousWeed_BloomFarms_HolidayPairing-3935.jpg?format=300w', description:'Black Jack(strain) from Bloom Farms,Earthy, Sweet, Pine, make you euphoric and talkative', prep_time: 45, concentrate: false,
+recipe3 = user5.recipes.create(id:8, recipe_category_id:sides.id, strain_id:nil, title:'Stuffed Portabella Mushrooms with Sundried Tomatoes', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c69690d92975090bdbc1f/1513908631359/SousWeed_BloomFarms_HolidayPairing-3935.jpg?format=300w', description:'Black Jack(strain) from Bloom Farms,Earthy, Sweet, Pine, make you euphoric and talkative', prep_time: 45, concentrate: false,
 instructions_attributes: [
   {step: 'Preheat oven to 400ºF.'},
   {step: 'In large bowl, toss portobello mushrooms in canola oil and set aside.'},
