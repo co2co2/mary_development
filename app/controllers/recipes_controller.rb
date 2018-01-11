@@ -2,6 +2,14 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: %i[index show search_results]
 
+  def strain_name
+    Strain.try(:name)
+  end
+
+  def strain_name=(name)
+    self.strain = Strain.find_by(name: name) if name.present?
+  end
+
   def search_results
     if params[:search]
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
@@ -52,6 +60,22 @@ class RecipesController < ApplicationController
   def new
     @recipe = current_user.recipes.build
     @concentrates = Recipe.concentrates
+    @strain = Strain.all
+    if @strain.empty?
+    
+      res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
+      body = JSON.parse(res.body)
+
+      body.keys[0..10].each do |key|
+        @strain = Strain.new
+        @strain.name = key
+        @strain.race = body[key]["race"]
+        @strain.flavours = body[key]["flavors"][0]
+        @strain.effect = body[key]["effects"]["positive"][0]
+        @strain.save
+      end
+    end
+    
   end
 
   # GET /recipes/1/edit
