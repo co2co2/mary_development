@@ -23,7 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
             $("#dialog").dialog("close");
         }
       }
-    }) 
+    })
+    var dialogContent = document.querySelector('.ui-dialog-content')
+    console.log(dialogContent);
+    dialogContent.innerText = 'Are you over 19 years old?'
   }
 })
 
