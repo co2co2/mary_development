@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
- // var ageDisclaimer= document.createElement('dialog')
- // ageDisclaimer.innertext = 'Are you 19 years old?'
+
   document.cookie="newCookie=value";
   var now = new Date().getTime();
   var askAt = window.localStorage.getItem('ageVerification');
@@ -24,13 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
             $("#dialog").dialog("close");
         }
       }
-    });
+    }) 
   }
 })
-
-
-
-
 
 
 function hideConcentrateLink() {
@@ -45,9 +40,3 @@ function hideConcentrateLink() {
 function addConcentrateLink() {
   addConcentrate.style.display = 'inline';
 }
-jQuery(function() {
-  return $('#recipe_strain_name').autocomplete({
-    source: $('#recipe_strain_name').data('autocomplete-source')
-  });
-
-});
