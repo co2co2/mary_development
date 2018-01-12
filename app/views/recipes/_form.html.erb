@@ -1,3 +1,4 @@
+<h2><%= recipe.title %></h2>
 <%= form_for recipe do |form| %>
   <% if recipe.errors.any? %>
     <div id="error_explanation">
@@ -12,7 +13,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :recipe_category_id %>
+    <%= form.label :recipe_category_id, 'Category' %>
     <%= form.select :recipe_category_id, RecipeCategory.all.collect {|category| [ category.name, category.id ] }, include_blank: true, id: :recipe_category_id %>
   </div>
 
@@ -20,7 +21,11 @@
     <%= form.label :strain_name, 'Recommended Strain'%>
     <%= form.text_field :strain_name, data: {autocomplete_source: strains_path}%>
     <%= form.hidden_field :strain_id, id: 'strainId'%>
+  </div>
 
+  <div class="form-group">
+    <%= form.label :concentrate, 'Is this a concentrate?' %>
+    <%= form.check_box :concentrate %> Yes
   </div>
 
   <div class="form-group">

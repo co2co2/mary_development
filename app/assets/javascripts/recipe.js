@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-
+// Age verification dialog box
   document.cookie="newCookie=value";
   var now = new Date().getTime();
   var askAt = window.localStorage.getItem('ageVerification');
@@ -25,9 +25,30 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     })
     var dialogContent = document.querySelector('.ui-dialog-content')
-    console.log(dialogContent);
     dialogContent.innerText = 'Are you over 19 years old?'
   }
+
+// Category - concentrate checkbox
+  $(function(){
+    $('#recipe_recipe_category_id').change(function() {
+      if ($('#recipe_recipe_category_id option:selected').text() === 'Concentrates') {
+        $('#recipe_concentrate').prop('checked', true);
+      } else {
+        $('#recipe_concentrate').prop('checked', false);
+      }
+    })
+
+    $('#recipe_concentrate').change(() => {
+      if ($('#recipe_concentrate').is(':checked')) {
+        $('#recipe_recipe_category_id').val('1')
+        console.log('checked')
+      } else {
+        $('#recipe_recipe_category_id').val('')
+        console.log('unchecked')
+      }
+    })
+  });
+
 })
 
 
