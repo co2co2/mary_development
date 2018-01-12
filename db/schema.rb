@@ -10,7 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180111020445) do
+ActiveRecord::Schema.define(version: 20180112020453) do
+
+  create_table "allergies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "allergies_recipes", id: false, force: :cascade do |t|
+    t.integer "allergy_id", null: false
+    t.integer "recipe_id", null: false
+  end
+
+  create_table "effects", force: :cascade do |t|
+    t.string "name"
+    t.decimal "level"
+    t.string "subcategory"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "effects_strains", id: false, force: :cascade do |t|
+    t.integer "effect_id", null: false
+    t.integer "strain_id", null: false
+  end
 
   create_table "favourites", force: :cascade do |t|
     t.integer "user_id"
