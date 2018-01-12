@@ -5,7 +5,7 @@ class Recipe < ApplicationRecord
   has_many :instructions, dependent: :destroy
   has_many :reviews
   has_many :favourites
-
+  has_and_belongs_to_many :allergies
   accepts_nested_attributes_for :instructions, allow_destroy: true, :reject_if => :all_blank
 
 

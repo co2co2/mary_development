@@ -23,6 +23,7 @@ user3 = User.create!(id:3, email:'coco@gmail.com', username: 'coco', password:'v
 user4 = User.create!(id:4, email:'lena@gmail.com', username: 'lena', password:'valid_password', password_confirmation: 'valid_password')
 user5 = User.create!(id:5, email:'william@gmail.com', username: 'william', password:'valid_password', password_confirmation: 'valid_password')
 user6 = User.create!(id:6, email:'tyler@gmail.com', username: 'tyler', password:'valid_password', password_confirmation: 'valid_password')
+# Allergies
 
 # Categories
 concentrate_category = RecipeCategory.create!(name: 'Concentrates')
@@ -265,3 +266,15 @@ measurements_attributes: [
     }
   ]
 )
+
+peanutFree = Allergy.create!(id:1, name:'Peanut-free')
+glutenFree = Allergy.create!(id:2, name:'Gluten-free')
+vegetarian = Allergy.create!(id:3, name:'Vegetarian')
+vegan = Allergy.create!(id:4, name:'Vegan')
+soyFree = Allergy.create!(id:5, name:'Soy-free')
+
+recipe1.allergies << peanutFree
+recipe2.allergies << glutenFree
+recipe3.allergies << vegetarian
+recipe1.allergies << vegan
+recipe2.allergies << soyFree
