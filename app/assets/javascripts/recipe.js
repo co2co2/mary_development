@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load', function() {
 
-
   $('#recipe_strain_name').focusout(function(){
     var strainText = $('#recipe_strain_name').val();
     $.ajax({
@@ -51,7 +50,6 @@ $(document).on('turbolinks:load', function() {
     console.log(dialogContent);
     dialogContent.innerText = 'Are you over 19 years old?'
   }
-})
 
 
 
