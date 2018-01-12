@@ -17,7 +17,7 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :strain_name %>
+    <%= form.label :strain_name, 'Recommended Strain'%>
     <%= form.text_field :strain_name, data: {autocomplete_source: strains_path}%>
     <%= form.hidden_field :strain_id, id: 'strainId'%>
 
@@ -44,7 +44,7 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :prep_time %>
+    <%= form.label :prep_time, 'Cook time' %>
     <%= form.number_field :prep_time, id: :recipe_prep_time %>
   </div>
 
@@ -84,3 +84,32 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+$(function(){
+  $('#recipe_strain_name').focusout(function(){
+    var strainText = $('#recipe_strain_name').val();
+    $.ajax({
+      url: $('#recipe_strain_name').data('autocomplete-source'),
+      method: 'GET',
+      dataType: 'json'
+    }).done(function(responseData) {
+      for (var key in responseData)
+      {
+        if ( responseData[key].toLowerCase() === strainText.toLowerCase()) {
+          $('#strainId').val(key);
+        }
+
+      }
+    }).fail(function() {
+      console.log(`fail to get strains info`)
+    })
+
+  })
+})
+
+$('#recipe_strain_name').autocomplete({
+  source: $('#recipe_strain_name').data('autocomplete-source')
+});
+
+</script>
