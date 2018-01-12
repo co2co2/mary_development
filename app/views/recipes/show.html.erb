@@ -66,6 +66,7 @@
 
 <% if  user_signed_in? && current_user == @recipe.user%>
   <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+  <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure to delete this recipe?' }  %> |
 <% end %>
   <%= link_to 'Back', recipes_path %>
 
