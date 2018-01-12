@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     @reviews = @recipe.reviews
-    @new_review = Review.new
+    @review = Review.new
     if user_signed_in?
       if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
         @favourite_link = "unfavourite"
@@ -61,7 +61,7 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.build
     @concentrates = Recipe.concentrates
     @strain = Strain.all
- 
+
 
   end
 
