@@ -1,6 +1,12 @@
 
 class Recipe < ApplicationRecord
   validates :recipe_category_id, :title, :description, :prep_time, :user_id, :instructions, :measurements, presence: true
+  validates :title, length: { in: 3..50 }
+  validates :description, length: { in: 6..500 }
+  validates :prep_time, numericality: { only_integer: true}
+  validates_each :instructions, :measurements do |record, attr, value|
+    record.errors.add(attr, "Can't be blank") if value == ''
+  end
 
   has_many :instructions, dependent: :destroy
   has_many :reviews
