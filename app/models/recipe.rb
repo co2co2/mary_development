@@ -21,6 +21,8 @@ class Recipe < ApplicationRecord
 	:allow_destroy => true
 	accepts_nested_attributes_for :ingredients
 
+  accepts_nested_attributes_for :allergies
+
 	belongs_to :user
   belongs_to :recipe_category
   belongs_to :strain
