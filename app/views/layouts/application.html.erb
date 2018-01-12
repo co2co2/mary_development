@@ -6,16 +6,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
   </head>
 
   <body>
-
-      <div id="dialog">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>Are you 21 years old?</p>
-
-      </div>
 
 
     <p><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
@@ -55,6 +50,12 @@
     </script>
 
     <%= yield %>
+
+    <div class="dialog-wrapper">
+      <div id="dialog"><p>Are you over 19 years old?</p></div>
+    </div>
+
+
 
 
   </body>

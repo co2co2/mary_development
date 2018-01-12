@@ -1,3 +1,13 @@
 // Place all the styles related to the Recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Age verification div
+.ui-dialog-titlebar {
+  display: none;
+}
+
+.ui-widget-overlay {
+background-color: rgba(30,30,30,0.8) !important;
+opacity: 1 !important;
+}
