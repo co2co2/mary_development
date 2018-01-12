@@ -69,7 +69,15 @@
     <%= link_to_add_association 'Add concentrate', form, :measurements, partial: 'concentrate_fields', 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", id: 'addConcentrate', onclick: 'hideConcentrateLink()', :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %>
   </fieldset>
   </div>
+  <div class="form-group">
+    <h3>Allergies</h3>
+    <% allergies.each do |allergy| %>
+    <%= form.fields_for 'allergy[]', allergy do |allergy_field| %>
+         <%= allergy.name %> <%= allergy_field.check_box :name %>
+    <% end %>
+    <% end %>
 
+  </div>
 
   <div class="form-group">
     <h3>Instructions</h3>

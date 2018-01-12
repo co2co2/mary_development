@@ -61,18 +61,27 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.build
     @concentrates = Recipe.concentrates
     @strain = Strain.all
+    @allergies = Allergy.all
  
 
   end
 
   # GET /recipes/1/edit
   def edit
+    @allergies = Allergy.all
   end
 
   # POST /recipes
   # POST /recipes.json
   def create
     @recipe = current_user.recipes.build(recipe_params)
+     params[:recipe][:allergy].each do |key,value|
+       if value["name"] == "1"
+          allergy = Allergy.find(key)
+         @recipe.allergies << allergy
+       end
+     end
+   
 
     respond_to do |format|
       if @recipe.save
@@ -88,6 +97,12 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
+     params[:recipe][:allergy].each do |key,value|
+      if value["name"] == "1"
+          allergy = Allergy.find(key)
+         @recipe.allergies << allergy
+       end
+    end
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
@@ -110,7 +125,7 @@ class RecipesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Use callbacks to share common setup or constreaints between actions.
     def set_recipe
       @recipe = Recipe.find(params[:id])
     end
@@ -118,7 +133,8 @@ class RecipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
       params.require(:recipe).permit(:recipe_category_id, :strain_id, :title, :image, :video, :description, :prep_time, :views, :user_id, instructions_attributes:[:id, :recipe_id ,:step, :_destroy],
-        measurements_attributes:[:id, :ingredient_id, :recipe_id, :quantity, :_destroy, ingredient_attributes:[
-        :id, :name, :concentrate_recipe_id, :_destroy]])
+        allergies_attributes:[:id, :name],
+        measurements_attributes:[:id, :ingredient_id, :recipe_id, :quantity, :_destroy,
+        ingredient_attributes:[:id, :name, :concentrate_recipe_id, :_destroy]])
     end
 end
