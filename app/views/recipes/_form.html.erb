@@ -57,11 +57,18 @@
   <h3>Ingredients</h3>
   <fieldset id="recipe-ingredients">
   <ul>
-
+    <% i = 0 %>
     <%= form.fields_for :measurements do |measurement| %>
-
+      <% if recipe.ingredients[i] == nil  %>
+        <%= render 'measurement_fields', f: measurement %>
+      <% else %>
+        <% if recipe.ingredients[i].concentrate_recipe_id == nil%>
           <%= render 'measurement_fields', f: measurement %>
-
+        <% else %>
+          <%= render 'concentrate_fields', f: measurement %>
+        <% end %>
+        <% i += 1 %>
+      <% end %>
     <% end %>
   </ul>
     <%= link_to_add_association 'Add ingredient', form, :measurements, 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %> |
