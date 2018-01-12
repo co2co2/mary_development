@@ -61,20 +61,7 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.build
     @concentrates = Recipe.concentrates
     @strain = Strain.all
-    if @strain.empty?
-
-      res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
-      body = JSON.parse(res.body)
-
-      body.keys[0..10].each do |key|
-        @strain = Strain.new
-        @strain.name = key
-        @strain.race = body[key]["race"]
-        @strain.flavours = body[key]["flavors"][0]
-        @strain.effect = body[key]["effects"]["positive"][0]
-        @strain.save
-      end
-    end
+ 
 
   end
 
