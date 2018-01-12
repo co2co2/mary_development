@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     @reviews = @recipe.reviews
-    @new_review = Review.new
+    @review = Review.new
     if user_signed_in?
       if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
         @favourite_link = "unfavourite"
@@ -132,9 +132,11 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
+
       params.require(:recipe).permit(:recipe_category_id, :strain_id, :title, :image, :video, :description, :prep_time, :views, :user_id, instructions_attributes:[:id, :recipe_id ,:step, :_destroy],
         allergies_attributes:[:id, :name],
         measurements_attributes:[:id, :ingredient_id, :recipe_id, :quantity, :_destroy,
         ingredient_attributes:[:id, :name, :concentrate_recipe_id, :_destroy]])
+
     end
 end

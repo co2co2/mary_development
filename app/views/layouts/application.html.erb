@@ -11,18 +11,19 @@
   </head>
 
   <body>
+    <header>
+      <h1>Baking with Mary</h1>
+      <p><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
 
-
-    <p><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
-
-    <nav>
-      <%= link_to 'Home', root_path %>
-      <% if user_signed_in? %>
+      <nav>
+        <%= link_to 'Home', root_path %>
+        <% if user_signed_in? %>
         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
         <%= link_to 'Your Profile', user_path(current_user) %>
-      <% else %>
+        <% else %>
         <%= link_to 'Sign In', new_user_session_path %>
         <%= link_to 'Sign Up', new_user_registration_path %>
+
       <% end %>
       <a href="" id="categoryBtn">Recipes</a>
     </nav>
@@ -39,24 +40,29 @@
 
 
     <script type ='text/javascript'>
+
       var categoryBtn = document.querySelector('#categoryBtn'),
-          categoryNav = document.getElementById('categories')
-    categoryBtn.addEventListener('click', function(e) {
-      //console.log("helloooo");
+      categoryNav = document.getElementById('categories')
+      categoryBtn.addEventListener('click', function(e) {
+        //console.log("helloooo");
         e.preventDefault();
-      if (categoryNav.style.display === 'none') {
-        categoryNav.style.display = 'block';
-      } else {
-        categoryNav.style.display = 'none';
-      }
-    })
-    </script>
 
-    <%= yield %>
+        if (categoryNav.style.display === 'none') {
+          categoryNav.style.display = 'block';
+        } else {
+          categoryNav.style.display = 'none';
+        }
+      })
+      </script>
+    </header>
 
-    <div class="dialog-wrapper">
-      <div id="dialog"><p></p></div>
-    </div>
+    <main>
+      <%= yield %>
+
+      <div class="dialog-wrapper">
+        <div id="dialog"></div>
+      </div>
+    </main>
 
 
 
