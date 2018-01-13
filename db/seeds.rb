@@ -15,7 +15,7 @@ res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
         strain = Strain.new
         strain.name = s
         strain.race = body[s]["race"]
-        strain.flavours = body[s]["flavors"][0]
+        strain.flavours = body[s]["flavors"]
         strain.save
 
         # get positive effects
