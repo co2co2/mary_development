@@ -22,17 +22,17 @@ res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
         positives = body[s]["effects"]["positive"]
         positives.each do |effect|
 
-          # Effect.all.each do |e|
-          #   if Effect.where(:name => effect).blank?
-              strain_effect = Effect.new
-              strain_effect.strains << strain
-              strain_effect.name = effect
-              strain_effect.subcategory = "positive"
-              strain_effect.save
-            # else
-              # e.strains << strain
-          #   end
-          # end
+          if Effect.where(:name => effect).any?
+            Effect.where(:name => effect).each do |e|
+              e.strains << strain
+            end
+          else
+            strain_effect = Effect.new
+            strain_effect.strains << strain
+            strain_effect.name = effect
+            strain_effect.subcategory = "positive"
+            strain_effect.save
+          end
 
         end
 
@@ -40,11 +40,17 @@ res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
         negatives = body[s]["effects"]["negative"]
         negatives.each do |effect|
 
-              strain_effect = Effect.new
-              strain_effect.strains << strain
-              strain_effect.name = effect
-              strain_effect.subcategory = "negative"
-              strain_effect.save
+          if Effect.where(:name => effect).any?
+            Effect.where(:name => effect).each do |e|
+              e.strains << strain
+            end
+          else
+            strain_effect = Effect.new
+            strain_effect.strains << strain
+            strain_effect.name = effect
+            strain_effect.subcategory = "negative"
+            strain_effect.save
+          end
 
         end
 
@@ -52,11 +58,17 @@ res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
         medicals = body[s]["effects"]["medical"]
         medicals.each do |effect|
 
-              strain_effect = Effect.new
-              strain_effect.strains << strain
-              strain_effect.name = effect
-              strain_effect.subcategory = "medical"
-              strain_effect.save
+          if Effect.where(:name => effect).any?
+            Effect.where(:name => effect).each do |e|
+              e.strains << strain
+            end
+          else
+            strain_effect = Effect.new
+            strain_effect.strains << strain
+            strain_effect.name = effect
+            strain_effect.subcategory = "medical"
+            strain_effect.save
+          end
 
 
         end
