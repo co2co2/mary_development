@@ -6,6 +6,5 @@ class StrainsController < ApplicationController
         strain_hash[strain.id] = strain.name
         end
         render json: strain_hash
-
     end
 end

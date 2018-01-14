@@ -1,6 +1,11 @@
-
 class Recipe < ApplicationRecord
   validates :recipe_category_id, :title, :description, :prep_time, :user_id, :instructions, :measurements, presence: true
+  validates :title, length: { in: 3..100 }
+  validates :description, length: { in: 6..500 }
+  validates :prep_time, numericality: { only_integer: true}
+  validates_each :instructions, :measurements do |record, attr, value|
+    record.errors.add(attr, "Can't be blank") if value == ''
+  end
 
   has_many :instructions, dependent: :destroy
   has_many :reviews
@@ -15,13 +20,17 @@ class Recipe < ApplicationRecord
 	:allow_destroy => true
 	accepts_nested_attributes_for :ingredients
 
+  accepts_nested_attributes_for :allergies
+
 	belongs_to :user
   belongs_to :recipe_category
   belongs_to :strain
 
   scope :concentrates, -> { where(concentrate: true)}
   scope :recent, -> { order('created_at DESC').limit(3) }
-  scope :user_favourites, -> (user_id){ joins(:favourites).where("favourites.user_id IS ?", user_id)}
+  # scope :user_favourites, -> (user_id){ select(), user_id)}
+
+  scope :user_favourites, -> (user_id){ joins(:favourites).where("favourites.user_id = ?", user_id)}
 
   def self.search(search)
     where("lower(title) LIKE ?", "%#{search.downcase}%")

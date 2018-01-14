@@ -1,14 +1,21 @@
 class ReviewsController < ApplicationController
 	def create
+    @recipe = Recipe.find(params[:recipe_id])
     @review = Review.new
     @review.comment = params[:review][:comment]
-    @review.recipe_id = params[:recipe_id]
+    @review.recipe = @recipe
     @review.user_id = current_user.id
 
     if @review.save
-      redirect_back(fallback_location: 'recipes#show')
+      # redirect_back(fallback_location: '/recipes#show')
+      redirect @review.recipe
     else
-      render 'recipes#show'
+      if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
+        @favourite_link = "unfavourite"
+      else
+        @favourite_link = "favourite"
+      end
+      render '/recipes/show'
     end
 
 	end

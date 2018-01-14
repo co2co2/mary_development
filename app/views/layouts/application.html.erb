@@ -23,19 +23,24 @@
         <% else %>
         <%= link_to 'Sign In', new_user_session_path %>
         <%= link_to 'Sign Up', new_user_registration_path %>
-        <% end %>
-        <a href="" id="categoryBtn">Recipes</a>
-      </nav>
-      <nav id="categories" style="display: none">
-        <% RecipeCategory.all.each do |category| %>
-        <%= link_to category.name, recipe_category_path(category)  %>
-        <% end %>
-      </nav>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+
+      <% end %>
+      <a href="" id="categoryBtn">Recipes</a>
+    </nav>
+    <nav id="categories" style="display: none">
+      <% RecipeCategory.all.each do |category| %>
+      <%= link_to category.name, recipe_category_path(category)  %>
+      <% end %>
+      <% Allergy.all.each do |allergy| %>
+        <%= link_to allergy.name, allergy_path(allergy)  %>
+      <% end %>
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
 
-      <script type ='text/javascript'>
+    <script type ='text/javascript'>
+
       var categoryBtn = document.querySelector('#categoryBtn'),
       categoryNav = document.getElementById('categories')
       categoryBtn.addEventListener('click', function(e) {
