@@ -6,6 +6,25 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+def save_effects(strain, type_effects, type_name)
+  type_effects.each do |effect|
+
+    if Effect.where(:name => effect).any?
+      Effect.where(:name => effect).each do |e|
+        e.strains << strain
+      end
+    else
+      strain_effect = Effect.new
+      strain_effect.strains << strain
+      strain_effect.name = effect
+      strain_effect.subcategory = type_name
+      strain_effect.save
+    end
+
+  end
+end
+
+# Use HTTParty to get save strains
 res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
       body = JSON.parse(res.body)
 
@@ -20,64 +39,17 @@ res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
 
         # get positive effects
         positives = body[s]["effects"]["positive"]
-        positives.each do |effect|
-
-          if Effect.where(:name => effect).any?
-            Effect.where(:name => effect).each do |e|
-              e.strains << strain
-            end
-          else
-            strain_effect = Effect.new
-            strain_effect.strains << strain
-            strain_effect.name = effect
-            strain_effect.subcategory = "positive"
-            strain_effect.save
-          end
-
-        end
+        save_effects(strain, positives, "positive")
 
         # get negative effects
         negatives = body[s]["effects"]["negative"]
-        negatives.each do |effect|
-
-          if Effect.where(:name => effect).any?
-            Effect.where(:name => effect).each do |e|
-              e.strains << strain
-            end
-          else
-            strain_effect = Effect.new
-            strain_effect.strains << strain
-            strain_effect.name = effect
-            strain_effect.subcategory = "negative"
-            strain_effect.save
-          end
-
-        end
+        save_effects(strain, negatives, "negative")
 
         # get medical effects
         medicals = body[s]["effects"]["medical"]
-        medicals.each do |effect|
-
-          if Effect.where(:name => effect).any?
-            Effect.where(:name => effect).each do |e|
-              e.strains << strain
-            end
-          else
-            strain_effect = Effect.new
-            strain_effect.strains << strain
-            strain_effect.name = effect
-            strain_effect.subcategory = "medical"
-            strain_effect.save
-          end
-
-
-        end
-
+        save_effects(strain, medicals, "medical")
 
       end
-
-
-
 
 # Users
 user1 = User.create!(id:1, email:'cat@gmail.com', username: 'cat', password:'valid_password', password_confirmation: 'valid_password')
