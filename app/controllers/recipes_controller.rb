@@ -13,9 +13,21 @@ class RecipesController < ApplicationController
   def search_results
     if params[:search]
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
+    elsif params[:ingredient]
+      @ingredients = []
+      params[:ingredient].each do |ingredient|
+        ingredient_id = Ingredient.find_by(name: ingredient)
+        @ingredients << ingredient_id.id
+      end 
+      
+      @recipes = Recipe.filter_ingredients(@ingredients)
     else
       @recipes = Recipe.all.order("created_at DESC")
     end
+  end
+
+  def filter
+    
   end
 
   def favourite
