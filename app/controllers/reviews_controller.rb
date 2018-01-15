@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
 
     if @review.save
-      redirect @review.recipe
+      redirect_to @review.recipe
     else
       if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
         @favourite_link = "unfavourite"

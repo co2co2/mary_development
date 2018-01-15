@@ -47,6 +47,29 @@ class Recipe < ApplicationRecord
     self.strain = Strain.find_by(name: name) if name.present?
   end
 
+  def minutes_to_hours(minutes)
+    hours = minutes / 60
+    minutes_remaining = minutes % 60
+
+    if hours != 0 && hours !=1 && minutes_remaining != 0 && minutes_remaining != 1
+      return "#{hours} hours and #{minutes_remaining} minutes"
+    elsif hours != 0 && hours != 1 && minutes_remaining != 0
+      return "#{hours} hours and #{minutes_remaining} minute"
+    elsif hours != 0 && minutes_remaining != 0 && minutes_remaining != 1
+      return "#{hours} hour and #{minutes_remaining} minutes"
+    elsif hours != 0 && minutes_remaining != 0
+      return "#{hours} hour and #{minutes_remaining} minute"
+    elsif hours == 1
+      return "#{hours} hour"
+    elsif hours != 0 && hours != 1
+      return "#{hours} hours"
+    elsif minutes_remaining == 1
+      return "#{minutes_remaining} minute"
+    elsif minutes_remaining != 0 && minutes_remaining != 1
+      return "#{minutes_remaining} minutes"
+    end
+  end
+
     # Author.left_outer_joins(:posts).distinct.select('authors.*, COUNT(posts.*) AS posts_count').group('authors.id')
 
 end

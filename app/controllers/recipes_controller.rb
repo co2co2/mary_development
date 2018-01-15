@@ -47,6 +47,8 @@ class RecipesController < ApplicationController
   def show
     @reviews = @recipe.reviews
     @review = Review.new
+    @recipe.views += 1
+    @recipe.save
     if user_signed_in?
       if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
         @favourite_link = "unfavourite"
@@ -82,6 +84,7 @@ class RecipesController < ApplicationController
          @recipe.allergies << allergy
        end
      end
+
     # try to save ingredient unique, check if name exists in db
    params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
       ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
@@ -99,8 +102,6 @@ class RecipesController < ApplicationController
        @recipe.allergies << allergy
      end
    end
->>>>>>> master
-
 
     respond_to do |format|
       if @recipe.save
