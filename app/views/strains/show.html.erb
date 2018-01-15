@@ -1,0 +1,26 @@
+<h1><%= @strain.name %></h1>
+<%= image_tag @strain.image, alt: @strain.name %>
+<p>
+  <h3>Race:</h3> <%= @strain.race %>
+</p>
+<p>
+  <h3>Flavours</h3>
+  <% @strain.flavours.each do |flavour| %>
+    <%= flavour %>
+  <% end %>
+</p>
+<p>
+  <h3>Effects</h3>
+  <h2>Positive</h2>
+  <% @positives.each do |effect| %>
+    <%= effect.name %>
+  <% end %>
+  <h2>Negative</h2>
+  <% @negatives.each do |effect| %>
+    <%= effect.name %>
+  <% end %>
+  <h2>Medical</h2>
+  <% @medicals.each do |effect| %>
+    <%= effect.name %>
+  <% end %>
+</p>
