@@ -26,15 +26,20 @@ end
 
 # Use HTTParty to get save strains
 res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
-      body = JSON.parse(res.body)
+body = JSON.parse(res.body)
 
-      body.keys[0..50].each do |s|
+response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655a6cda57d9606038d31d653fbacb020&count=50&page=2")
+resbody = JSON.parse(response.body)
+
+      body.keys[0..49].each_with_index do |s, index|
+        # Use canabis report api to get image
 
         # Make new strain
         strain = Strain.new
         strain.name = s
         strain.race = body[s]["race"]
         strain.flavours = body[s]["flavors"]
+        strain.image = resbody["data"][index]["image"]
         strain.save
 
         # get positive effects
