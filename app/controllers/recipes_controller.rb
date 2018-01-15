@@ -47,6 +47,8 @@ class RecipesController < ApplicationController
   def show
     @reviews = @recipe.reviews
     @review = Review.new
+    @recipe.views += 1
+    @recipe.save
     if user_signed_in?
       if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
         @favourite_link = "unfavourite"
@@ -62,7 +64,7 @@ class RecipesController < ApplicationController
     @concentrates = Recipe.concentrates
     @strain = Strain.all
     @allergies = Allergy.all
- 
+
 
   end
 
@@ -81,7 +83,7 @@ class RecipesController < ApplicationController
          @recipe.allergies << allergy
        end
      end
-   
+
 
     respond_to do |format|
       if @recipe.save
@@ -89,7 +91,7 @@ class RecipesController < ApplicationController
         format.json { render :show, status: :created, location: @recipe }
       else
         @allergies = Allergy.all
-        format.html { render :new } 
+        format.html { render :new }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
