@@ -9,9 +9,9 @@ class RecipeCategoryTest < ActiveSupport::TestCase
     @recipe_category = build(:recipe_category)
   end
 
-  test 'recipe category' do
-    @recipe_category.save
-    assert(@recipe_category.valid?)
-  end
+  # test 'recipe category' do
+  #   @recipe_category.save
+  #   assert(@recipe_category.valid?)
+  # end
 
 end

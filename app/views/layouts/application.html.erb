@@ -26,34 +26,80 @@
 
       <% end %>
       <a href="" id="categoryBtn">Recipes</a>
+      <a href="" id="effectsBtn">Effects</a>
     </nav>
     <nav id="categories" style="display: none">
       <% RecipeCategory.all.each do |category| %>
       <%= link_to category.name, recipe_category_path(category)  %>
       <% end %>
+      <a href="" id="allergiesBtn">Allergies</a>
+      <%= link_to 'Add a Recipe', new_recipe_path %>
+    </nav>
+    <nav id="allergies" style="display: none">
       <% Allergy.all.each do |allergy| %>
-        <%= link_to allergy.name, allergy_path(allergy)  %>
+        <%= link_to allergy.name, allergy_path(allergy) %>
       <% end %>
     </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
+    <nav id="effects" style="display: none">
+      <h3>Effects</h3>
+      <p>
+        <h4>Positive</h4>
+        <% Effect.positives.each do |effect| %>
+          <%= link_to effect.name, effect_path(effect) %>
+        <% end %>
+      </p>
+      <p>
+        <h4>Medical</h4>
+        <% Effect.medicals.each do |effect| %>
+          <%= link_to effect.name, effect_path(effect) %>
+        <% end %>
+      </p>
+    </nav>
 
     <script type ='text/javascript'>
 
       var categoryBtn = document.querySelector('#categoryBtn'),
-      categoryNav = document.getElementById('categories')
+          categoryNav = document.getElementById('categories'),
+          allergiesBtn = document.querySelector('#allergiesBtn'),
+          allergiesNav = document.querySelector('#allergies'),
+          effectsBtn = document.querySelector('#effectsBtn'),
+          effectsNav = document.querySelector('#effects');
+
       categoryBtn.addEventListener('click', function(e) {
-        //console.log("helloooo");
         e.preventDefault();
 
         if (categoryNav.style.display === 'none') {
           categoryNav.style.display = 'block';
+          effectsNav.style.display = 'none';
         } else {
           categoryNav.style.display = 'none';
+          allergiesNav.style.display = 'none';
         }
       })
-      </script>
+
+      allergiesBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (allergiesNav.style.display === 'none') {
+          allergiesNav.style.display = 'block';
+        } else {
+          allergiesNav.style.display = 'none';
+        }
+      })
+
+      effectsBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (effectsNav.style.display === 'none') {
+          effectsNav.style.display = 'block';
+          categoryNav.style.display = 'none';
+          allergiesNav.style.display = 'none';
+        } else {
+          effectsNav.style.display = 'none';
+        }
+      })
+
+    </script>
     </header>
 
     <main>
@@ -63,9 +109,6 @@
         <div id="dialog"></div>
       </div>
     </main>
-
-
-
 
   </body>
 </html>
