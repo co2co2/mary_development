@@ -31,6 +31,10 @@
       <% RecipeCategory.all.each do |category| %>
       <%= link_to category.name, recipe_category_path(category)  %>
       <% end %>
+      <a href="" id="allergiesBtn">Allergies</a>
+      <%= link_to 'Add a Recipe', new_recipe_path %>
+    </nav>
+    <nav id="allergies" style="display: none">
       <% Allergy.all.each do |allergy| %>
         <%= link_to allergy.name, allergy_path(allergy)  %>
       <% end %>
@@ -42,18 +46,32 @@
     <script type ='text/javascript'>
 
       var categoryBtn = document.querySelector('#categoryBtn'),
-      categoryNav = document.getElementById('categories')
+          categoryNav = document.getElementById('categories'),
+          allergiesBtn = document.querySelector('#allergiesBtn'),
+          allergiesNav = document.querySelector('#allergies');
+
       categoryBtn.addEventListener('click', function(e) {
-        //console.log("helloooo");
         e.preventDefault();
 
         if (categoryNav.style.display === 'none') {
           categoryNav.style.display = 'block';
         } else {
           categoryNav.style.display = 'none';
+          allergiesNav.style.display = 'none';
         }
       })
-      </script>
+
+      allergiesBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log("clicked on allergies")
+        if (allergiesNav.style.display === 'none') {
+          allergiesNav.style.display = 'block';
+        } else {
+          allergiesNav.style.display = 'none';
+        }
+      })
+
+    </script>
     </header>
 
     <main>
@@ -63,9 +81,6 @@
         <div id="dialog"></div>
       </div>
     </main>
-
-
-    <%= console %>
 
   </body>
 </html>

@@ -1,4 +1,4 @@
-<h1><%= @allergy.name %></h1>
+<h1><%= @allergy.name %> Recipes</h1>
 <% @allergy.recipes.each do |recipe|%>
   <%=  render '/recipes/show_recipe_partial', recipe: recipe %>
 <% end %>
