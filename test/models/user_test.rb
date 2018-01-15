@@ -13,7 +13,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user name too short" do
-
     refute(build(:user, username: 'l').save)
   end
 

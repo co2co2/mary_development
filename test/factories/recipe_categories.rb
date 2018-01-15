@@ -1,5 +1,6 @@
+
 FactoryBot.define do
   factory :recipe_category do
-    name "concentrate"
+    name {['Desserts','Asdas','asdas'].sample}
   end
 end

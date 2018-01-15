@@ -62,7 +62,7 @@ class RecipesController < ApplicationController
     @concentrates = Recipe.concentrates
     @strain = Strain.all
     @allergies = Allergy.all
- 
+
 
   end
 
@@ -75,13 +75,16 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     @recipe = current_user.recipes.build(recipe_params)
+    puts "="*10
+    puts recipe_params
+    puts "="*10
      params[:recipe][:allergy].each do |key,value|
        if value["name"] == "1"
           allergy = Allergy.find(key)
          @recipe.allergies << allergy
        end
      end
-   
+
 
     respond_to do |format|
       if @recipe.save
@@ -89,7 +92,7 @@ class RecipesController < ApplicationController
         format.json { render :show, status: :created, location: @recipe }
       else
         @allergies = Allergy.all
-        format.html { render :new } 
+        format.html { render :new }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
