@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :instruction do
-    step "xxxx"
-    association(:recipe)
+    step "xxxxxxxxxx"
+
   end
 end
