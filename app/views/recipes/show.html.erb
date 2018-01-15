@@ -11,7 +11,7 @@
 
 <p>
   <strong>Recommended strain:</strong>
-  <%= @recipe.strain.name %>
+  <%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %>
 </p>
 
 
