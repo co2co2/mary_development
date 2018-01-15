@@ -1,5 +1,5 @@
 class RemoveEffectFromStrains < ActiveRecord::Migration[5.1]
-  def change
+  def up
     remove_column :strains, :effect, :string
   end
 end
