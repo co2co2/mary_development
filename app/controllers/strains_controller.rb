@@ -17,4 +17,7 @@ class StrainsController < ApplicationController
 
   end
 
+  def map
+
+  end
 end

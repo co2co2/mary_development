@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   	put :favourite
   end
   get '/search', to: 'recipes#search_results'
+  get '/map', to: 'strains#map'
   resources :recipe_categories, only: [:show]
   resources :allergies, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
