@@ -31,30 +31,33 @@ body = JSON.parse(res.body)
 response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655a6cda57d9606038d31d653fbacb020&count=50&page=2")
 resbody = JSON.parse(response.body)
 
-      body.keys[0..49].each_with_index do |s, index|
-        # Use canabis report api to get image
+  body.keys[0..49].each_with_index do |s, index|
+    # Use canabis report api to get image
 
-        # Make new strain
-        strain = Strain.new
-        strain.name = s
-        strain.race = body[s]["race"]
-        strain.flavours = body[s]["flavors"]
-        strain.image = resbody["data"][index]["image"]
-        strain.save
+    # Make new strain
+    strain = Strain.new
+    strain.name = s
+    strain.race = body[s]["race"]
+    strain.flavours = body[s]["flavors"]
+    strain.image = resbody["data"][index]["image"]
+    strain.save
 
-        # get positive effects
-        positives = body[s]["effects"]["positive"]
-        save_effects(strain, positives, "positive")
+    # get positive effects
+    positives = body[s]["effects"]["positive"]
+    save_effects(strain, positives, "positive")
 
-        # get negative effects
-        negatives = body[s]["effects"]["negative"]
-        save_effects(strain, negatives, "negative")
+    # get negative effects
+    negatives = body[s]["effects"]["negative"]
+    save_effects(strain, negatives, "negative")
 
-        # get medical effects
-        medicals = body[s]["effects"]["medical"]
-        save_effects(strain, medicals, "medical")
+    # get medical effects
+    medicals = body[s]["effects"]["medical"]
+    save_effects(strain, medicals, "medical")
 
-      end
+  end
+
+# destroy all previous data
+
 
 # Users
 user1 = User.create!(email:'cat@gmail.com', username: 'cat', password:'valid_password', password_confirmation: 'valid_password')
@@ -162,7 +165,7 @@ measurements_attributes: [
     }
   ]
 )
-recipe1 = user3.recipes.create!( recipe_category_id: snacks.id, strain_id:1, title:'Dope Beets: A Hummus Collab with Bloom Farms', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4c326f085229be305f2d51/5a4c326f53450a16cf26d26f/1514943104198/SousWeed_DopeBeetHummus_6B7A9340_LoRes.jpg?format=300w', description:'The roasted beets add a mellow sweetness and rosy color to a basic hummus recipe. The texture is sultry smooth and goes great with warm pita or crisp veggies. If you have your Sous Weed olive oil prepared, it’s quick to throw together in a blender and is sure to be a hit at your next get-together.', prep_time: 70, concentrate: true,
+recipe1 = user3.recipes.create!( recipe_category_id: snacks.id, strain_id:1, title:'Dope Beets: A Hummus Collab with Bloom Farms', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4c326f085229be305f2d51/5a4c326f53450a16cf26d26f/1514943104198/SousWeed_DopeBeetHummus_6B7A9340_LoRes.jpg?format=300w', description:'The roasted beets add a mellow sweetness and rosy color to a basic hummus recipe. The texture is sultry smooth and goes great with warm pita or crisp veggies. If you have your Sous Weed olive oil prepared, it’s quick to throw together in a blender and is sure to be a hit at your next get-together.', prep_time: 70,
 instructions_attributes: [
   {step: 'Pre-heat oven to 375ºF.'},
   {step: 'Lightly wrap peeled beets in foil and roast for about an hour.'},
@@ -202,7 +205,7 @@ measurements_attributes: [
   ]
 )
 
-recipe2 = user4.recipes.create!( recipe_category_id:desserts.id, strain_id:1, title:'Smoky-Sweet Pineapple Fruitcake', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c699424a694df8674714c/1513908659466/SousWeed_BloomFarms_HolidayPairing-3842.jpg?format=300w', description:'Woodsy, Earthy, Fruity!CBD-heavy to bring down the high, chill-out.', prep_time: 60, concentrate: true,
+recipe2 = user4.recipes.create!( recipe_category_id:desserts.id, strain_id:1, title:'Smoky-Sweet Pineapple Fruitcake', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c699424a694df8674714c/1513908659466/SousWeed_BloomFarms_HolidayPairing-3842.jpg?format=300w', description:'Woodsy, Earthy, Fruity!CBD-heavy to bring down the high, chill-out.', prep_time: 60,
 instructions_attributes: [
   {step: 'Preheat oven to 350ºF and grease an 8-in non-stick bundt pan.'},
   {step: 'Melt 3 Tbsp butter in a skillet over medium-high and add brown sugar. Cook until you see bubbles then add pineapple and cook for 2-3 minutes, until softened. Remove from heat and pour into the prepared cake pan.'},
@@ -258,7 +261,7 @@ measurements_attributes: [
     }
   ]
 )
-recipe3 = user5.recipes.create!( recipe_category_id:sides.id, strain_id:2, title:'Stuffed Portabella Mushrooms with Sundried Tomatoes', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c69690d92975090bdbc1f/1513908631359/SousWeed_BloomFarms_HolidayPairing-3935.jpg?format=300w', description:'Black Jack(strain) from Bloom Farms,Earthy, Sweet, Pine, make you euphoric and talkative', prep_time: 45, concentrate: false,
+recipe3 = user5.recipes.create!( recipe_category_id:sides.id, strain_id:2, title:'Stuffed Portabella Mushrooms with Sundried Tomatoes', image:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c69690d92975090bdbc1f/1513908631359/SousWeed_BloomFarms_HolidayPairing-3935.jpg?format=300w', description:'Black Jack(strain) from Bloom Farms,Earthy, Sweet, Pine, make you euphoric and talkative', prep_time: 45,
 instructions_attributes: [
   {step: 'Preheat oven to 400ºF.'},
   {step: 'In large bowl, toss portobello mushrooms in canola oil and set aside.'},
