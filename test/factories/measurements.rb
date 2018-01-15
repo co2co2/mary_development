@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :recipe do
+  factory :measurement do
     recipe_category_id 1
     strain_id 1
     title "bitmaker's pizza"
