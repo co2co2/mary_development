@@ -1,0 +1,6 @@
+<h1><%= @effect.name %> Recipes</h1>
+<% @effect.strains.each do |strain|%>
+  <% strain.recipes.each do |recipe|  %>
+    <%=  render '/recipes/show_recipe_partial', recipe: recipe %>
+  <% end %>
+<% end %>
