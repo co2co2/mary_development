@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: %i[index show search_results]
+  before_action :authenticate_user!, except: %i[index show search_results filter]
 
   def strain_name
     Strain.try(:name)
@@ -16,11 +16,18 @@ class RecipesController < ApplicationController
     elsif params[:ingredient]
       @ingredients = []
       params[:ingredient].each do |ingredient|
-        ingredient_id = Ingredient.find_by(name: ingredient)
-        @ingredients << ingredient_id.id
+        if !ingredient.empty?
+          ingredient_id = Ingredient.find_by(name: ingredient)
+          if ingredient_id != nil
+            @ingredients << ingredient_id.id
+          end
+        end
       end 
-      
-      @recipes = Recipe.filter_specific(@ingredients)
+      if params[:specify]
+        @recipes = Recipe.filter_specific(@ingredients)
+      else
+        @recipes = Recipe.filter_ingredients(@ingredients)
+      end
     else
       @recipes = Recipe.all.order("created_at DESC")
     end

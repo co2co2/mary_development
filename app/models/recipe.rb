@@ -29,6 +29,7 @@ class Recipe < ApplicationRecord
   scope :concentrates, -> { where(concentrate: true)}
   scope :recent, -> { order('created_at DESC').limit(3) }
 
+    scope :user_favourites, -> (user_id){ joins(:favourites).where("favourites.user_id = ?", user_id)}
 
   scope :filter_ingredients, -> (ingredient_ids){ joins(:measurements).where("measurements.ingredient_id IN (?)", ingredient_ids).uniq}
  
