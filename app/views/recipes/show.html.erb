@@ -38,7 +38,7 @@
 
 <p>
   <strong>Cook time:</strong>
-  <%= @recipe.prep_time %>
+  <%= @recipe.minutes_to_hours(@recipe.prep_time) %>
 </p>
 
 <p>
