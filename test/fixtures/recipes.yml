@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  category_id: 1
-  recommended_strain_id: 1
+  recipe_category_id: 1
+  strain_id: 1
   title: MyString
   image: MyString
   video: MyString
@@ -11,8 +11,8 @@ one:
   views: 1
 
 two:
-  category_id: 1
-  recommended_strain_id: 1
+  recipe_category_id: 1
+  strain_id: 1
   title: MyString
   image: MyString
   video: MyString
