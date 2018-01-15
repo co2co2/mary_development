@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found
-    render html: "<strong>Sorry, we don't have that strain.</strong>".html_safe
+    render html: "<strong>Sorry, we don't have that strain.</strong>".html_safe, status: 404
   end
 
 end
