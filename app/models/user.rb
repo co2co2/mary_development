@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :favourites
   validates :username, :email, presence: true
   validates :username, length: { in: 3..20 }
-  validates_uniqueness_of :username
+  validates :username, uniqueness: true
 end

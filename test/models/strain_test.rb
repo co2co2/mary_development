@@ -4,4 +4,16 @@ class StrainTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+
+  setup do
+    @strain = build(:strain)
+  end
+
+  test "a strain have many effect" do
+    @strain.save
+    assert @strain.valid?
+    refute_nil @strain.effects
+  end
+
+
 end

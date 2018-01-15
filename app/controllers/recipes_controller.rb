@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
         @ingredients << ingredient_id.id
       end 
       
-      @recipes = Recipe.filter_ingredients(@ingredients)
+      @recipes = Recipe.filter_specific(@ingredients)
     else
       @recipes = Recipe.all.order("created_at DESC")
     end
@@ -74,7 +74,7 @@ class RecipesController < ApplicationController
     @concentrates = Recipe.concentrates
     @strain = Strain.all
     @allergies = Allergy.all
- 
+
 
   end
 
@@ -87,13 +87,24 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     @recipe = current_user.recipes.build(recipe_params)
-     params[:recipe][:allergy].each do |key,value|
-       if value["name"] == "1"
-          allergy = Allergy.find(key)
-         @recipe.allergies << allergy
-       end
+    # try to save ingredient unique, check if name exists in db
+   params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
+      ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
+      if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
+
+        ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
+          @recipe.measurements[i].ingredient = ingredient
+
+      end
+    end
+
+   params[:recipe][:allergy].each do |key,value|
+     if value["name"] == "1"
+        allergy = Allergy.find(key)
+       @recipe.allergies << allergy
      end
-   
+   end
+
 
     respond_to do |format|
       if @recipe.save
@@ -101,7 +112,7 @@ class RecipesController < ApplicationController
         format.json { render :show, status: :created, location: @recipe }
       else
         @allergies = Allergy.all
-        format.html { render :new } 
+        format.html { render :new }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
@@ -110,6 +121,16 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
+    # try to save ingredient unique, check if name exists in db
+   params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
+      ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
+      if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
+
+        ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
+          @recipe.measurements[i].ingredient = ingredient
+
+      end
+    end
      params[:recipe][:allergy].each do |key,value|
       if value["name"] == "1"
           allergy = Allergy.find(key)

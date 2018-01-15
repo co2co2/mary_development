@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180113225744) do
+ActiveRecord::Schema.define(version: 20180114073127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,22 +22,21 @@ ActiveRecord::Schema.define(version: 20180113225744) do
   end
 
   create_table "allergies_recipes", id: false, force: :cascade do |t|
-    t.integer "allergy_id", null: false
-    t.integer "recipe_id", null: false
+    t.bigint "allergy_id", null: false
+    t.bigint "recipe_id", null: false
   end
 
   create_table "effects", force: :cascade do |t|
     t.string "name"
     t.decimal "level"
     t.string "subcategory"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "effects_strains", id: false, force: :cascade do |t|
-    t.integer "effect_id", null: false
-    t.integer "strain_id", null: false
+    t.bigint "effect_id", null: false
+    t.bigint "strain_id", null: false
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -56,7 +55,7 @@ ActiveRecord::Schema.define(version: 20180113225744) do
 
   create_table "instructions", force: :cascade do |t|
     t.text "step"
-    t.integer "recipe_id"
+    t.bigint "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_instructions_on_recipe_id"
@@ -64,8 +63,8 @@ ActiveRecord::Schema.define(version: 20180113225744) do
 
   create_table "measurements", force: :cascade do |t|
     t.string "quantity"
-    t.integer "recipe_id"
-    t.integer "ingredient_id"
+    t.bigint "recipe_id"
+    t.bigint "ingredient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ingredient_id"], name: "index_measurements_on_ingredient_id"
@@ -107,6 +106,7 @@ ActiveRecord::Schema.define(version: 20180113225744) do
     t.string "flavours", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
   end
 
   create_table "users", force: :cascade do |t|
@@ -127,4 +127,7 @@ ActiveRecord::Schema.define(version: 20180113225744) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "instructions", "recipes"
+  add_foreign_key "measurements", "ingredients"
+  add_foreign_key "measurements", "recipes"
 end
