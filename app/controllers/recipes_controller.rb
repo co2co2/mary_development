@@ -99,7 +99,6 @@ class RecipesController < ApplicationController
        @recipe.allergies << allergy
      end
    end
->>>>>>> master
 
 
     respond_to do |format|
