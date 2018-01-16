@@ -43,6 +43,21 @@ $(document).on('turbolinks:load', function() {
     })
   });
 
+  // Filter
+
+  $('.addIngredient').click(function(){
+    var newIngredient = `
+    <div class="ingredient">
+      <button type="button" class="removeIngredient">-</button>
+      <input type="text" name="ingredient[]" id="ingredient_">
+    </div>`
+    $('#ingredient_').after(newIngredient)
+  })
+
+  $('#search-form').on('click','.removeIngredient',function(){
+    this.parentElement.remove();
+  })
+  
 });
 
   // Age verification dialog box
