@@ -104,6 +104,7 @@ class RecipesController < ApplicationController
        end
      end
 
+  if params[:recipe][:measurements_attributes]
     # try to save ingredient unique, check if name exists in db
    params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
       ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
@@ -114,6 +115,7 @@ class RecipesController < ApplicationController
 
       end
     end
+  end
 
    params[:recipe][:allergy].each do |key,value|
      if value["name"] == "1"

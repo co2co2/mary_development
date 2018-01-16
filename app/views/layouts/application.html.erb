@@ -18,10 +18,6 @@
     <header>
 
       <h1>Baking with Mary</h1>
-      <p><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
-
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
 
       <nav>
         <%= link_to 'Home', root_path %>
@@ -109,6 +105,12 @@
         })
 
       </script>
+
+      <p><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
+
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
     </header>
 
     <main>
