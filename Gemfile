@@ -33,8 +33,12 @@ gem 'jquery-ui-rails'
 gem 'nested_form_fields'
 gem 'cocoon'
 gem 'httparty'
+
 gem 'geocoder'
 gem 'gmaps4rails'
+
+gem 'awesome_print'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

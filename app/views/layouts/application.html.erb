@@ -17,6 +17,7 @@
 
       <nav>
         <%= link_to 'Home', root_path %>
+        <%= link_to "What's in your pantry?", filter_path %>
         <% if user_signed_in? %>
         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
         <%= link_to 'Your Profile', user_path(current_user) %>
