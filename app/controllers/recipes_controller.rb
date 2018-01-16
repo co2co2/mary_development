@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
             @ingredients << ingredient_id.id
           end
         end
-      end 
+      end
       if params[:specify]
         @recipes = Recipe.filter_specific(@ingredients)
       else
@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
   end
 
   def filter
-    
+
   end
 
   def favourite
@@ -104,6 +104,7 @@ class RecipesController < ApplicationController
        end
      end
 
+  if params[:recipe][:measurements_attributes]
     # try to save ingredient unique, check if name exists in db
    params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
       ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
@@ -114,6 +115,7 @@ class RecipesController < ApplicationController
 
       end
     end
+  end
 
    params[:recipe][:allergy].each do |key,value|
      if value["name"] == "1"
@@ -173,7 +175,7 @@ class RecipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
 
-      params.require(:recipe).permit(:recipe_category_id, :strain_id, :title, :image, :video, :description, :prep_time, :views, :user_id, instructions_attributes:[:id, :recipe_id ,:step, :_destroy],
+      params.require(:recipe).permit(:recipe_category_id, :strain_id, :title, :image, :video, :description, :prep_time, :user_id, instructions_attributes:[:id, :recipe_id ,:step, :_destroy],
         allergies_attributes:[:id, :name],
         measurements_attributes:[:id, :ingredient_id, :recipe_id, :quantity, :_destroy,
         ingredient_attributes:[:id, :name, :concentrate_recipe_id, :_destroy]])
