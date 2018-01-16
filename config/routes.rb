@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   	put :favourite
   end
   get '/search', to: 'recipes#search_results'
-  get '/map', to: 'strains#map'
+  get '/search_dispensaries', to: 'strains#search_dispensaries'
+  get '/dispensaries', to: 'strains#dispensaries'
+
   resources :recipe_categories, only: [:show]
   resources :allergies, only: [:show]
   resources :effects, only: [:show]
