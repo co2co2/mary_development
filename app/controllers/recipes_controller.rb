@@ -34,7 +34,6 @@ class RecipesController < ApplicationController
   end
 
   def filter
-    
   end
 
   def favourite
