@@ -1,3 +1,4 @@
+require 'pry-byebug'
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: %i[index show search_results]
@@ -73,7 +74,9 @@ class RecipesController < ApplicationController
 
   # POST /recipes
   # POST /recipes.json
+
   def create
+
     @recipe = current_user.recipes.build(recipe_params)
 
      params[:recipe][:allergy].each do |key,value|
@@ -99,8 +102,6 @@ class RecipesController < ApplicationController
        @recipe.allergies << allergy
      end
    end
->>>>>>> master
-
 
     respond_to do |format|
       if @recipe.save
@@ -154,7 +155,7 @@ class RecipesController < ApplicationController
     end
   end
 
-  private
+private
     # Use callbacks to share common setup or constreaints between actions.
     def set_recipe
       @recipe = Recipe.find(params[:id])

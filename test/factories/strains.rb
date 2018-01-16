@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :strain do
+    sequence(:id){|i| i}
     name 'tyler'
     race 'sativa'
     flavours ['earthy', 'blueberry', 'candy']
