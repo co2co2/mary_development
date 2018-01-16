@@ -34,6 +34,8 @@ gem 'nested_form_fields'
 gem 'cocoon'
 gem 'httparty'
 gem 'awesome_print'
+gem 'carrierwave','~> 1.0'
+gem 'mini_magick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -176,7 +176,7 @@ private
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
 
-      params.require(:recipe).permit(:recipe_category_id, :strain_id, :title, :image, :video, :description, :prep_time, :views, :user_id, instructions_attributes:[:id, :recipe_id ,:step, :_destroy],
+      params.require(:recipe).permit(:recipe_category_id, :strain_id, :title, :image, :remove_image,:remote_image_url,:video, :description, :prep_time, :views, :user_id, instructions_attributes:[:id, :recipe_id ,:step, :_destroy],
         allergies_attributes:[:id, :name],
         measurements_attributes:[:id, :ingredient_id, :recipe_id, :quantity, :_destroy,
         ingredient_attributes:[:id, :name, :concentrate_recipe_id, :_destroy]])
