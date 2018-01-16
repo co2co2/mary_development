@@ -1,6 +1,12 @@
-<h2><%= @user.username %>'s </h2>
+<h2><%= @user.username %>'s kitchen</h2>
 
 <br>
+<% if @user.avatar.url == nil%>
+<%= image_tag'https://pro.pubgonline.com/uploads/images/teams/2989-1509421159.gif'%>
+  <% else %>
+    <%=image_tag @user.avatar, alt: @user.username %>
+<% end %></br>
+
 <%= @user.email %>
 
 <h2>Recipes</h2>
@@ -20,5 +26,5 @@
 	<% else %>
 		<p>You have no favourite recipes!</p>
 	<% end %>
-
 <% end %>
+<%= link_to 'Edit',  edit_user_registration_path(@user) %>

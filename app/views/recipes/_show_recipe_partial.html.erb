@@ -1,6 +1,7 @@
 <div class="">
 <h4><%= link_to recipe.title, recipe %></h4>
-<p>By: <%= link_to recipe.user.username, user_path(recipe.user) %></p>
+<p>By: <%= link_to recipe.user.username,user_path(recipe.user) %></p>
+
 </div>
 <%= link_to recipe_path(recipe.id) do %>
   <% if recipe.image.url == "" || recipe.image.url == nil %>
