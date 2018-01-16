@@ -29,7 +29,19 @@ class Recipe < ApplicationRecord
   scope :concentrates, -> { where(concentrate: true)}
   scope :recent, -> { order('created_at DESC').limit(3) }
 
-  scope :user_favourites, -> (user_id){ joins(:favourites).where("favourites.user_id = ?", user_id)}
+    scope :user_favourites, -> (user_id){ joins(:favourites).where("favourites.user_id = ?", user_id)}
+
+  scope :filter_ingredients, -> (ingredient_ids){ joins(:measurements).where("measurements.ingredient_id IN (?)", ingredient_ids).uniq}
+ 
+  def self.filter_specific(ingredients)
+    recipes_list = []
+    ingredients.each do |ingredient_id| 
+      recipes_list << Ingredient.find(ingredient_id).recipes
+    end
+
+    recipes_list.reduce &:&
+
+  end
 
   def self.search(search)
     where("lower(title) LIKE ?", "%#{search.downcase}%")
@@ -45,6 +57,29 @@ class Recipe < ApplicationRecord
 
   def strain_name=(name)
     self.strain = Strain.find_by(name: name) if name.present?
+  end
+
+  def minutes_to_hours(minutes)
+    hours = minutes / 60
+    minutes_remaining = minutes % 60
+
+    if hours != 0 && hours !=1 && minutes_remaining != 0 && minutes_remaining != 1
+      return "#{hours} hours and #{minutes_remaining} minutes"
+    elsif hours != 0 && hours != 1 && minutes_remaining != 0
+      return "#{hours} hours and #{minutes_remaining} minute"
+    elsif hours != 0 && minutes_remaining != 0 && minutes_remaining != 1
+      return "#{hours} hour and #{minutes_remaining} minutes"
+    elsif hours != 0 && minutes_remaining != 0
+      return "#{hours} hour and #{minutes_remaining} minute"
+    elsif hours == 1
+      return "#{hours} hour"
+    elsif hours != 0 && hours != 1
+      return "#{hours} hours"
+    elsif minutes_remaining == 1
+      return "#{minutes_remaining} minute"
+    elsif minutes_remaining != 0 && minutes_remaining != 1
+      return "#{minutes_remaining} minutes"
+    end
   end
 
     # Author.left_outer_joins(:posts).distinct.select('authors.*, COUNT(posts.*) AS posts_count').group('authors.id')

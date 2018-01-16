@@ -1,7 +1,7 @@
 require 'pry-byebug'
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: %i[index show search_results]
+  before_action :authenticate_user!, except: %i[index show search_results filter]
 
   def strain_name
     Strain.try(:name)
@@ -14,9 +14,28 @@ class RecipesController < ApplicationController
   def search_results
     if params[:search]
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
+    elsif params[:ingredient]
+      @ingredients = []
+      params[:ingredient].each do |ingredient|
+        if !ingredient.empty?
+          ingredient_id = Ingredient.find_by(name: ingredient)
+          if ingredient_id != nil
+            @ingredients << ingredient_id.id
+          end
+        end
+      end 
+      if params[:specify]
+        @recipes = Recipe.filter_specific(@ingredients)
+      else
+        @recipes = Recipe.filter_ingredients(@ingredients)
+      end
     else
       @recipes = Recipe.all.order("created_at DESC")
     end
+  end
+
+  def filter
+    
   end
 
   def favourite
@@ -48,6 +67,8 @@ class RecipesController < ApplicationController
   def show
     @reviews = @recipe.reviews
     @review = Review.new
+    @recipe.views += 1
+    @recipe.save
     if user_signed_in?
       if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
         @favourite_link = "unfavourite"
@@ -85,6 +106,7 @@ class RecipesController < ApplicationController
          @recipe.allergies << allergy
        end
      end
+
     # try to save ingredient unique, check if name exists in db
    params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
       ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
@@ -118,16 +140,6 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
-    # try to save ingredient unique, check if name exists in db
-   params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
-      ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
-      if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-
-        ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-          @recipe.measurements[i].ingredient = ingredient
-
-      end
-    end
      params[:recipe][:allergy].each do |key,value|
       if value["name"] == "1"
           allergy = Allergy.find(key)

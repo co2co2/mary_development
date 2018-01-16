@@ -1,5 +1,5 @@
 class Strain < ApplicationRecord
-	has_many :recipe
+	has_many :recipes
 	has_and_belongs_to_many :effects
   	accepts_nested_attributes_for :effects
 
