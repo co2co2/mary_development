@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'pry-byebug'
+
 
 class RecipesControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
@@ -63,7 +63,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
             "0"=>{
               "step"=>"sdjahdjsahdsakhdkjash"
             }
-          }
+          },
+          
         }
       }
     end

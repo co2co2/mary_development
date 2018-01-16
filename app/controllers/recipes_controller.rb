@@ -1,4 +1,4 @@
-require 'pry-byebug'
+
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: %i[index show search_results filter]
@@ -23,7 +23,7 @@ class RecipesController < ApplicationController
             @ingredients << ingredient_id.id
           end
         end
-      end 
+      end
       if params[:specify]
         @recipes = Recipe.filter_specific(@ingredients)
       else
@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
   end
 
   def filter
-    
+
   end
 
   def favourite

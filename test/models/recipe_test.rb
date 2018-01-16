@@ -83,8 +83,8 @@ class RecipeTest < ActiveSupport::TestCase
 
 
   test "scope recent 3" do
-    Recipe.delete_all
-    recipes = (0..6).map { |t| create(:recipe, instructions: [build(:instruction)],measurements: [build(:measurement)],created_at: t.months.from_now) }
+
+    recipes = (0..6).map { |t| create(:recipe, instructions: [build(:instruction)],measurements: [build(:measurement)],created_at: t.days.from_now) }
     assert_equal [recipes[6], recipes[5],recipes[4]],  Recipe.recent
   end
 
@@ -94,7 +94,7 @@ class RecipeTest < ActiveSupport::TestCase
   end
 
   test "top 3 most_favourite recipes" do
-    
+
   end
 
 
