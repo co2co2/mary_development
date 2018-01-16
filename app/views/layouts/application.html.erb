@@ -3,7 +3,6 @@
   <head>
     <title>MaryDevelopment</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -16,22 +15,28 @@
     </div>
 
     <header>
+      <div id="mary">
+        <div class="container">
+            <div class="row">
+              <a href="/" class="navbar-brand text-primary" id="logo"><h1>Baking with Mary</h1></a>
 
-      <h1>Baking with Mary</h1>
+              <nav class="navbar navbar-toggleable-md navbar-light">
+                <%= link_to 'Home', root_path %>
+                <a href="" id="categoryBtn">Recipes</a>
+                <a href="" id="effectsBtn">Effects</a>
+                <%= link_to "What's in your pantry?", filter_path %>
+                <% if user_signed_in? %>
+                  <%= link_to 'Your Profile', user_path(current_user) %>
+                  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+                <% else %>
+                  <%= link_to 'Sign In', new_user_session_path %>
+                  <%= link_to 'Sign Up', new_user_registration_path %>
+                <% end %>
+              </nav>
 
-      <nav>
-        <%= link_to 'Home', root_path %>
-        <a href="" id="categoryBtn">Recipes</a>
-        <a href="" id="effectsBtn">Effects</a>
-        <%= link_to "What's in your pantry?", filter_path %>
-        <% if user_signed_in? %>
-          <%= link_to 'Your Profile', user_path(current_user) %>
-          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to 'Sign In', new_user_session_path %>
-          <%= link_to 'Sign Up', new_user_registration_path %>
-        <% end %>
-      </nav>
+            </div>
+        </div>
+      </div>
 
       <nav id="categories" style="display: none">
         <% RecipeCategory.all.each do |category| %>
