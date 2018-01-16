@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   end
   get '/filter', to: 'recipes#filter'
   get '/search', to: 'recipes#search_results'
+  get '/search_dispensaries', to: 'strains#search_dispensaries'
+  get '/dispensaries', to: 'strains#dispensaries'
+
   resources :recipe_categories, only: [:show]
   resources :allergies, only: [:show]
   resources :effects, only: [:show]

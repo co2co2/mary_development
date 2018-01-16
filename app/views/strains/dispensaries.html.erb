@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>Dispensaries Nearby You</h3>
+    <div id="map"></div>
+
+    <% @dispensary_array = [] %>
+    <% @dispensaries.each do |dispensary| %>
+      <% hasher = {name: dispensary.name, latitude: dispensary.latitude, longitude: dispensary.longitude, address: dispensary.address} %>
+      <% @dispensary_array << hasher %>
+    <% end %>
+
+    <%= tag("div", :id => 'dispensary_addresses', :data => {:dispensary => @dispensary_array}) %>
+
+    <%= tag("div", :id => 'address', :data => {:location => @location}) %>
+
+    <script>
+      var dispensary_addresses = document.querySelector('#dispensary_addresses');
+      var dispensary_data = JSON.parse(dispensary_addresses.dataset.dispensary)
+      // var address = document.querySelector('#address');
+      // var address_data = JSON.parse(address.dataset.location)
+
+      var params = new URLSearchParams(window.location.search)
+      var address = params.get('search')
+
+
+      function initMap() {
+        var uluru = {lat: 43.647219, lng: -79.387905};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          styles: tyler_styler,
+          // center: uluru
+        });
+        // var marker = new google.maps.Marker({
+        //   position: uluru,
+        //   map: map
+        // });
+        var markers;
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address': address},function(results,status){
+          if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+            var infowindow = new google.maps.InfoWindow({
+              content: ''
+            });
+            google.maps.event.addListener(marker, 'click', (function (marker) {
+                  return function () {
+                    infowindow.setContent('Your Location');
+                    infowindow.open(map, marker);
+                  }
+                })(marker, i));
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        })
+
+
+
+        for(var i = 0; i < dispensary_data.length; i++) {
+          var latitude = dispensary_data[i].latitude;
+          var longitude = dispensary_data[i].longitude;
+          var title = dispensary_data[i].name;
+          markers = new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: map
+          })
+
+          var infowindow = new google.maps.InfoWindow({
+            content: ''
+          });
+          google.maps.event.addListener(markers, 'click', (function (markers, i) {
+          			return function () {
+          				infowindow.setContent(dispensary_data[i].name + " " + dispensary_data[i].address);
+          				infowindow.open(map, markers);
+          			}
+          		})(markers, i));
+        };
+      };
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt-nsAkbJPsjhTlA2IyNzXSKaHFeCvbQU&callback=initMap">
+    </script>
+    <ol>
+
+    <% @dispensaries.each do |dispensary| %>
+    <li>
+      <h3><%= dispensary.name %></h3>
+      <p><%= dispensary.address %></p>
+      <p><%= dispensary.distance_from(Geocoder.coordinates(@location)).round(2) %> mi.</p>
+    </li>
+    <% end %>
+
+    </ul>
+  </body>
+</html>
