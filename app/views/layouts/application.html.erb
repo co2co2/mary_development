@@ -11,104 +11,108 @@
   </head>
 
   <body>
+    <div class="dialog-wrapper">
+      <div id="dialog"></div>
+    </div>
+
     <header>
+
       <h1>Baking with Mary</h1>
       <p><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
 
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
       <nav>
         <%= link_to 'Home', root_path %>
+        <a href="" id="categoryBtn">Recipes</a>
+        <a href="" id="effectsBtn">Effects</a>
         <%= link_to "What's in your pantry?", filter_path %>
         <% if user_signed_in? %>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-        <%= link_to 'Your Profile', user_path(current_user) %>
+          <%= link_to 'Your Profile', user_path(current_user) %>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
         <% else %>
-        <%= link_to 'Sign In', new_user_session_path %>
-        <%= link_to 'Sign Up', new_user_registration_path %>
-
-      <% end %>
-      <a href="" id="categoryBtn">Recipes</a>
-      <a href="" id="effectsBtn">Effects</a>
-    </nav>
-    <nav id="categories" style="display: none">
-      <% RecipeCategory.all.each do |category| %>
-      <%= link_to category.name, recipe_category_path(category)  %>
-      <% end %>
-      <a href="" id="allergiesBtn">Allergies</a>
-      <%= link_to 'Add a Recipe', new_recipe_path %>
-    </nav>
-    <nav id="allergies" style="display: none">
-      <% Allergy.all.each do |allergy| %>
-        <%= link_to allergy.name, allergy_path(allergy) %>
-      <% end %>
-    </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <nav id="effects" style="display: none">
-      <h3>Effects</h3>
-      <p>
-        <h4>Positive</h4>
-        <% Effect.positives.each do |effect| %>
-          <%= link_to effect.name, effect_path(effect) %>
+          <%= link_to 'Sign In', new_user_session_path %>
+          <%= link_to 'Sign Up', new_user_registration_path %>
         <% end %>
-      </p>
-      <p>
-        <h4>Medical</h4>
-        <% Effect.medicals.each do |effect| %>
-          <%= link_to effect.name, effect_path(effect) %>
+      </nav>
+
+      <nav id="categories" style="display: none">
+        <% RecipeCategory.all.each do |category| %>
+        <%= link_to category.name, recipe_category_path(category)  %>
         <% end %>
-      </p>
-    </nav>
+        <a href="" id="allergiesBtn">Allergies</a>
+        <%= link_to 'Add a Recipe', new_recipe_path %>
+      </nav>
 
-    <script type ='text/javascript'>
+      <nav id="allergies" style="display: none">
+        <% Allergy.all.each do |allergy| %>
+          <%= link_to allergy.name, allergy_path(allergy) %>
+        <% end %>
+      </nav>
 
-      var categoryBtn = document.querySelector('#categoryBtn'),
-          categoryNav = document.getElementById('categories'),
-          allergiesBtn = document.querySelector('#allergiesBtn'),
-          allergiesNav = document.querySelector('#allergies'),
-          effectsBtn = document.querySelector('#effectsBtn'),
-          effectsNav = document.querySelector('#effects');
+      <nav id="effects" style="display: none">
+        <h3>Effects</h3>
+        <p>
+          <h4>Positive</h4>
+          <% Effect.positives.each do |effect| %>
+            <%= link_to effect.name, effect_path(effect) %>
+          <% end %>
+        </p>
+        <p>
+          <h4>Medical</h4>
+          <% Effect.medicals.each do |effect| %>
+            <%= link_to effect.name, effect_path(effect) %>
+          <% end %>
+        </p>
+      </nav>
 
-      categoryBtn.addEventListener('click', function(e) {
-        e.preventDefault();
+      <script type ='text/javascript'>
 
-        if (categoryNav.style.display === 'none') {
-          categoryNav.style.display = 'block';
-          effectsNav.style.display = 'none';
-        } else {
-          categoryNav.style.display = 'none';
-          allergiesNav.style.display = 'none';
-        }
-      })
+        var categoryBtn = document.querySelector('#categoryBtn'),
+            categoryNav = document.getElementById('categories'),
+            allergiesBtn = document.querySelector('#allergiesBtn'),
+            allergiesNav = document.querySelector('#allergies'),
+            effectsBtn = document.querySelector('#effectsBtn'),
+            effectsNav = document.querySelector('#effects');
 
-      allergiesBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (allergiesNav.style.display === 'none') {
-          allergiesNav.style.display = 'block';
-        } else {
-          allergiesNav.style.display = 'none';
-        }
-      })
+        categoryBtn.addEventListener('click', function(e) {
+          e.preventDefault();
 
-      effectsBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (effectsNav.style.display === 'none') {
-          effectsNav.style.display = 'block';
-          categoryNav.style.display = 'none';
-          allergiesNav.style.display = 'none';
-        } else {
-          effectsNav.style.display = 'none';
-        }
-      })
+          if (categoryNav.style.display === 'none') {
+            categoryNav.style.display = 'block';
+            effectsNav.style.display = 'none';
+          } else {
+            categoryNav.style.display = 'none';
+            allergiesNav.style.display = 'none';
+          }
+        })
 
-    </script>
+        allergiesBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (allergiesNav.style.display === 'none') {
+            allergiesNav.style.display = 'block';
+          } else {
+            allergiesNav.style.display = 'none';
+          }
+        })
+
+        effectsBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (effectsNav.style.display === 'none') {
+            effectsNav.style.display = 'block';
+            categoryNav.style.display = 'none';
+            allergiesNav.style.display = 'none';
+          } else {
+            effectsNav.style.display = 'none';
+          }
+        })
+
+      </script>
     </header>
 
     <main>
       <%= yield %>
-
-      <div class="dialog-wrapper">
-        <div id="dialog"></div>
-      </div>
     </main>
 
   </body>

@@ -12,6 +12,8 @@ gem 'rails', '~> 5.1.4'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+# Use Bootstrap 4 for styling
+gem 'bootstrap', '~> 4.0.0.beta3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -33,7 +35,7 @@ gem 'jquery-ui-rails'
 gem 'nested_form_fields'
 gem 'cocoon'
 gem 'httparty'
-gem 'awesome_print'
+gem 'awesome_print', require:"ap"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
