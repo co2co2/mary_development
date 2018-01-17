@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+  $('.carousel').carousel()
 $(document).on('turbolinks:load', function() {
   //toggle menus
   $(document).ready(function() {
