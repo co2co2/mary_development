@@ -16,6 +16,8 @@
 <p>
   <strong>Recommended strain:</strong>
   <%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %>
+  <br>
+  <%= link_to 'Find Dispensary', search_dispensaries_path %>
 </p>
 
 <p>
