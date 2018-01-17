@@ -30,6 +30,9 @@ class StrainsController < ApplicationController
     if @location.empty? || @distance.empty?
       flash[:alert] = 'Please try again!'
       redirect_to search_dispensaries_url
+    elsif @distance.to_i < 0
+      flash[:alert] = "Distance can't be negative!"
+      redirect_to search_dispensaries_url
     end
 
   end
