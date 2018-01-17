@@ -9,9 +9,11 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgres as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+# Use Bootstrap 4 for styling
+gem 'bootstrap', '~> 4.0.0.beta3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -37,7 +39,7 @@ gem 'httparty'
 gem 'geocoder'
 gem 'gmaps4rails'
 
-gem 'awesome_print'
+gem 'awesome_print', require:"ap"
 gem 'carrierwave','~> 1.0'
 gem 'mini_magick'
 
@@ -50,7 +52,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  
+
 end
 
 group :development do
