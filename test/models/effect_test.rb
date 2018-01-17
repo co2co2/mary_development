@@ -12,9 +12,10 @@ class EffectTest < ActiveSupport::TestCase
     assert @effect.valid?
   end
 
-  test "a effect have many strains" do
+  test "a effect must attached to strains" do
     @effect.save
     assert @effect.valid?
     refute_nil @effect.strains
   end
+
 end

@@ -13,9 +13,8 @@ class RecipeCategoryTest < ActiveSupport::TestCase
    assert @recipe_category.valid?
   end
 
-  # test 'recipe category' do
-  #   @recipe_category.save
-  #   assert(@recipe_category.valid?)
-  # end
+  test "one recipe_category can have many recipes " do
+    assert  @recipe_category.recipes
+  end
 
 end

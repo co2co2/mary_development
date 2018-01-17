@@ -15,5 +15,9 @@ class StrainTest < ActiveSupport::TestCase
     refute_nil @strain.effects
   end
 
+  test "a strain can have many effects" do
+    @strain.effects.count>1
+    assert @strain.save
+  end
 
 end
