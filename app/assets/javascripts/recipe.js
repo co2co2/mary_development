@@ -1,6 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
 $(document).on('turbolinks:load', function() {
+  //toggle menus
+  $(document).ready(function() {
+    $('#categoriesBtn').click( function(e) {
+      $('#categories').collapse('show');
+      $('#effects').collapse('hide');
+      $('#mainNavBar').collapse('hide');
+    })
+    $('#effectsBtn').click( function(e) {
+      $('#effects').collapse('show');
+      $('#categories').collapse('hide');
+      $('#mainNavBar').collapse('hide');
+    })
+    // $('button.navbar-toggler').click( function() {
+    //   $('#effects').collapse('hide');
+    //   $('#categories').collapse('hide');
+    // })
+    $('#mainNavBar').on('shown.bs.collapse', function () {
+      $('#effects').collapse('hide');
+      $('#categories').collapse('hide');
+    })
+  })
 
+  //autocomplete for strains
   $('#recipe_strain_name').focusout(function(){
     var strainText = $('#recipe_strain_name').val();
     $.ajax({
@@ -57,7 +79,7 @@ $(document).on('turbolinks:load', function() {
   $('#search-form').on('click','.removeIngredient',function(){
     this.parentElement.remove();
   })
-  
+
 });
 
   // Age verification dialog box
@@ -86,9 +108,22 @@ $(document).on('turbolinks:load', function() {
     dialogContent.innerText = 'Are you over 19 years old?'
   }
 
+  // no scroll when modal overlay is on
+  var body = document.body,
+    overlay = document.querySelector('.ui-widget-overlay'),
+    enterbtn = document.querySelector('button.ui-button:first-child');
+    if (enterbtn) {
+      enterbtn.addEventListener('click', function() {
+        body.classList.remove('noscroll');
+        overlay.scrollTop = 0;
+      }, false);
+    } else {
+      body.classList.remove('noscroll');
+    }
+
 })
 
-
+// Form - add a concentrate button toggle
 function hideConcentrateLink() {
   var addConcentrate = document.querySelector('a#addConcentrate')
 

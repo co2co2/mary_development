@@ -1,18 +1,9 @@
-<%= form_tag(search_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Recipes" %>
-<%= submit_tag "Search" %>
-<% end %>
-
-
-  
-
-
-  <h2>Our Star Recipes!</h2>
-  <div class="most_favourite">
-    <% Recipe.most_favourite.each do |recipe|  %>
-        <%=  render 'show_recipe_partial', recipe: recipe %>
-    <% end %>
-  </div>
+<h2>Our Star Recipes!</h2>
+<div class="most_favourite">
+  <% Recipe.most_favourite.each do |recipe|  %>
+      <%=  render 'show_recipe_partial', recipe: recipe %>
+  <% end %>
+</div>
 
 <br>
 <br><br>
