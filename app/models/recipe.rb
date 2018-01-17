@@ -31,10 +31,13 @@ class Recipe < ApplicationRecord
   scope :most_viewed, ->{ order('views DESC').limit(3) }
   scope :user_favourites, -> (user_id){ joins(:favourites).where("favourites.user_id = ?", user_id)}
   scope :filter_ingredients, -> (ingredient_ids){ joins(:measurements).where("measurements.ingredient_id IN (?)", ingredient_ids).uniq}
- 
+  mount_uploader :image, ImageUploader
+
+  
+
   def self.filter_specific(ingredients)
     recipes_list = []
-    ingredients.each do |ingredient_id| 
+    ingredients.each do |ingredient_id|
       recipes_list << Ingredient.find(ingredient_id).recipes
     end
 

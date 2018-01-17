@@ -1,3 +1,4 @@
+
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: %i[index show search_results filter]
@@ -22,7 +23,7 @@ class RecipesController < ApplicationController
             @ingredients << ingredient_id.id
           end
         end
-      end 
+      end
       if params[:specify]
         @recipes = Recipe.filter_specific(@ingredients)
       else
@@ -34,6 +35,7 @@ class RecipesController < ApplicationController
   end
 
   def filter
+
   end
 
   def favourite
@@ -93,7 +95,9 @@ class RecipesController < ApplicationController
 
   # POST /recipes
   # POST /recipes.json
+
   def create
+
     @recipe = current_user.recipes.build(recipe_params)
 
      params[:recipe][:allergy].each do |key,value|
@@ -163,7 +167,7 @@ class RecipesController < ApplicationController
     end
   end
 
-  private
+private
     # Use callbacks to share common setup or constreaints between actions.
     def set_recipe
       @recipe = Recipe.find(params[:id])
@@ -172,7 +176,7 @@ class RecipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
 
-      params.require(:recipe).permit(:recipe_category_id, :strain_id, :title, :image, :video, :description, :prep_time, :views, :user_id, instructions_attributes:[:id, :recipe_id ,:step, :_destroy],
+      params.require(:recipe).permit(:recipe_category_id, :strain_id, :title, :image, :remove_image,:remote_image_url,:video, :description, :prep_time, :views, :user_id, instructions_attributes:[:id, :recipe_id ,:step, :_destroy],
         allergies_attributes:[:id, :name],
         measurements_attributes:[:id, :ingredient_id, :recipe_id, :quantity, :_destroy,
         ingredient_attributes:[:id, :name, :concentrate_recipe_id, :_destroy]])
