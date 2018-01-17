@@ -84,8 +84,10 @@ GEM
       factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
     ffi (1.9.18)
+    geocoder (1.4.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    gmaps4rails (2.1.2)
     httparty (0.15.6)
       multi_xml (>= 0.5.2)
     i18n (0.9.1)
@@ -130,9 +132,11 @@ GEM
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+
     pry-byebug (3.5.1)
       byebug (~> 9.1)
       pry (~> 0.10)
+
     public_suffix (3.0.1)
     puma (3.11.0)
     rack (2.0.3)
@@ -230,6 +234,8 @@ DEPENDENCIES
   cocoon
   devise
   factory_bot_rails
+  geocoder
+  gmaps4rails
   httparty
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.1)
@@ -238,7 +244,11 @@ DEPENDENCIES
   mini_magick
   nested_form_fields
   pg
+<<<<<<< HEAD
   pry-byebug
+=======
+  pry-rails
+>>>>>>> master
   puma (~> 3.7)
   rails (~> 5.1.4)
   sass-rails (~> 5.0)

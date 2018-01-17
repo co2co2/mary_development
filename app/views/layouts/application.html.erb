@@ -28,6 +28,7 @@
       <% end %>
       <a href="" id="categoryBtn">Recipes</a>
       <a href="" id="effectsBtn">Effects</a>
+      <%= link_to 'Dispensary', search_dispensaries_path %>
     </nav>
     <nav id="categories" style="display: none">
       <% RecipeCategory.all.each do |category| %>

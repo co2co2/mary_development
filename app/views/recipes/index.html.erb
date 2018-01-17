@@ -21,7 +21,12 @@
 </div>
 <br>
 <br><br>
-
+<h2>Most Viewed</h2>
+<div class="popular">
+	<% Recipe.most_viewed.each do |recipe|%>
+		<%= render 'show_recipe_partial', recipe: recipe %>
+	<% end %>
+</div>
 
 <br>
 
