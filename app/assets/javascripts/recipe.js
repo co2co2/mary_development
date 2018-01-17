@@ -1,13 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
-  $(document).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', function() {
+  //toggle menus
+  $(document).ready(function() {
+    $('#categoriesBtn').click( function(e) {
+      $('#categories').collapse('show');
+      $('#effects').collapse('hide');
+      $('#mainNavBar').collapse('hide');
+    })
+    $('#effectsBtn').click( function(e) {
+      $('#effects').collapse('show');
+      $('#categories').collapse('hide');
+      $('#mainNavBar').collapse('hide');
+    })
+    // $('button.navbar-toggler').click( function() {
+    //   $('#effects').collapse('hide');
+    //   $('#categories').collapse('hide');
+    // })
+    $('#mainNavBar').on('shown.bs.collapse', function () {
+      $('#effects').collapse('hide');
+      $('#categories').collapse('hide');
+    })
+  })
 
-    $('#recipe_strain_name').focusout(function(){
-      var strainText = $('#recipe_strain_name').val();
-      $.ajax({
-        url: $('#recipe_strain_name').data('autocomplete-source'),
-        method: 'GET',
-        dataType: 'json'
-      }).done(function(responseData) {
+  //autocomplete for strains
+  $('#recipe_strain_name').focusout(function(){
+    var strainText = $('#recipe_strain_name').val();
+    $.ajax({
+      url: $('#recipe_strain_name').data('autocomplete-source'),
+      method: 'GET',
+      dataType: 'json'
+    }).done(function(responseData) {
         for (var key in responseData)
         {
           if ( responseData[key].toLowerCase() === strainText.toLowerCase()) {
@@ -55,11 +77,12 @@ document.addEventListener('DOMContentLoaded', function() {
     $('#ingredient_').after(newIngredient)
   })
 
-  $('#search-form').on('click','.removeIngredient',function(){
+  $(document).on('click','.removeIngredient',function(){
+    console.log('hi')
     this.parentElement.remove();
   })
-  
-});//turbo links
+
+});
 
   // Age verification dialog box
   var now = new Date().getTime();
@@ -87,9 +110,25 @@ document.addEventListener('DOMContentLoaded', function() {
     dialogContent.innerText = 'Are you over 19 years old?'
   }
 
-})//dom content loaded 
+  // no scroll when modal overlay is on
+  var body = document.body,
+    overlay = document.querySelector('.ui-widget-overlay'),
+    enterbtn = document.querySelector('button.ui-button:first-child');
+    if (overlay) {
+      body.classList.add('noscroll');
+    }
+    if (enterbtn) {
+      enterbtn.addEventListener('click', function() {
+        body.classList.remove('noscroll');
+        overlay.scrollTop = 0;
+      }, false);
+    } else {
+      body.classList.remove('noscroll');
+    }
 
+})
 
+// Form - add a concentrate button toggle
 function hideConcentrateLink() {
   var addConcentrate = document.querySelector('a#addConcentrate')
 

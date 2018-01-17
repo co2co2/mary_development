@@ -9,9 +9,11 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgres as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+# Use Bootstrap 4 for styling
+gem 'bootstrap', '~> 4.0.0.beta3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -33,7 +35,14 @@ gem 'jquery-ui-rails'
 gem 'nested_form_fields'
 gem 'cocoon'
 gem 'httparty'
-gem 'awesome_print'
+
+gem 'geocoder'
+gem 'gmaps4rails'
+
+gem 'awesome_print', require:"ap"
+gem 'carrierwave','~> 1.0'
+gem 'mini_magick'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -43,6 +52,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+
 end
 
 group :development do
@@ -52,10 +62,12 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'pry-byebug'
 end
 
 group :test do
   gem 'factory_bot_rails'
+  gem 'pry-byebug'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

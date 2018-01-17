@@ -31,7 +31,8 @@ class Recipe < ApplicationRecord
   scope :most_viewed, ->{ order('views DESC').limit(3) }
   scope :user_favourites, -> (user_id){ joins(:favourites).where("favourites.user_id = ?", user_id)}
   scope :filter_ingredients, -> (ingredient_ids){ joins(:measurements).where("measurements.ingredient_id IN (?)", ingredient_ids).uniq}
- 
+  mount_uploader :image, ImageUploader
+
   def self.filter_specific(ingredient_set)
     recipes_list = Array.new(ingredient_set.length)
     # ARCHAIC CODE
@@ -47,15 +48,6 @@ class Recipe < ApplicationRecord
         recipes_list[i][j] = Ingredient.find(ingredient_id).recipes
       end
     end
-
-
-    # recipes_list.each_with_index do |list,i|
-    #   recipes_list[i].flatten
-    # end
-    # recipes_list.each_with_index do |item,i|
-    #   next_array = item[i+1]
-    #   item & next_array if next_array.nil?
-    # end  
     # return recipes_list[0].flatten & recipes_list[1].flatten
     return recipes_list.map {|x| x.flatten}.reduce {|common,current| common & current}
     # Recipes_list

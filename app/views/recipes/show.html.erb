@@ -2,8 +2,16 @@
   <h2><%= @recipe.title %></h2>
 </p>
 
-<p>By: <%= link_to @recipe.user.username, user_path(@recipe.user) %></p>
-
+<p>By
+  <% if @recipe.user %>
+    <% if @recipe.user.avatar? %>
+    <%= image_tag @recipe.user.avatar.thumb.url %>
+    <% end %>
+    <%= link_to @recipe.user.username, user_path(@recipe.user) %>
+  <% else %>
+   This Creator got Baked!!!!
+  <% end %>
+</p>
 <p>
   <strong>Category:</strong>
   <%= @recipe.recipe_category.name %>
@@ -12,22 +20,25 @@
 <p>
   <strong>Recommended strain:</strong>
   <%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %>
+  <br>
+  <%= link_to 'Find Dispensary', search_dispensaries_path %>
 </p>
-
 
 <p>
   <strong>Image:</strong>
-  <% if @recipe.image == "" || @recipe.image == nil %>
+  <% if @recipe.image.url == "" || @recipe.image.url == nil %>
+
     <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w' %>
   <% else %>
     <%=image_tag @recipe.image, alt: @recipe.title %>
+
   <% end %>
 </p>
 
 <p>
   <strong>Video:</strong>
   <% if @recipe.video %>
-    <iframe width="635" height="357" src='https://www.youtube.com/embed/hEz0zkzGQGQ' frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+    <iframe width="600" height="400" src='https://www.youtube.com/embed/hEz0zkzGQGQ' frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
     <% end %>
 </p>
 
@@ -99,7 +110,11 @@
 
 <% if @reviews %>
   <% @reviews.each do |review|%>
+  <% if @recipe.user %>
     <p><%= review.user.username %></p>
+    <% else %>
+     This Reviewer got Baked!!!!
+    <% end %>
     <p><%= review.comment %></p>
     <p><%= review.updated_at %></p>
     <%= link_to "Delete", recipe_review_path(@recipe, review), method: :delete %>

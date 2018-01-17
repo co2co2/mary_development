@@ -1,0 +1,84 @@
+$primary:     $green !important;
+
+$font-family-sans-serif: "Raleway", Roboto, "Helvetivca Neue", Arial, sans-serif;
+
+// Age verification div
+.ui-dialog-titlebar {
+  display: none;
+}
+
+.ui-widget-overlay {
+ z-index: 1055 !important;
+ background-color: rgba(30,30,30,0.8) !important;
+ opacity: 1 !important;
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+// navigations
+.navbar {
+  width: 100%;
+  background: $white;
+
+  @media(max-width: 34em) {
+    background: $gray-500 !important;
+  }
+
+
+  .navbar-toggler {
+    cursor: pointer;
+    outline: 0;
+  }
+
+  .nav-link {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $green !important;
+  }
+
+  .nav-item {
+    padding: 0;
+
+    .nav-link {
+      @media(max-width: 34em) {
+        font-weight: normal;
+      }
+
+    }
+  }
+}
+
+nav.collapse {
+  background: $white;
+}
+
+
+// Autocomplete UI
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #999;
+  cursor: default;
+  li {
+    background-color: #FFF;
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 0;
+    div {
+      color: #000;
+      display: block;
+      padding: 3px;
+    }
+    div.ui-state-hover, div.ui-state-active {
+      background-color: lavender;
+    }
+  }
+}
+.ui-helper-hidden-accessible { display:none; }
+.ui-autocomplete { height: 200px;
+   overflow-y: scroll;
+   overflow-x: hidden;}

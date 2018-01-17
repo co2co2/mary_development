@@ -1,16 +1,26 @@
-<h2><%= @user.username %>'s </h2>
+<h2><%= @user.username %>'s kitchen</h2>
 
 <br>
-<%= @user.email %>
+<% if @user.avatar.url == nil%>
+<%= image_tag'https://pro.pubgonline.com/uploads/images/teams/2989-1509421159.gif'%>
+  <% else %>
+    <%=image_tag @user.avatar, alt: @user.username %>
+<% end %></br>
 
-<h2>Recipes</h2>
+<h3>About <%= @user.username %></h3>
+  <p><%= @user.bio %></p>
+<b>contact:<%= @user.email %></b>
+
+<h2><%= @user.username %>'s Recipes</h2>
 <% if  !@user.recipes.empty?%>
-	<% @user.recipes.each do |recipe|%>
-		<%= link_to(recipe.title, recipe_path(recipe.id))  %>
-	<% end %>
+    <% @user.recipes.each do |recipe|%>
+      <%=  render '/recipes/show_recipe_partial', recipe: recipe %>
+    <% end %>
 <% else %>
-	<p>This user has no recipes! </p>
+    <p>This user has no recipes! </p>
 <% end %>
+
+
 <% if  user_signed_in? && current_user == @user%>
 	<h2>Favourites</h2>
 	<% if !@fav_recipes.empty? %>
@@ -20,5 +30,6 @@
 	<% else %>
 		<p>You have no favourite recipes!</p>
 	<% end %>
+  <%= link_to 'Edit your profile',  edit_user_registration_path(@user) %>
 
 <% end %>
