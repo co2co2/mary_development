@@ -34,13 +34,11 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'association with recipe' do
-    @user.recipes
-    assert true
+    assert @user.recipes
   end
 
   test 'association with favourites' do
-    @user.favourites
-    assert true
+    assert @user.favourites
   end
   
 end

@@ -9,7 +9,7 @@ class StrainTest < ActiveSupport::TestCase
     @strain = build(:strain)
   end
 
-  test "a strain have many effect" do
+  test "a strain must have effect" do
     @strain.save
     assert @strain.valid?
     refute_nil @strain.effects

@@ -8,5 +8,5 @@ class IngredientTest < ActiveSupport::TestCase
     @ingredient = build(:ingredient)
   end
 
-  
+
 end

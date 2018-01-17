@@ -4,9 +4,12 @@ class EffectTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-
   setup do
     @effect = build(:effect)
+  end
+
+  test'effect valid' do
+    assert @effect.valid?
   end
 
   test "a effect have many strains" do
