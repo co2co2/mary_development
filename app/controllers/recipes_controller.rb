@@ -152,6 +152,16 @@ class RecipesController < ApplicationController
          @recipe.allergies << allergy
        end
     end
+
+    # params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
+    #   ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
+    #   if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
+
+    #     ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
+    #     @recipe.measurements[i].ingredient = ingredient
+
+    #   end
+    # end
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }

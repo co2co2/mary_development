@@ -49,14 +49,15 @@ class Recipe < ApplicationRecord
     end
 
 
-    recipes_list.each_with_index do |list,i|
-      recipes_list[i].flatten
-    end
-    recipes_list.each_with_index do |item,i|
-      next_array = item[i+1]
-      item & next_array if next_array.nil?
-    end  
+    # recipes_list.each_with_index do |list,i|
+    #   recipes_list[i].flatten
+    # end
+    # recipes_list.each_with_index do |item,i|
+    #   next_array = item[i+1]
+    #   item & next_array if next_array.nil?
+    # end  
     # return recipes_list[0].flatten & recipes_list[1].flatten
+    return recipes_list.map {|x| x.flatten}.reduce {|common,current| common & current}
     # Recipes_list
     # [x][x]
     # [y][y]
