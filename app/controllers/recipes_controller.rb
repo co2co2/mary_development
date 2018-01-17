@@ -14,17 +14,27 @@ class RecipesController < ApplicationController
     if params[:search]
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
     elsif params[:ingredient]
+      # if ingredient params length 2, length will be two
+      @ingredient_set = Array.new(params[:ingredient].length)
+      # length is equal to all the queries found by ingredient_id
       @ingredients = []
-      params[:ingredient].each do |ingredient|
+      params[:ingredient].each_with_index do |ingredient,i|
         if !ingredient.empty?
-          ingredient_id = Ingredient.find_by(name: ingredient)
-          if ingredient_id != nil
-            @ingredients << ingredient_id.id
-          end
-        end
-      end 
+          ingredient_id = Ingredient.where("lower(name) LIKE ?","%#{ingredient.downcase}%")
+          if !ingredient_id.empty?
+            @ingredients = []
+            ingredient_id.each_with_index do |ingredient,j|
+              @ingredients << ingredient.id
+            end #loop for ingredient LIKE query
+          end #checked for nil object
+            @ingredient_set[i] = @ingredients
+        end#checked empty params
+      end #looped ingredient params
+      # test
+      # ingredient_set[0-1]
+      # ingredient[0-5]
       if params[:specify]
-        @recipes = Recipe.filter_specific(@ingredients)
+        @recipes = Recipe.filter_specific(@ingredient_set)
       else
         @recipes = Recipe.filter_ingredients(@ingredients)
       end

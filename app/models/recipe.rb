@@ -32,14 +32,46 @@ class Recipe < ApplicationRecord
   scope :user_favourites, -> (user_id){ joins(:favourites).where("favourites.user_id = ?", user_id)}
   scope :filter_ingredients, -> (ingredient_ids){ joins(:measurements).where("measurements.ingredient_id IN (?)", ingredient_ids).uniq}
  
-  def self.filter_specific(ingredients)
-    recipes_list = []
-    ingredients.each do |ingredient_id| 
-      recipes_list << Ingredient.find(ingredient_id).recipes
+  def self.filter_specific(ingredient_set)
+    recipes_list = Array.new(ingredient_set.length)
+    # ARCHAIC CODE
+    # THIS CODE DOES NOT CONSIDER A LIST OF 'SAME NAME ' INGREDIENTS
+    # ingredients.each do |ingredient_id|
+    #   # Recipes list [x]contains array of recipes
+    #   recipes_list << Ingredient.find(ingredient_id).recipes
+    # end
+
+    ingredient_set.compact.each_with_index do |ingredient,i|
+      recipes_list[i] = Array.new(ingredient.length)
+      ingredient.each_with_index do |ingredient_id,j|
+        recipes_list[i][j] = Ingredient.find(ingredient_id).recipes
+      end
     end
 
-    recipes_list.reduce &:&
 
+    recipes_list.each_with_index do |list,i|
+      recipes_list[i].flatten
+    end
+    recipes_list.each_with_index do |item,i|
+      next_array = item[i+1]
+      item & next_array if next_array.nil?
+    end  
+    # return recipes_list[0].flatten & recipes_list[1].flatten
+    # Recipes_list
+    # [x][x]
+    # [y][y]
+    # [z]
+    # result = [x][y]
+    # 
+    # what i want = 
+    # eggs   tomato
+    # 0  1    0  1
+    # [x][y] [x][b]
+    # [z][a] [c][d]
+    # result = [x]
+
+    # ARCHAIC CODE
+    # recipes_list.reduce &:&
   end
 
   def self.search(search)

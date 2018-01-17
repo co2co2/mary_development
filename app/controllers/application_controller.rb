@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
   # rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
-	def configure_permitted_parameters
+  def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
   end
 
