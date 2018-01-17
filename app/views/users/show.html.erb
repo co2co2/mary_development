@@ -7,7 +7,10 @@
     <%=image_tag @user.avatar, alt: @user.username %>
 <% end %></br>
 
-<%= @user.email %>
+<h3>About <%= @user.username %></h3>
+  <p><%= @user.bio %></p>
+<b>contact:<%= @user.email %></b>
+
 <div class="container">
 <h2><%= @user.username %>'s Recipes</h2>
   <% if  !@user.recipes.empty?%>
