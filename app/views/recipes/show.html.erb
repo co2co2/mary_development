@@ -3,10 +3,14 @@
 </p>
 
 <p>By
-  <% if @recipe.user.avatar? %>
-  <%= image_tag @recipe.user.avatar.thumb.url %>
+  <% if @recipe.user %>
+    <% if @recipe.user.avatar? %>
+    <%= image_tag @recipe.user.avatar.thumb.url %>
+    <% end %>
+    <%= link_to @recipe.user.username, user_path(@recipe.user) %>
+  <% else %>
+   This Creator got Baked!!!!
   <% end %>
-  <%= link_to @recipe.user.username, user_path(@recipe.user) %>
 </p>
 <p>
   <strong>Category:</strong>
@@ -104,7 +108,11 @@
 
 <% if @reviews %>
   <% @reviews.each do |review|%>
+  <% if @recipe.user %>
     <p><%= review.user.username %></p>
+    <% else %>
+     This Reviewer got Baked!!!!
+    <% end %>
     <p><%= review.comment %></p>
     <p><%= review.updated_at %></p>
     <%= link_to "Delete", recipe_review_path(@recipe, review), method: :delete %>

@@ -3,5 +3,5 @@ FactoryBot.define do
     comment 'Yummy!'
     association :user, factory: :user, strategy: :build
     association :recipe, factory: :recipe, strategy: :build
-  end 
+  end
 end

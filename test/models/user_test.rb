@@ -4,11 +4,13 @@ class UserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+  setup do
+    @user =build(:user)
+  end
 
   test "unique username" do
     user1 = build(:user)
     user2 = build(:user)
-
     assert(user2.save)
   end
 
@@ -24,8 +26,21 @@ class UserTest < ActiveSupport::TestCase
   test "email uniqueness" do
     user1 = build(:user, email: 'tyler@gmail.com').save
     user2 = build(:user, email: 'tyler@gmail.com').save
-
     refute(user2)
   end
 
+  test 'association with review' do
+  assert @user.reviews.size+1
+  end
+
+  test 'association with recipe' do
+    @user.recipes
+    assert true
+  end
+
+  test 'association with favourites' do
+    @user.favourites
+    assert true
+  end
+  
 end
