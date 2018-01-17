@@ -7,7 +7,9 @@
     <%=image_tag @user.avatar, alt: @user.username %>
 <% end %></br>
 
-<%= @user.email %>
+<h3>About <%= @user.username %></h3>
+  <p><%= @user.bio %></p>
+<b>contact:<%= @user.email %></b>
 
 <h2><%= @user.username %>'s Recipes</h2>
 <% if  !@user.recipes.empty?%>
@@ -17,6 +19,8 @@
 <% else %>
     <p>This user has no recipes! </p>
 <% end %>
+
+
 <% if  user_signed_in? && current_user == @user%>
 	<h2>Favourites</h2>
 	<% if !@fav_recipes.empty? %>

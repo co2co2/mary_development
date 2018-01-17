@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :ingredient do
-    name "xxxx"
-  
+    name ['egg','tomato','galic','chicken'].sample
   end
 end

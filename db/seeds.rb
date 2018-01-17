@@ -108,7 +108,7 @@ measurements_attributes: [
   ]
 )
 # Rick Simpson Oil
-concentrate2 = user1.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:2, title:'Rick Simpson Oil', remote_image_url:'https://cannabis.net/drive/1000/media/ricks.gif', description:'Rick Simpson Oil, or RSO is a concentrated form of cannabis oil known to have medical benefits, particularly for cancer.', prep_time: 360, concentrate: true,
+concentrate2 = user1.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Rick Simpson Oil', remote_image_url:'https://cannabis.net/drive/1000/media/ricks.gif', description:'Rick Simpson Oil, or RSO is a concentrated form of cannabis oil known to have medical benefits, particularly for cancer.', prep_time: 360, concentrate: true,
 instructions_attributes: [
   {step: 'Place dry cannabis material into the 5-gallon bucket and pour in the solvent until the plant matter is covered.'},
   {step: 'Stir and crush the plant material with your wooden spoon while adding the solvent to your mixture. Continue stirring the mixture for about three minutes while the THC dissolves into the solvent. This will dissolve about 80% of the THC into the solvent.'},
@@ -128,7 +128,7 @@ measurements_attributes: [
 #  Cannabutter
 
 
-concentrate3 = user1.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:3, title:'Cannabis-Infused Butter', remote_image_url:'https://s3.amazonaws.com/leafly-s3/content/recipe-how-to-make-basic-cannabutter/HyiZ4sSkVIDtbpo9tnA6_Cannabutter-Body.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
+concentrate3 = user1.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis-Infused Butter', remote_image_url:'https://s3.amazonaws.com/leafly-s3/content/recipe-how-to-make-basic-cannabutter/HyiZ4sSkVIDtbpo9tnA6_Cannabutter-Body.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
 instructions_attributes: [
   { step: 'Add one cup of water and 1 lb of butter into a stock pot or sauce pan; let the butter melt and begin to simmer on low. Adding water helps to regulate the temperature and prevents the butter from scorching.'},
   {step: 'As butter begins to melt, add in your ground cannabis product.'},
@@ -148,7 +148,7 @@ measurements_attributes: [
 )
 
 
-concentrate4 = user2.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:4, title:'Cannabis-Infused Olive Oil', remote_image_url:'http://www.ethiopianimporter.com/imagesexport/72oil-seed.jpg', video:'https://www.youtube.com/embed/hEz0zkzGQGQ', description:'It is super easy to infuse cannabis into your olive oil with the sous vide technique. Since you can fit many mason jars in a sous vide water bath, imagine the all the different flavored oil concoctions you can whip up all in one sitting! This technique is simple and discreet--no smell! ', prep_time: 240, concentrate: true,
+concentrate4 = user2.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis-Infused Olive Oil', remote_image_url:'http://www.ethiopianimporter.com/imagesexport/72oil-seed.jpg', video:'https://www.youtube.com/embed/hEz0zkzGQGQ', description:'It is super easy to infuse cannabis into your olive oil with the sous vide technique. Since you can fit many mason jars in a sous vide water bath, imagine the all the different flavored oil concoctions you can whip up all in one sitting! This technique is simple and discreet--no smell! ', prep_time: 240, concentrate: true,
 instructions_attributes: [
   { step: 'Pour olive oil in two 12oz mason jars. It is important to use jars specific to canning, so please no repurposed mayo jars. Inspect the jar for cracks. A freezer-safe zip bag may be used as well.'},
   {step: 'Decarb your cannabis to activate the THC and pour half into each jar of olive oil. Seal the jars finger tight.'},
@@ -166,7 +166,7 @@ measurements_attributes: [
   ]
 )
 
-concentrate5 = user2.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:5, title:'Cannabis Cooking Oil', remote_image_url:'https://s3.amazonaws.com/leafly/content/recipe-how-to-make-cannabis-cooking-oil/TRaosPRdRpOyuSZfpMWe_large_6896388410.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
+concentrate5 = user2.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis Cooking Oil', remote_image_url:'https://s3.amazonaws.com/leafly/content/recipe-how-to-make-cannabis-cooking-oil/TRaosPRdRpOyuSZfpMWe_large_6896388410.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
 instructions_attributes: [
   {step: 'Add one cup of water and 1 lb of butter into a stock pot or sauce pan; let the butter melt and begin to simmer on low. Adding water helps to regulate the temperature and prevents the butter from scorching.'},
   {step: 'As butter begins to melt, add in your ground cannabis product.'},
