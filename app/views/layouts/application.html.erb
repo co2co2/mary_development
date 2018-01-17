@@ -9,7 +9,7 @@
 
   </head>
 
-  <body class="noscroll">
+  <body>
     <div class="dialog-wrapper">
       <div id="dialog"></div>
     </div>
@@ -89,8 +89,8 @@
 
       <nav id="effects" class="collapse mt-5 fixed-top container">
         <ul class="nav flex-column flex-sm-column flex-md-row flex-lg-row">
+
           <div class="row">
-          <div class="col">
             <li class="nav-item"><h4>Moods</h4></li>
             <% Effect.positives.each do |effect| %>
             <li class="nav-item">
@@ -98,15 +98,15 @@
             </li>
             <% end %>
           </div>
-          <div class="col">
+          <div class="row">
             <li class="nav-item"><h4>Cures</h4></li>
             <% Effect.medicals.each do |effect| %>
             <li class="nav-item">
               <%= link_to effect.name, effect_path(effect), class: "nav-link" %>
             </li>
             <% end %>
-          </div>
         </div>
+
         </ul>
       </nav>
     </header>

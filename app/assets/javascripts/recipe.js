@@ -30,10 +30,11 @@ $(document).on('turbolinks:load', function() {
       method: 'GET',
       dataType: 'json'
     }).done(function(responseData) {
-      for (var key in responseData)
-      {
-        if ( responseData[key].toLowerCase() === strainText.toLowerCase()) {
-          $('#strainId').val(key);
+        for (var key in responseData)
+        {
+          if ( responseData[key].toLowerCase() === strainText.toLowerCase()) {
+            $('#strainId').val(key);
+          }
         }
       }).fail(function() {
         console.log(`fail to get strains info`)
@@ -112,6 +113,9 @@ $(document).on('turbolinks:load', function() {
   var body = document.body,
     overlay = document.querySelector('.ui-widget-overlay'),
     enterbtn = document.querySelector('button.ui-button:first-child');
+    if (overlay) {
+      body.classList.add('noscroll');
+    }
     if (enterbtn) {
       enterbtn.addEventListener('click', function() {
         body.classList.remove('noscroll');
