@@ -26,5 +26,6 @@
 	<% else %>
 		<p>You have no favourite recipes!</p>
 	<% end %>
+  <%= link_to 'Edit your profile',  edit_user_registration_path(@user) %>
+
 <% end %>
-<%= link_to 'Edit',  edit_user_registration_path(@user) %>

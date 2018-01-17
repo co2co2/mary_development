@@ -76,10 +76,10 @@ user6 = User.create!(email:'tyler@gmail.com', username: 'tyler', password:'valid
 
 # Categories
 concentrate_category = RecipeCategory.create!(name: 'Concentrates')
-RecipeCategory.create!(name: 'Appetizers')
-RecipeCategory.create!(name: 'Beverages')
+appetizers=RecipeCategory.create!(name: 'Appetizers')
+beverages= RecipeCategory.create!(name: 'Beverages')
 desserts = RecipeCategory.create!(name: 'Desserts')
-RecipeCategory.create!(name: 'Entrées')
+entrees= RecipeCategory.create!(name: 'Entrées')
 snacks = RecipeCategory.create!(name: 'Snacks')
 sides = RecipeCategory.create!(name: 'Sides')
 # Predefined Concentrate Recipes
@@ -171,7 +171,9 @@ measurements_attributes: [
     }
   ]
 )
-recipe1 = user3.recipes.create!( recipe_category_id: snacks.id, strain_id:6, title:'Dope Beets: A Hummus Collab with Bloom Farms', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4c326f085229be305f2d51/5a4c326f53450a16cf26d26f/1514943104198/SousWeed_DopeBeetHummus_6B7A9340_LoRes.jpg?format=300w', description:'The roasted beets add a mellow sweetness and rosy color to a basic hummus recipe. The texture is sultry smooth and goes great with warm pita or crisp veggies. If you have your Sous Weed olive oil prepared, it’s quick to throw together in a blender and is sure to be a hit at your next get-together.', prep_time: 70,
+
+
+recipe1 = user3.recipes.create!( recipe_category_id: snacks.id, strain_id:6, title:'Dope Beets', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4c326f085229be305f2d51/5a4c327c53450a16cf26d429/1514943110320/SousWeed_DopeBeetHummus_6B7A9344_LoRes.jpg?format=1500w', description:'The roasted beets add a mellow sweetness and rosy color to a basic hummus recipe. The texture is sultry smooth and goes great with warm pita or crisp veggies. If you have your Sous Weed olive oil prepared, it’s quick to throw together in a blender and is sure to be a hit at your next get-together.', prep_time: 70,
 instructions_attributes: [
   {step: 'Pre-heat oven to 375ºF.'},
   {step: 'Lightly wrap peeled beets in foil and roast for about an hour.'},
@@ -211,7 +213,7 @@ measurements_attributes: [
   ]
 )
 
-recipe2 = user4.recipes.create!( recipe_category_id:desserts.id, strain_id:7, title:'Smoky-Sweet Pineapple Fruitcake', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c699424a694df8674714c/1513908659466/SousWeed_BloomFarms_HolidayPairing-3842.jpg?format=300w', description:'Woodsy, Earthy, Fruity!CBD-heavy to bring down the high, chill-out.', prep_time: 60,
+recipe2 = user4.recipes.create!( recipe_category_id:desserts.id, strain_id:7, title:'Smoky-Sweet Pineapple Fruitcake', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5541bb17e4b006d7e513e4de/5a3c68d99140b7cd5735a0ab/1513909447498/SousWeed_BloomFarms_HolidayPairing-3842.jpg?format=2500w', description:'Woodsy, Earthy, Fruity!CBD-heavy to bring down the high, chill-out.', prep_time: 60,
 instructions_attributes: [
   {step: 'Preheat oven to 350ºF and grease an 8-in non-stick bundt pan.'},
   {step: 'Melt 3 Tbsp butter in a skillet over medium-high and add brown sugar. Cook until you see bubbles then add pineapple and cook for 2-3 minutes, until softened. Remove from heat and pour into the prepared cake pan.'},
@@ -267,7 +269,7 @@ measurements_attributes: [
     }
   ]
 )
-recipe3 = user5.recipes.create!( recipe_category_id:sides.id, strain_id:8, title:'Stuffed Portabella Mushrooms with Sundried Tomatoes', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c69690d92975090bdbc1f/1513908631359/SousWeed_BloomFarms_HolidayPairing-3935.jpg?format=300w', description:'Black Jack(strain) from Bloom Farms,Earthy, Sweet, Pine, make you euphoric and talkative', prep_time: 45,
+recipe3 = user5.recipes.create!( recipe_category_id:sides.id, strain_id:8, title:'Stuffed Portabella Mushrooms with Sundried Tomatoes', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c69690d92975090bdbc1f/1513908631359/SousWeed_BloomFarms_HolidayPairing-3935.jpg?format=1500w', description:'Earthy, Sweet, Pine, make you euphoric and talkative', prep_time: 45,
 instructions_attributes: [
   {step: 'Preheat oven to 400ºF.'},
   {step: 'In large bowl, toss portobello mushrooms in canola oil and set aside.'},
@@ -301,9 +303,7 @@ measurements_attributes: [
     {quantity:'some', ingredient_attributes:
       {name:'Shaved asiago cheese'}
     },
-    {quantity:'some', ingredient_attributes:
-      {name:'Shaved asiago cheese'}
-    },
+
     {quantity:'1/3 cup', ingredient_attributes:
       {name:'bread crumbs'}
     },
@@ -315,6 +315,57 @@ measurements_attributes: [
     }
   ]
 )
+recipe4 = user6.recipes.create!( recipe_category_id:appetizers.id, strain_id:9, title:'Chestnut and Winter Squash Soup', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a1db125652dea2e1ad64236/5a1db126652dea2e1ad64248/1511895336976/SousWeed_GreenCacao-2743_lores.jpg?format=1500w', description:'This soup is so comforting,it’s a pretty excellent way to feel cozy and a little festive during the dark months of winter.', prep_time: 60,
+instructions_attributes: [
+  {step: 'Preheat oven to 425ºF.'},
+  {step: 'Place the squash, cut side up, onto a parchment paper lined baking sheet. Drizzle with olive oil and season with salt. Roast the squash until it is completely tender and beginning to brown, 30-45 minutes.Use a spoon to scrape out all the flesh, discarding the outer rind. '},
+  {step: 'Heat the olive oil in a medium pot over medium heat until shimmering.'},
+  {step: ' Add the garlic, shallot, and chili and cook, stirring constantly, until the shallot and garlic have softened and are beginning to turn golden, 3-5 minutes.'},
+  {step: 'Stir in the cumin, cinnamon, and clove, followed immediately by the sherry. Once the mixture boils, add the stock, chestnut, reserved squash, and ½ cup crème fraîche. Return mixture to a boil, reduce heat to a simmer, and cook for 1 minute.'},
+  {step: 'Remove the soup from the heat and blend until completely smooth, then season to taste with salt and white pepper.'},
+  {step: 'To serve, divide the soup between warmed bowls, and garnish each with a dollop of crème fraîche, and a drizzle of olive oil, then divide the thyme and pumpkin seeds between them.'}
+],
+measurements_attributes: [
+    {quantity:'1 (2-lb)  ', ingredient_attributes:
+      {name:'winter squash'}
+    },
+    {quantity:'1 large', ingredient_attributes:
+      {name:'shallot(sliced)'}
+    },
+    {quantity:'3 cloves', ingredient_attributes:
+      {name:'garlic'}
+    },
+    {quantity:'1/4 inch slices', ingredient_attributes:
+      {name:'Guajillo chiles'}
+    },
+    {quantity:'1 quart ', ingredient_attributes:
+      {name:'chicken or vegetable stock'}
+    },
+    {quantity:'1/2 cup', ingredient_attributes:
+      {name:'white wine'}
+    },
+    {quantity:'3 teaspoon', ingredient_attributes:
+      {name:'olive oil,'}
+    },
+    {quantity:'some', ingredient_attributes:
+      {name:'ground cumin'}
+    },
+    {quantity:'some', ingredient_attributes:
+      {name:'Mexican cinnamon'}
+    },
+    {quantity:'1/2 cup', ingredient_attributes:
+      {name:'crème fraîche'}
+    },
+    {quantity:'1 teaspoon', ingredient_attributes:
+      {name:' thyme leaves'}
+    },
+    {quantity:'1/4 bar', ingredient_attributes:
+      {name:' Indica Bar'}
+    }
+  ]
+)
+
+
 
 peanutFree = Allergy.create!(name:'Peanut-free')
 glutenFree = Allergy.create!(name:'Gluten-free')
