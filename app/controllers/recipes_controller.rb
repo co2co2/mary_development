@@ -184,9 +184,11 @@ class RecipesController < ApplicationController
     # end
     respond_to do |format|
       if @recipe.update(recipe_params)
+        @allergies = Allergy.all
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
+        @allergies = Allergy.all
         format.html { render :edit }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
