@@ -4,7 +4,7 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :avatar %>new look?
+    <%= f.label :avatar %><br>new look?
     <% if @user.avatar? %>
     <%= image_tag @user.avatar.thumb.url %>
     <% end %>

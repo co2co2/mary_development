@@ -8,24 +8,36 @@
 <% end %></br>
 
 <%= @user.email %>
-
+<div class="container">
 <h2><%= @user.username %>'s Recipes</h2>
-<% if  !@user.recipes.empty?%>
-    <% @user.recipes.each do |recipe|%>
-      <%=  render '/recipes/show_recipe_partial', recipe: recipe %>
-    <% end %>
-<% else %>
-    <p>This user has no recipes! </p>
-<% end %>
-<% if  user_signed_in? && current_user == @user%>
-	<h2>Favourites</h2>
-	<% if !@fav_recipes.empty? %>
-		<% @fav_recipes.each do |recipe| %>
-				<%= link_to(recipe.title, recipe_path(recipe.id))  %>
-		<% end %>
-	<% else %>
-		<p>You have no favourite recipes!</p>
-	<% end %>
-  <%= link_to 'Edit your profile',  edit_user_registration_path(@user) %>
+  <% if  !@user.recipes.empty?%>
+    <div class="row">
+      <% @user.recipes.each do |recipe|%>
+        <div class="col-md-4">
+          <%=  render '/recipes/show_recipe_partial', recipe: recipe %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+      <p>This user has no recipes! </p>
+  <% end %>
+</div>
+<br><br>
 
+<% if  user_signed_in? && current_user == @user%>
+  <div class="container">
+  	<h2>Favourites</h2>
+  	<% if !@fav_recipes.empty? %>
+      <div class="row">
+    		<% @fav_recipes.each do |recipe| %>
+          <div class="col-md-4">
+    				<%= link_to(recipe.title, recipe_path(recipe.id))  %>
+          </div>
+    		<% end %>
+      </div>
+  	<% else %>
+  		<p>You have no favourite recipes!</p>
+  	<% end %>
+    <%= link_to 'Edit your profile',  edit_user_registration_path(@user) %>
+  </div>
 <% end %>
