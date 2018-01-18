@@ -9,16 +9,18 @@
     <%= favicon_link_tag 'favicon3.ico' %>
     <%= favicon_link_tag 'apple_touch_icon.png', rel: 'apple-touch-icon', type: 'image/png' %>
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+
   </head>
 
   <body>
+  <div id="mary" class="w-100 h-100">
     <div class="dialog-wrapper">
       <div id="dialog"></div>
     </div>
 
     <header>
-      <div id="mary">
         <div class="container">
             <div class="row">
 
@@ -70,7 +72,6 @@
 
             </div>
         </div>
-      </div>
 
       <nav id="categories" class="collapse mt-6 fixed-top container">
         <ul class="nav flex-column flex-sm-column flex-md-row flex-lg-row">
@@ -100,20 +101,20 @@
       <nav id="effects" class="collapse mt-6 fixed-top container">
         <ul class="nav flex-column flex-sm-column flex-md-row flex-lg-row">
 
-          <div class="row">
-            <li class="nav-item"><h6>Moods</h6></li>
+        <div class="row">
+          <div class="">
+            <li class="nav-item nav-link"><h6>Moods</h6></li>
           </div>
-          <div class="row">
             <% Effect.positives.each do |effect| %>
             <li class="nav-item">
               <%= link_to effect.name, effect_path(effect), class: "nav-link" %>
             </li>
             <% end %>
           </div>
-          <div class="row">
-            <li class="nav-item"><h6>Cures</h6></li>
+        <div class="row">
+          <div class="">
+            <li class="nav-item nav-link"><h6>Cures</h6></li>
           </div>
-          <div class="row">
             <% Effect.medicals.each do |effect| %>
             <li class="nav-item">
               <%= link_to effect.name, effect_path(effect), class: "nav-link" %>
@@ -129,12 +130,27 @@
       </nav>
     </header>
 
-    <main class="container mt-6">
+    <main class="container mt-6 mb-6 pb-5">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <p class="mt-5 pt-5"><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
       <%= yield %>
     </main>
 
+    <footer class="py-5 text-center position-absolute w-100">
+      <div class="row">
+        <div class="col">
+          Logo
+        </div>
+        <div class="col">
+          Site Map
+        </div>
+        <div class="col">
+          links
+        </div>
+      </div>
+    </footer>
+
+  </div>
   </body>
 </html>
