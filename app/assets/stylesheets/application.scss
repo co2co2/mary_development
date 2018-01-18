@@ -12,7 +12,15 @@
  */
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
+
 @import 'bootstrap-custom';
 @import "custom";
 @import "recipes";
 @import "filter";
+@import "social-share-button";
+
+.social-share-button {
+  .ssb-icon {
+    color: green;
+  }
+}
