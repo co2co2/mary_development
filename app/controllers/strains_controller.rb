@@ -18,12 +18,12 @@ class StrainsController < ApplicationController
   end
 
   def search_dispensaries
-    @location = params[:search]
+    @location = params[:current_address]
     @distance = params[:km]
   end
 
   def dispensaries
-    @location = params[:search]
+    @location = params[:current_address]
     @distance = params[:km]
     @dispensaries = []
 
@@ -54,6 +54,9 @@ class StrainsController < ApplicationController
     end
   end
 
+  def cod_to_address
+    render json: { address: Geocoder.search(params[:lat]+","+params[:long]).first.address.to_s}
+  end
 
 
 
