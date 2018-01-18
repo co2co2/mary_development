@@ -1,9 +1,32 @@
+// Reset all useful base variables
+$green:       #40A84F !important;
+$bread:       #C9AC68 !important;
+
 $primary:     $green !important;
 
-$display1-size:                1.75rem !important;
-$font-family-sans-serif:       'Roboto Slab', serif !important;
-$heading-font: 'Abril Fatface', cursive;
+$display1-size:                2rem !important;
+$font-family-sans-serif:       'Roboto Slab', "Times New Roman", Georgia, serif !important;
+$heading-font:                 'Abril Fatface', cursive;
 
+a {
+  color:          $green;
+
+  &:hover {
+    color:        $bread;
+  }
+}
+
+main {
+  a{
+    color:          #C9AC68 !important;
+    &:hover{
+      color:        #96C53D !important;
+    }
+  }
+}
+
+
+// Body elements
 body {
   font-family:      $font-family-sans-serif;
 }
@@ -12,10 +35,17 @@ input[disabled] {
   border: 0 !important;
 }
 
-h1 {
+h1, h2, h3, h4 {
+  color: #C9AC68;
   font-family: $heading-font;
+}
+
+h1 {
   font-size: $display1-size;
-  display: inline;
+}
+
+h2 {
+  font-size: $display4-size;
 }
 
 .mt-6 {
@@ -43,13 +73,23 @@ h1 {
   overflow: hidden;
 }
 
+
 // navigations
 .navbar {
   width: 100%;
   background: $gray-100;
 
   @media(max-width: 34em) {
-    background: $gray-200 !important;
+    background: #40A84F !important;
+
+    //search bar button
+    .btn-outline-success{
+      color: #FFF !important;
+      border-color: #FFF;
+      &:hover{
+        background-color: #96C53D !important;
+      }
+    }
   }
 
   .navbar-brand{
@@ -69,7 +109,6 @@ h1 {
   .nav-link {
     text-transform: uppercase;
     font-weight: bold;
-    color: $green !important;
   }
 
   .nav-item {
@@ -78,6 +117,7 @@ h1 {
     .nav-link {
       @media(max-width: 34em) {
         font-weight: normal;
+        color: #FFF !important;
       }
 
     }
@@ -94,11 +134,11 @@ ul.ui-autocomplete {
   list-style: none;
   margin: 0;
   padding: 0;
-  border: solid 1px #999;
+  border: solid 1px $green;
   cursor: default;
   li {
     background-color: #FFF;
-    border-top: solid 1px #DDD;
+    border-top: solid 1px $bread;
     margin: 0;
     padding: 0;
     div {
@@ -107,7 +147,9 @@ ul.ui-autocomplete {
       padding: 3px;
     }
     div.ui-state-hover, div.ui-state-active {
-      background-color: lavender;
+      background-color: #96C53D;
+      border-top: solid 1px #96C53D;
+      border-bottom: solid 1px #96C53D;
     }
   }
 }
