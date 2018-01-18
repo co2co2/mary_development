@@ -1,6 +1,6 @@
 <div class="container">
+  <h2>Search Results for <%= params[:search] %></h2>
   <% if @recipes.present? %>
-    <h2>Search Results for <%= params[:search] %></h2>
       <div class="row">
         <% @recipes.each do |recipe| %>
 

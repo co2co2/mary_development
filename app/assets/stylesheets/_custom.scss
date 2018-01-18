@@ -1,12 +1,25 @@
 // Reset all useful base variables
 $green:       #40A84F !important;
 $bread:       #C9AC68 !important;
+$dark-green:  #175700;
+$light-green: #96C53D;
 
 $primary:     $green !important;
 
 $display1-size:                2rem !important;
 $font-family-sans-serif:       'Roboto Slab', "Times New Roman", Georgia, serif !important;
 $heading-font:                 'Abril Fatface', cursive;
+
+html {
+min-height: 100%;
+position: relative;
+}
+
+// Body elements
+body {
+  font-family:      $font-family-sans-serif;
+}
+
 
 a {
   color:          $green;
@@ -16,26 +29,29 @@ a {
   }
 }
 
-main {
-  a{
-    color:          #C9AC68 !important;
-    &:hover{
-      color:        #96C53D !important;
+#mary{
+  main {
+    a{
+      color:          #C9AC68 !important;
+      &:hover{
+        color:        #96C53D !important;
+      }
     }
   }
-}
 
-
-// Body elements
-body {
-  font-family:      $font-family-sans-serif;
+  footer {
+    color: #FFF;
+    background-color: $green;
+    background: linear-gradient(to right, #40A84F, $light-green, $light-green, #40A84F); /* Standard syntax (must be last) */
+    bottom: 0;
+  }
 }
 
 input[disabled] {
   border: 0 !important;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h6 {
   color: #C9AC68;
   font-family: $heading-font;
 }
@@ -48,8 +64,17 @@ h2 {
   font-size: $display4-size;
 }
 
+h6 {
+  color: $dark-green;
+  font-size: 1.3rem;
+}
+
 .mt-6 {
   margin-top: 7rem;
+}
+
+.mb-6 {
+  margin-bottom: 10rem;
 }
 
 .result-img {
