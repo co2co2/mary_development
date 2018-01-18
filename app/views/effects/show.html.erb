@@ -1,6 +1,17 @@
-<h1><%= @effect.name %> Recipes</h1>
-<% @effect.strains.each do |strain|%>
-  <% strain.recipes.each do |recipe|  %>
-    <%=  render '/recipes/show_recipe_partial', recipe: recipe %>
+<div class="container">
+  <h2><%= @effect.name %> Recipes</h2>
+  <% recipe_num = 0 %>
+  <div class="row">
+    <% @effect.strains.each do |strain|%>
+      <% strain.recipes.each do |recipe|  %>
+        <%=  render '/recipes/show_recipe_result', recipe: recipe %>
+        <% recipe_num += 1 %>
+      <% end %>
+    <% end %>
+  </div>
+  <% if recipe_num <= 0 %>
+  <div class="row">
+    <p>There are no recipes for curing <%= @effect.name %> yet.</p>
+  </div>
   <% end %>
-<% end %>
+</div>
