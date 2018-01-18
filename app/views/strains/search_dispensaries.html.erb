@@ -3,8 +3,8 @@
   <p>
     <%= label_tag :search, 'Address' %>
     <%= text_field_tag :search, params[:search], placeholder: "ex: Toronto Canada" %>
-    <%= label_tag :search, 'Within distance (miles)' %>
-    <%= number_field_tag :miles,  params[:miles],  placeholder: "ex: 5"%>
+    <%= label_tag :km, 'Within distance (km)' %>
+    <%= number_field_tag :km, params[:km], placeholder: "ex: 5", min: 0, max: 100%>
     <br>
     <%= submit_tag "enter" %>
   </p>
