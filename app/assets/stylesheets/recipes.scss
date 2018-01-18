@@ -1,3 +1,21 @@
 // Place all the styles related to the Recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.overlay{
+	display:block;
+	position:absolute;
+	width:100%;
+	height:100%;
+	background-color:gainsboro;
+	opacity: 0.3;
+	top:0;
+}
+.carousel-caption > a{
+	color:white;
+	text-decoration:none;
+	h3:hover{
+		transition: all .2s ease-in-out;
+		transform: scale(1.1);
+		
+	}
+}
