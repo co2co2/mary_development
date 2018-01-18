@@ -19,3 +19,14 @@
 		
 	}
 }
+
+.favourite,.unfavourite{
+	width:50px;
+	height:50px;
+}
+.unfavourite{
+	content:url("https://image.flaticon.com/icons/png/512/148/148836.png");
+}
+.favourite{
+	content:url("https://image.flaticon.com/icons/svg/149/149217.svg");
+}

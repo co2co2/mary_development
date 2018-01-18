@@ -1,5 +1,12 @@
 <p>
   <h2><%= @recipe.title %></h2>
+  <% if user_signed_in? %>
+    <%= link_to recipe_favourite_path(@recipe, type: @favourite_link), method: :put do%>
+      <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: @favourite_link) %>
+    <% end %>
+  <% else %>
+    <%= link_to "Favourite", new_user_session_path %>
+  <% end %>
 </p>
 
 <p>By
@@ -104,9 +111,7 @@
       <%= f.submit %>
     </div>
   <% end %>
-  <%= link_to @favourite_link,   recipe_favourite_path(@recipe, type: @favourite_link), method: :put %>
-  <% else %>
-  <%= link_to "Favourite", new_user_session_path %>
+
 
 <% end %>
 
