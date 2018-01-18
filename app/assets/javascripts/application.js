@@ -20,3 +20,4 @@
 //= require turbolinks
 //= require_tree .
 //= require gmaps/google
+//= require local-time
