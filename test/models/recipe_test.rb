@@ -83,7 +83,7 @@ class RecipeTest < ActiveSupport::TestCase
 
 
   test "scope recent 3" do
-
+    Recipe.destroy_all
     recipes = (0..6).map { |t| create(:recipe, instructions: [build(:instruction)],measurements: [build(:measurement)],created_at: t.days.from_now) }
     assert_equal [recipes[6], recipes[5],recipes[4]],  Recipe.recent
   end

@@ -33,16 +33,37 @@ class Recipe < ApplicationRecord
   scope :filter_ingredients, -> (ingredient_ids){ joins(:measurements).where("measurements.ingredient_id IN (?)", ingredient_ids).uniq}
   mount_uploader :image, ImageUploader
 
-  
-
-  def self.filter_specific(ingredients)
-    recipes_list = []
-    ingredients.each do |ingredient_id|
-      recipes_list << Ingredient.find(ingredient_id).recipes
+  def self.filter_specific(ingredient_set)
+    recipes_list = Array.new(ingredient_set.length)
+    # ARCHAIC CODE
+    # THIS CODE DOES NOT CONSIDER A LIST OF 'SAME NAME ' INGREDIENTS
+    # ingredients.each do |ingredient_id|
+    #   # Recipes list [x]contains array of recipes
+    #   recipes_list << Ingredient.find(ingredient_id).recipes
+    # end
+    ingredient_set.compact.each_with_index do |ingredient,i|
+      recipes_list[i] = Array.new(ingredient.length)
+      ingredient.each_with_index do |ingredient_id,j|
+        recipes_list[i][j] = Ingredient.find(ingredient_id).recipes
+      end
     end
+    # return recipes_list[0].flatten & recipes_list[1].flatten
+    return recipes_list.map {|x| x.flatten}.reduce {|common,current| common & current}
+    # Recipes_list
+    # [x][x]
+    # [y][y]
+    # [z]
+    # result = [x][y]
+    #
+    # what i want =
+    # eggs   tomato
+    # 0  1    0  1
+    # [x][y] [x][b]
+    # [z][a] [c][d]
+    # result = [x]
 
-    recipes_list.reduce &:&
-
+    # ARCHAIC CODE
+    # recipes_list.reduce &:&
   end
 
   def self.search(search)

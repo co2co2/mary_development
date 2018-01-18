@@ -7,5 +7,10 @@ class InstructionTest < ActiveSupport::TestCase
   setup do
     @instruction = build(:instruction)
   end
+  
+  test "instruction must have step" do
+    @instruction.save
+    refute_nil @instruction.step
+  end
 
 end

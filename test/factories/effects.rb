@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :effect do
     name 'happy'
     level 5.0
-    subcategory 'positive'
+    subcategory ['positive','medical'].sample
+    
   end
 end
