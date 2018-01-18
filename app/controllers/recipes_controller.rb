@@ -159,29 +159,6 @@ class RecipesController < ApplicationController
        end
     end
 
-    # params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
-    #   ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
-    #   if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-
-    #     ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-    #     if @recipe.measurements[i] #measurement exists
-    #       if ingredient
-    #         @recipe.measurements[i].ingredient = ingredient
-    #       else # no ingredient
-    #         new_ingredient = Ingredient.create(name: ing_name)
-    #         @recipe.measurements[i].ingredient = new_ingredient
-    #       end
-    #     else #no measurement
-    #       qt = params[:recipe][:measurements_attributes][k][:quantity]
-    #       if ingredient
-    #         @recipe.measurements[i].ingredient = ingredient
-    #       # else #no ingredient
-    #       #   new_ingredient = Ingredient.create(name: ing_name)
-    #       #   @recipe.measurements.build(ingredient_id: new_ingredient.id, quantity: qt).save
-    #       end
-    #     end
-    #   end
-    # end
     respond_to do |format|
       if @recipe.update(recipe_params)
         @allergies = Allergy.all

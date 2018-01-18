@@ -1,28 +1,38 @@
-<h2>Our Star Recipes!</h2>
-<div class="most_favourite">
-  <% Recipe.most_favourite.each do |recipe|  %>
-      <%=  render 'show_recipe_partial', recipe: recipe %>
-  <% end %>
+<div class="container">
+  <h2>Our Star Recipes!</h2>
+  <div class="row">
+    <% Recipe.most_favourite.each do |recipe|  %>
+      <div class="col-md-4">
+        <%=  render 'show_recipe_partial', recipe: recipe %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<br>
 <br><br>
 
-<h2>Most Recent</h2>
-<div class="recent">
-  <% Recipe.recent.each do |recipe|  %>
-    <%=  render 'show_recipe_partial', recipe: recipe %>
-  <% end %>
-</div>
-<br>
-<br><br>
-<h2>Most Viewed</h2>
-<div class="popular">
-	<% Recipe.most_viewed.each do |recipe|%>
-		<%= render 'show_recipe_partial', recipe: recipe %>
-	<% end %>
+<div class="container">
+  <h2>Most Recent</h2>
+  <div class="row">
+    <% Recipe.recent.each do |recipe|  %>
+      <div class="col-md-4">
+        <%=  render 'show_recipe_partial', recipe: recipe %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<br>
-
+  <br><br>
+<div class="container">
+  <h2>Most Viewed</h2>
+  <div class="row">
+  	<% Recipe.most_viewed.each do |recipe|%>
+      <div class="col-md-4">
+    		<%= render 'show_recipe_partial', recipe: recipe %>
+      </div>
+  	<% end %>
+  </div>
+</div>
+<p>
 <%= link_to 'New Recipe', new_recipe_path %>
+</p>
