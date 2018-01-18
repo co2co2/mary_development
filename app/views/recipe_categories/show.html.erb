@@ -1,8 +1,14 @@
 <div class="container">
-  <h1><%= @category.name %></h1>
-  <div class="row">
-  <% @category.recipes.each do |recipe|%>
-    <%=  render '/recipes/show_recipe_result', recipe: recipe %>
+  <h2><%= @category.name %></h2>
+  <% if @category.recipes.present? %>
+    <div class="row">
+    <% @category.recipes.each do |recipe|%>
+      <%=  render '/recipes/show_recipe_result', recipe: recipe %>
+    <% end %>
+    </div>
+  <% else %>
+    <div class="row">
+      <p>There are no recipes for <%= @category.name %> yet.</p>
+    </div>
   <% end %>
-  </div>
 </div>

@@ -1,25 +1,80 @@
+// Reset all useful base variables
+$green:       #40A84F !important;
+$bread:       #C9AC68 !important;
+$dark-green:  #175700;
+$light-green: #96C53D;
+
 $primary:     $green !important;
 
-$display1-size:                1.75rem !important;
-$font-family-sans-serif:       "Raleway", Roboto, "Helvetivca Neue", Arial, sans-serif !important;
-$heading-font: 'Abril Fatface', cursive;
+$display1-size:                2rem !important;
+$font-family-sans-serif:       'Roboto Slab', "Times New Roman", Georgia, serif !important;
+$heading-font:                 'Abril Fatface', cursive;
 
+html {
+min-height: 100%;
+position: relative;
+}
+
+// Body elements
 body {
   font-family:      $font-family-sans-serif;
+}
+
+
+a {
+  color:          $green;
+
+  &:hover {
+    color:        $bread;
+  }
+}
+
+#mary{
+  main {
+    a{
+      color:          #C9AC68 !important;
+      &:hover{
+        color:        #96C53D !important;
+      }
+    }
+  }
+
+  footer {
+    color: #FFF;
+    background-color: $green;
+    background: linear-gradient(to right, #40A84F, $light-green, $light-green, #40A84F); /* Standard syntax (must be last) */
+    bottom: 0;
+  }
 }
 
 input[disabled] {
   border: 0 !important;
 }
 
-h1 {
+h1, h2, h3, h4, h6 {
+  color: #C9AC68;
   font-family: $heading-font;
+}
+
+h1 {
   font-size: $display1-size;
-  display: inline;
+}
+
+h2 {
+  font-size: $display4-size;
+}
+
+h6 {
+  color: $dark-green;
+  font-size: 1.3rem;
 }
 
 .mt-6 {
-  margin-top: 4.5rem;
+  margin-top: 7rem;
+}
+
+.mb-6 {
+  margin-bottom: 10rem;
 }
 
 .result-img {
@@ -43,18 +98,33 @@ h1 {
   overflow: hidden;
 }
 
+
 // navigations
 .navbar {
   width: 100%;
-  background: $white;
+  background: $gray-100;
 
   @media(max-width: 34em) {
-    background: $gray-500 !important;
+    background: #40A84F !important;
+
+    //search bar button
+    .btn-outline-success{
+      color: #FFF !important;
+      border-color: #FFF;
+      &:hover{
+        background-color: #96C53D !important;
+      }
+    }
   }
 
-  .navbar-brand {
-
+  .navbar-brand{
+    img:first-child {
+      @include media-breakpoint-down(sm) {
+        display: none !important;
+      }
+    }
   }
+
 
   .navbar-toggler {
     cursor: pointer;
@@ -64,7 +134,6 @@ h1 {
   .nav-link {
     text-transform: uppercase;
     font-weight: bold;
-    color: $green !important;
   }
 
   .nav-item {
@@ -73,6 +142,10 @@ h1 {
     .nav-link {
       @media(max-width: 34em) {
         font-weight: normal;
+        color: #FFF !important;
+        &:hover{
+          color: #96C53D !important;
+        }
       }
 
     }
@@ -80,7 +153,14 @@ h1 {
 }
 
 nav{
-  background: $white;
+  background: $gray-100;
+
+  .dropdown-item {
+    &:hover {
+      background-color: #FFF !important;
+      color: $bread !important;
+    }
+  }
 }
 
 // Autocomplete UI
@@ -89,11 +169,11 @@ ul.ui-autocomplete {
   list-style: none;
   margin: 0;
   padding: 0;
-  border: solid 1px #999;
+  border: solid 1px $green;
   cursor: default;
   li {
     background-color: #FFF;
-    border-top: solid 1px #DDD;
+    border-top: solid 1px $bread;
     margin: 0;
     padding: 0;
     div {
@@ -102,7 +182,9 @@ ul.ui-autocomplete {
       padding: 3px;
     }
     div.ui-state-hover, div.ui-state-active {
-      background-color: lavender;
+      background-color: #96C53D;
+      border-top: solid 1px #96C53D;
+      border-bottom: solid 1px #96C53D;
     }
   }
 }

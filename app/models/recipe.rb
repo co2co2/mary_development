@@ -33,6 +33,7 @@ class Recipe < ApplicationRecord
   scope :filter_ingredients, -> (ingredient_ids){ joins(:measurements).where("measurements.ingredient_id IN (?)", ingredient_ids).uniq}
   mount_uploader :image, ImageUploader
 
+
   def self.filter_specific(ingredient_set)
     recipes_list = Array.new(ingredient_set.length)
     # ARCHAIC CODE
@@ -71,7 +72,7 @@ class Recipe < ApplicationRecord
   end
 
   def self.most_favourite
-    Recipe.all.sort_by{|r| r.favourites.count}.reverse[0..2]
+    Recipe.all.sort_by{|r| r.favourites.count}.reverse[0..5]
   end
 
   def strain_name
