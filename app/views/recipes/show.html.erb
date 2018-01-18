@@ -44,12 +44,14 @@
 <!-- Ingredients + Instructions-->
 <div class="row build">
   <div class="col-xs-6 col-sm-6">
+    <div class="recipe-ingredients">
     <h4>Ingredients:</h4>
     <ul>
       <% @recipe.measurements.each do |measurement| %>
         <li><%= measurement.quantity %> <%= measurement.ingredient.name %></li>
       <% end %>
     </ul>
+    </div>
   </div>
   <div class="col-sm-6 instructions">
     <h4>Directions:</h4>
@@ -68,7 +70,7 @@
     <%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %>
   </div>
   <div class="col-sm-12">
-    <%= link_to 'Find a Dispensary near you!', search_dispensaries_path ,class: "btn btn-success"%>
+    <%= link_to 'Find a Dispensary near you!', search_dispensaries_path ,class: "btn btn-success find-dispensaries"%>
   </div>
 </div>
 <!-- Video -->

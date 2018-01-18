@@ -37,18 +37,25 @@
     	margin-bottom:5px;
     }
 }
+.recipe-ingredients{
+	padding-top:10px;
+	border: 1px solid gainsboro;
+    border-radius: 5%;
+}
 .build{
 	margin-top:1%;
 	margin-bottom:1%;
 }
+.find-dispensaries{
+	colour:white;
+} 
 h3{
 	padding-left:0px !important;
 }
 h5{
 	text-decoration:underline;
 }
-h4{
-}
+
 div > img, .img-fluid{
 	width:100%;
 }
