@@ -1,6 +1,89 @@
-<p>
-  <h2><%= @recipe.title %></h2>
-</p>
+<div class="row align-items-center">
+  <h3 class="col-sm-6"><%= @recipe.title %></h3>
+  <% if user_signed_in? %>
+    <%= link_to recipe_favourite_path(@recipe, type: @favourite_link), method: :put do%>
+      <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: @favourite_link) %>
+    <% end %>
+  <% else %>
+    <%= link_to new_user_session_path do%>
+      <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite") %>
+    <% end %>
+  <% end %>
+</div>
+<!-- Recipe Image -->
+<div class="row">
+  <% if @recipe.image.url == "" || @recipe.image.url == nil %>
+    <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w' %>
+  <% else %>
+    <div class="col-x2-12 img-fluid">
+      <%=image_tag @recipe.image, alt: @recipe.title %>
+    </div>
+  <% end %>
+</div>
+
+<div>
+<!-- Recipe Description -->
+<div class="row">
+  <p><%= @recipe.description %></p>
+</div>
+<!-- Cook Time -->
+<div class="row border text-center">
+  <div class="col-xs-4 col-sm-4 align-middle">
+    <h5>Cook Time</h5>
+    <p><%= @recipe.minutes_to_hours(@recipe.prep_time)%></p>
+  </div>
+  <div class="col-xs-4 col-sm-4 ">
+    <h5>Cook Time</h5>
+    <p><%= @recipe.minutes_to_hours(@recipe.prep_time)%></p>
+  </div>
+  <div class="col-xs-4 col-sm-4 ">
+    <h5>Views</h5>
+    <p><%= @recipe.views%></p>
+  </div>
+</div>
+<!-- Ingredients + Instructions-->
+<div class="row build">
+  <div class="col-xs-6 col-sm-6">
+    <div class="recipe-ingredients">
+    <h4>Ingredients:</h4>
+    <ul>
+      <% @recipe.measurements.each do |measurement| %>
+        <li><%= measurement.quantity %> <%= measurement.ingredient.name %></li>
+      <% end %>
+    </ul>
+    </div>
+  </div>
+  <div class="col-sm-6 instructions">
+    <h4>Directions:</h4>
+    <ol>
+      <% @recipe.instructions.each do |instruction| %>
+        <li><%= instruction.step %></li>
+      <% end %>
+    </ol>
+  </div> 
+</div>
+
+<!-- Recommended Strain -->
+<div class="row text-center">
+  <div class="col-sm-12">
+    <h4>Recommended Strain:</h4> 
+    <%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %>
+  </div>
+  <div class="col-sm-12">
+    <%= link_to 'Find a Dispensary near you!', search_dispensaries_path ,class: "btn btn-success find-dispensaries"%>
+  </div>
+</div>
+<!-- Video -->
+<div class="row">
+  <div class="col-sm-12">
+  <% if @recipe.video? %>
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="embed-responsive-item" src="<%= @recipe.video %>" allowfullscreen></iframe>
+    </div>
+  <% end %>
+  </div>
+</div>
+
 
 <p>By
   <% if @recipe.user %>
@@ -26,60 +109,15 @@
   <%= link_to 'Find Dispensary', search_dispensaries_path %>
 </p>
 
-<p>
-  <strong>Image:</strong>
-  <% if @recipe.image.url == "" || @recipe.image.url == nil %>
 
-    <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w' %>
-  <% else %>
-    <%=image_tag @recipe.image, alt: @recipe.title %>
 
-  <% end %>
-</p>
 
-<p>
-  <strong>Video:</strong>
-  <% if @recipe.video? %>
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="<%= @recipe.video %>" allowfullscreen></iframe>
-    </div>
-  <% end %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @recipe.description %>
-</p>
 
-<p>
-  <strong>Cook time:</strong>
-  <%= @recipe.minutes_to_hours(@recipe.prep_time) %>
-</p>
-
-<p>
-  <strong>Views:</strong>
-  <%= @recipe.views %>
-</p>
-
-<p>
-  <strong>Ingredients</strong>
-  <ul>
-    <% @recipe.measurements.each do |measurement| %>
-    <li><%= measurement.ingredient.name %> <%= measurement.quantity %></li>
-    <% end %>
-  </ul>
-</p>
-
-<p>
-  <h3>Steps</h3>
-    <ol>
-    <% @recipe.instructions.each do |instruction| %>
-        <li><%= instruction.step %></li>
-    <% end %>
-  </ol>
-</p>
+</div>
 
 <%= social_share_button_tag(@recipe.title) %>
+
 
 
 <% if  user_signed_in? && current_user == @recipe.user%>
@@ -109,9 +147,7 @@
       <%= f.submit %>
     </div>
   <% end %>
-  <%= link_to @favourite_link,   recipe_favourite_path(@recipe, type: @favourite_link), method: :put %>
-  <% else %>
-  <%= link_to "Favourite", new_user_session_path %>
+
 
 <% end %>
 
