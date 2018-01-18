@@ -18,10 +18,10 @@
 		transform: scale(1.1);
 	}
 }
-
+//Recipes show page
 .favourite,.unfavourite{
-	width:50px;
-	height:50px;
+	width:25px;
+	height:25px;
 }
 .unfavourite{
 	content:url("https://image.flaticon.com/icons/png/512/148/148836.png");
@@ -29,4 +29,26 @@
 .favourite{
 	content:url("https://image.flaticon.com/icons/svg/149/149217.svg");
 }
-
+.ul{
+	padding-top:10px;
+	border: 1px solid gainsboro;
+    border-radius: 5%;
+    li{
+    	margin-bottom:5px;
+    }
+}
+.build{
+	margin-top:1%;
+	margin-bottom:1%;
+}
+h3{
+	padding-left:0px !important;
+}
+h5{
+	text-decoration:underline;
+}
+h4{
+}
+div > img, .img-fluid{
+	width:100%;
+}
