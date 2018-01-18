@@ -243,6 +243,7 @@ DEPENDENCIES
   mini_magick
   nested_form_fields
   pg (~> 0.18.4)
+
   puma (~> 3.7)
   rails (~> 5.1.4)
   sass-rails (~> 5.0)

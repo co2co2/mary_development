@@ -77,7 +77,8 @@ $(document).on('turbolinks:load', function() {
     $('#ingredient_').after(newIngredient)
   })
 
-  $('#search-form').on('click','.removeIngredient',function(){
+  $(document).on('click','.removeIngredient',function(){
+    console.log('hi')
     this.parentElement.remove();
   })
 
