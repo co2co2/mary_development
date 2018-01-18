@@ -133,7 +133,39 @@ $(document).on('turbolinks:load', function() {
     } else {
       body.classList.remove('noscroll');
     }
+    var geocoder;
 
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+}
+
+    function codeLatLng(lat, lng) {
+        var latlng = new google.maps.LatLng(lat, lng);
+        geocoder.geocode({
+          'latLng': latlng
+        }, function (results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+              console.log(results[1]);
+            } else {
+              alert('No results found');
+            }
+          } else {
+            alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+
+
+    window.onload = function(){
+     navigator.geolocation.getCurrentPosition(function(position){
+
+    var currentLocation = `lat=${position.coords.latitude}&long=${position.coords.longitude}`;
+    localStorage.setItem("currentLocation",currentLocation)
+    });
+
+
+  }
 })
 
 // Form - add a concentrate button toggle

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/search_dispensaries', to: 'strains#search_dispensaries'
   get '/dispensaries', to: 'strains#dispensaries'
 
+  get '/cod_to_address', to: 'strains#cod_to_address'
   resources :recipe_categories, only: [:show]
   resources :allergies, only: [:show]
   resources :effects, only: [:show]
