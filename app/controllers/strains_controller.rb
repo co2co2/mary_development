@@ -19,23 +19,41 @@ class StrainsController < ApplicationController
 
   def search_dispensaries
     @location = params[:search]
-    @distance = params[:miles]
+    @distance = params[:km]
   end
 
   def dispensaries
     @location = params[:search]
-    @distance = params[:miles]
-    @dispensaries = Dispensary.geocoded.near(@location, @distance, :order => 'distance')
+    @distance = params[:km]
+    @dispensaries = []
 
     if @location.empty? || @distance.empty?
       flash[:alert] = 'Please try again!'
       redirect_to search_dispensaries_url
-    elsif @distance.to_i < 0
-      flash[:alert] = "Distance can't be negative!"
-      redirect_to search_dispensaries_url
+    else
+    search_string = @location.split(' ').join('+')
+
+    res = HTTParty.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=weed+dispensaries&location=#{Geocoder.coordinates(@location).join(',')}&key=AIzaSyBt-nsAkbJPsjhTlA2IyNzXSKaHFeCvbQU")
+
+    body = JSON.parse(res.body)
+
+    body['results'].each do |result|
+      hasher = {name: result['name'], address: result['formatted_address'], location: result['geometry']['location']}
+      hasher[:distance] = Geocoder::Calculations.distance_between(hasher[:location].values, Geocoder.coordinates(@location)).round(2)
+
+      if @distance.to_i > hasher[:distance]
+        @dispensaries << hasher
+      end
+
     end
 
+    @dispensaries.sort_by! do |dispensary|
+      dispensary[:distance]
+    end
+
+    end
   end
+
 
 
 

@@ -21,7 +21,8 @@ class RecipesController < ApplicationController
       @ingredients = []
       params[:ingredient].each_with_index do |ingredient,i|
         if !ingredient.empty?
-          ingredient_id = Ingredient.where("lower(name) LIKE ?","%#{ingredient.downcase}%")
+
+          ingredient_id = Ingredient.where("lower(name) LIKE ?","%#{ingredient.singularize.downcase}%")
           if !ingredient_id.empty?
             @ingredients = []
             ingredient_id.each_with_index do |ingredient,j|

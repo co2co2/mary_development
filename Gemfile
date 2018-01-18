@@ -37,7 +37,6 @@ gem 'cocoon'
 gem 'httparty'
 
 gem 'geocoder'
-gem 'gmaps4rails'
 
 gem 'awesome_print', require:"ap"
 gem 'carrierwave','~> 1.0'

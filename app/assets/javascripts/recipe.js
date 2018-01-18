@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+  $('.carousel').carousel()
 $(document).on('turbolinks:load', function() {
   //toggle menus
   $(document).ready(function() {
@@ -68,17 +69,24 @@ $(document).on('turbolinks:load', function() {
 
   // Filter
 
-  $('.addIngredient').click(function(){
+  $('.addIngredient').click(function(e){
+    e.preventDefault()
     var newIngredient = `
     <div class="ingredient">
-    <button type="button" class="removeIngredient">-</button>
+    <a href="/"class="removeIngredient"><img src="https://image.flaticon.com/icons/png/512/54/54351.png
+"></a>
     <input type="text" name="ingredient[]" id="ingredient_">
     </div>`
-    $('#ingredient_').after(newIngredient)
+    $(this).closest(".ingredient").before(newIngredient)
+    // $(this).removeClass('addIngredient');
   })
-
-  $(document).on('click','.removeIngredient',function(){
-    console.log('hi')
+  $(document).on('keyup', '#ingredient_',function(){
+    if ($(this).value != "") {
+      this.parentElement.children[0].children[0].src="https://image.flaticon.com/icons/png/512/54/54351.png";
+    }
+  })
+  $(document).on('click','.removeIngredient',function(e){
+      e.preventDefault()
     this.parentElement.remove();
   })
 

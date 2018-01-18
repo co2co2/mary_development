@@ -1,11 +1,20 @@
-<h1>Search by ingredients</h1>
-<h2>What's in your pantry?</h2>
+<div class="pagination-centered">
+	<h1>Search by ingredients</h1>
+	<h2>What's in your pantry?</h2>
 
-<%= form_tag(search_path, :method => "get", id: "search-form") do %>
-Filter Only these Ingredients 
-	<%= check_box_tag  "specify", '1',false%>
-	<br>
-	<button class="addIngredient" type="button">+</button>
-	<%= text_field_tag "ingredient[]" %>
-	<%= submit_tag "Search" %>
-<% end %>
+	<%= form_tag(search_path, :method => "get", id: "search-form") do %>
+	Filter Only these Ingredients 
+		<%= check_box_tag  "specify", '1',false%>
+		<br>
+		<div class="ingredient">
+		    <a href="/" class="removeIngredient"><img src="https://image.flaticon.com/icons/png/512/54/54351.png
+		"></a>
+		    <input type="text" name="ingredient[]" id="ingredient_" autofocus>
+	    </div>
+		<div class="ingredient">
+			<a href="/" class="addIngredient"><%= image_tag("https://image.flaticon.com/icons/png/128/54/54443.png") %></a>
+		
+		</div>
+		<%= submit_tag "Search" %>
+	<% end %>
+</div>
