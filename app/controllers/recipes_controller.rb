@@ -15,17 +15,27 @@ class RecipesController < ApplicationController
     if params[:search]
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
     elsif params[:ingredient]
+      # if ingredient params length 2, length will be two
+      @ingredient_set = Array.new(params[:ingredient].length)
+      # length is equal to all the queries found by ingredient_id
       @ingredients = []
-      params[:ingredient].each do |ingredient|
+      params[:ingredient].each_with_index do |ingredient,i|
         if !ingredient.empty?
-          ingredient_id = Ingredient.find_by(name: ingredient)
-          if ingredient_id != nil
-            @ingredients << ingredient_id.id
-          end
-        end
-      end
+          ingredient_id = Ingredient.where("lower(name) LIKE ?","%#{ingredient.downcase}%")
+          if !ingredient_id.empty?
+            @ingredients = []
+            ingredient_id.each_with_index do |ingredient,j|
+              @ingredients << ingredient.id
+            end #loop for ingredient LIKE query
+          end #checked for nil object
+            @ingredient_set[i] = @ingredients
+        end#checked empty params
+      end #looped ingredient params
+      # test
+      # ingredient_set[0-1]
+      # ingredient[0-5]
       if params[:specify]
-        @recipes = Recipe.filter_specific(@ingredients)
+        @recipes = Recipe.filter_specific(@ingredient_set)
       else
         @recipes = Recipe.filter_ingredients(@ingredients)
       end
@@ -107,18 +117,18 @@ class RecipesController < ApplicationController
        end
      end
 
-  if params[:recipe][:measurements_attributes]
-    # try to save ingredient unique, check if name exists in db
-   params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
-      ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
-      if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-
-        ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-          @recipe.measurements[i].ingredient = ingredient
-
-      end
-    end
-  end
+  # if params[:recipe][:measurements_attributes]
+  #   # try to save ingredient unique, check if name exists in db
+  #  params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
+  #     ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
+  #     if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
+  #
+  #       ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
+  #         @recipe.measurements[i].ingredient = ingredient
+  #
+  #     end
+  #   end
+  # end
 
    params[:recipe][:allergy].each do |key,value|
      if value["name"] == "1"
@@ -151,9 +161,11 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.update(recipe_params)
+        @allergies = Allergy.all
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
+        @allergies = Allergy.all
         format.html { render :edit }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
@@ -178,11 +190,11 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-
       params.require(:recipe).permit(:recipe_category_id, :strain_id, :title, :image, :remove_image,:remote_image_url,:video, :description, :prep_time, :views, :user_id, instructions_attributes:[:id, :recipe_id ,:step, :_destroy],
         allergies_attributes:[:id, :name],
         measurements_attributes:[:id, :ingredient_id, :recipe_id, :quantity, :_destroy,
         ingredient_attributes:[:id, :name, :concentrate_recipe_id, :_destroy]])
-
     end
+
+
 end
