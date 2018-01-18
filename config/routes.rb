@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   	resources :reviews, except: [:index, :new, :show]
   	put :favourite
   end
+  get '/404', to: 'application#not_found'
   get '/filter', to: 'recipes#filter'
   get '/search', to: 'recipes#search_results'
   get '/search_dispensaries', to: 'strains#search_dispensaries'
