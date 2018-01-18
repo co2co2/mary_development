@@ -1,5 +1,14 @@
-  <div>
-    <h4><%= link_to recipe.title, recipe %></h4>
+<div>
+  <h4><%= link_to recipe.title, recipe %></h4>
+  <%= link_to recipe_path(recipe.id) do %>
+    <% if recipe.image.url == "" || recipe.image.url == nil %>
+      <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w', class: "img-fluid img-thumbnail" %>
+    <% else %>
+      <%=image_tag recipe.image, alt: recipe.title, class: "img-fluid img-thumbnail" %>
+    <% end %>
+  <% end %>
+
+  <p><%= recipe.description %></p>
     <p>
       <% if recipe.user %>
         <% if recipe.user.avatar? %>
@@ -10,12 +19,4 @@
        This Creator got Baked!!!
       <% end %>
     </p>
-  </div>
-    <%= link_to recipe_path(recipe.id) do %>
-      <% if recipe.image.url == "" || recipe.image.url == nil %>
-        <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w', class: "img-fluid img-thumbnail" %>
-      <% else %>
-        <%=image_tag recipe.image, alt: recipe.title, class: "img-fluid img-thumbnail" %>
-      <% end %>
-    <% end %>
-    <p><%= recipe.description %></p>
+</div>

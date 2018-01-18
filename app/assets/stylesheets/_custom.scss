@@ -118,6 +118,9 @@ h2 {
       @media(max-width: 34em) {
         font-weight: normal;
         color: #FFF !important;
+        &:hover{
+          color: #96C53D !important;
+        }
       }
 
     }
@@ -126,6 +129,13 @@ h2 {
 
 nav{
   background: $gray-100;
+
+  .dropdown-item {
+    &:hover {
+      background-color: #FFF !important;
+      color: $bread !important;
+    }
+  }
 }
 
 // Autocomplete UI
