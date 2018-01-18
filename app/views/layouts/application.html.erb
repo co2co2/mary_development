@@ -135,18 +135,47 @@
       <%= yield %>
     </main>
 
-    <footer class="py-5 text-center position-absolute w-100">
-      <div class="row">
-        <div class="col">
-          Logo
+    <footer class="pt-5 pb-3 position-absolute w-100">
+      <div class="container">
+      <div class="row pb-4">
+        <div class="col text-center">
+          <a href="/">
+            <%= image_tag "apple_touch_icon.png", alt: "Mary Bakes", height:"114px" %>
+          </a>
         </div>
         <div class="col">
-          Site Map
+          <ul class="nav flex-column">
+            <strong>Site Map</strong>
+            <li><a href="" class="links">About Us</a></li>
+            <li><a href="" class="links">Contact</a></li>
+            <li><a href="" class="links">Terms & Conditions</a></li>
+            <li><a href="" class="links">Beginner to Edibles</a></li>
+            <li><a href="" class="links">Search</a></li>
+          </ul>
         </div>
         <div class="col">
-          links
+          <ul class="nav flex-column">
+            <strong>Categories</strong>
+            <li><a href="" class="links">Recipes</a></li>
+            <li><a href="" class="links">Mood Effects</a></li>
+            <li><a href="" class="links">Medical Effects</a></li>
+            <li><%= link_to "Ingredients Search", filter_path, class: "links" %></li>
+            <li><%= link_to 'Add a Recipe', new_recipe_path, class: "links" %></li>
+          </ul>
+        </div>
+        <div class="col">
+          <ul class="nav flex-column">
+            <strong>Others</strong>
+            <li><%= link_to 'Find Dispensary', search_dispensaries_path, class: "links" %></li>
+            <li><%= link_to 'Sign In', new_user_session_path, class: "links" %></li>
+            <li><%= link_to 'Sign Up', new_user_registration_path, class: "links" %></li>
+          </ul>
         </div>
       </div>
+      <div class="row text-center">
+        <div class="col-sm-12">All images and content © Baking with Mary 2018</div>
+      </div>
+    </div>
     </footer>
 
   </div>
