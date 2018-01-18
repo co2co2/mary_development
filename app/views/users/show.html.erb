@@ -34,7 +34,7 @@
       <div class="row">
     		<% @fav_recipes.each do |recipe| %>
           <div class="col-md-4">
-    				<%= link_to(recipe.title, recipe_path(recipe.id))  %>
+    				<%=  render '/recipes/show_recipe_partial', recipe: recipe %>
           </div>
     		<% end %>
       </div>

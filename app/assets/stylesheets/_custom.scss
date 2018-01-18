@@ -1,8 +1,16 @@
 $primary:     $green !important;
 
 $display1-size:                1.75rem !important;
-$font-family-sans-serif: "Raleway", Roboto, "Helvetivca Neue", Arial, sans-serif !important;
+$font-family-sans-serif:       "Raleway", Roboto, "Helvetivca Neue", Arial, sans-serif !important;
 $heading-font: 'Abril Fatface', cursive;
+
+body {
+  font-family:      $font-family-sans-serif;
+}
+
+input[disabled] {
+  border: 0 !important;
+}
 
 h1 {
   font-family: $heading-font;
@@ -12,6 +20,11 @@ h1 {
 
 .mt-6 {
   margin-top: 4.5rem;
+}
+
+.result-img {
+  min-width: 250px;
+
 }
 
 // Age verification div
