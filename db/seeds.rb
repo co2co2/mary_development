@@ -223,7 +223,7 @@ measurements_attributes: [
   ]
 )
 
-recipe2 = user4.recipes.create!( recipe_category_id:desserts.id, strain_id:7, title:'Smoky-Sweet Pineapple Fruitcake', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5541bb17e4b006d7e513e4de/5a3c68d99140b7cd5735a0ab/1513909447498/SousWeed_BloomFarms_HolidayPairing-3842.jpg?format=2500w', description:'Woodsy, Earthy, Fruity!CBD-heavy to bring down the high, chill-out.', prep_time: 60,
+recipe2 = user4.recipes.create!( recipe_category_id:desserts.id, strain_id:7, title:'Smoky-Sweet Pineapple Fruitcake', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5541bb17e4b006d7e513e4de/5a3c68d99140b7cd5735a0ab/1513909447498/SousWeed_BloomFarms_HolidayPairing-3842.jpg?format=2500w', video: 'https://player.vimeo.com/video/144572856', description:'Woodsy, Earthy, Fruity!CBD-heavy to bring down the high, chill-out.', prep_time: 60,
 instructions_attributes: [
   {step: 'Preheat oven to 350ºF and grease an 8-in non-stick bundt pan.'},
   {step: 'Melt 3 Tbsp butter in a skillet over medium-high and add brown sugar. Cook until you see bubbles then add pineapple and cook for 2-3 minutes, until softened. Remove from heat and pour into the prepared cake pan.'},

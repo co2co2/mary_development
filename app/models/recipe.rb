@@ -41,7 +41,6 @@ class Recipe < ApplicationRecord
     #   # Recipes list [x]contains array of recipes
     #   recipes_list << Ingredient.find(ingredient_id).recipes
     # end
-
     ingredient_set.compact.each_with_index do |ingredient,i|
       recipes_list[i] = Array.new(ingredient.length)
       ingredient.each_with_index do |ingredient_id,j|
@@ -55,8 +54,8 @@ class Recipe < ApplicationRecord
     # [y][y]
     # [z]
     # result = [x][y]
-    # 
-    # what i want = 
+    #
+    # what i want =
     # eggs   tomato
     # 0  1    0  1
     # [x][y] [x][b]
