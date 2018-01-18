@@ -71,7 +71,7 @@ class Recipe < ApplicationRecord
   end
 
   def self.most_favourite
-    Recipe.all.sort_by{|r| r.favourites.count}.reverse[0..2]
+    Recipe.all.sort_by{|r| r.favourites.count}.reverse[0..5]
   end
 
   def strain_name
