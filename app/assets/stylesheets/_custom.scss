@@ -1,6 +1,31 @@
 $primary:     $green !important;
 
-$font-family-sans-serif: "Raleway", Roboto, "Helvetivca Neue", Arial, sans-serif;
+$display1-size:                1.75rem !important;
+$font-family-sans-serif:       "Raleway", Roboto, "Helvetivca Neue", Arial, sans-serif !important;
+$heading-font: 'Abril Fatface', cursive;
+
+body {
+  font-family:      $font-family-sans-serif;
+}
+
+input[disabled] {
+  border: 0 !important;
+}
+
+h1 {
+  font-family: $heading-font;
+  font-size: $display1-size;
+  display: inline;
+}
+
+.mt-6 {
+  margin-top: 4.5rem;
+}
+
+.result-img {
+  min-width: 250px;
+
+}
 
 // Age verification div
 .ui-dialog-titlebar {
@@ -13,6 +38,7 @@ $font-family-sans-serif: "Raleway", Roboto, "Helvetivca Neue", Arial, sans-serif
  opacity: 1 !important;
 }
 
+// append class to body when overlay is on
 .noscroll {
   overflow: hidden;
 }
@@ -26,6 +52,9 @@ $font-family-sans-serif: "Raleway", Roboto, "Helvetivca Neue", Arial, sans-serif
     background: $gray-500 !important;
   }
 
+  .navbar-brand {
+
+  }
 
   .navbar-toggler {
     cursor: pointer;
@@ -50,10 +79,9 @@ $font-family-sans-serif: "Raleway", Roboto, "Helvetivca Neue", Arial, sans-serif
   }
 }
 
-nav.collapse {
+nav{
   background: $white;
 }
-
 
 // Autocomplete UI
 ul.ui-autocomplete {

@@ -34,9 +34,6 @@ class Recipe < ApplicationRecord
   mount_uploader :image, ImageUploader
 
 
-
-
-
   def self.filter_specific(ingredient_set)
     recipes_list = Array.new(ingredient_set.length)
     # ARCHAIC CODE

@@ -1,4 +1,8 @@
-<h1><%= @category.name %></h1>
-<% @category.recipes.each do |recipe|%>
-  <%=  render '/recipes/show_recipe_partial', recipe: recipe %>
-<% end %>
+<div class="container">
+  <h1><%= @category.name %></h1>
+  <div class="row">
+  <% @category.recipes.each do |recipe|%>
+    <%=  render '/recipes/show_recipe_result', recipe: recipe %>
+  <% end %>
+  </div>
+</div>
