@@ -20,3 +20,4 @@
 //= require turbolinks
 //= require_tree .
 //= require local-time
+//= require social-share-button

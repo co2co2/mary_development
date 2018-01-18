@@ -12,15 +12,11 @@
     <div id="map"></div>
 
     <%= tag("div", :id => 'dispensary_addresses', :data => {:dispensary => @dispensaries}) %>
-
     <script>
       var dispensary_addresses = document.querySelector('#dispensary_addresses');
       var dispensary_data = JSON.parse(dispensary_addresses.dataset.dispensary)
-
-
       var params = new URLSearchParams(window.location.search)
-      var address = params.get('search')
-
+      var address = params.get('current_address')
 
       function initMap() {
         var uluru = {lat: 43.647219, lng: -79.387905};
@@ -53,8 +49,6 @@
           }
         })
 
-
-
         for(var i = 0; i < dispensary_data.length; i++) {
           var latitude = dispensary_data[i].latitude;
           var longitude = dispensary_data[i].longitude;
@@ -76,19 +70,22 @@
           		})(markers, i));
         };
       };
+      
     </script>
+
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt-nsAkbJPsjhTlA2IyNzXSKaHFeCvbQU&callback=initMap">
     </script>
-    <ol>
 
-    <% @dispensaries.each do |dispensary| %>
-    <li>
-      <h3><%= dispensary[:name] %></h3>
-      <p><%= dispensary[:address] %></p>
-      <p><%= dispensary[:distance] %> km.</p>
-    </li>
-    <% end %>
-    </ul>
+    <ol>
+      <% @dispensaries.each do |dispensary| %>
+      <li>
+        <h3><%= dispensary[:name] %></h3>
+        <p><%= dispensary[:address] %></p>
+        <p><%= dispensary[:distance] %> km.</p>
+      </li>
+      <% end %>
+    </ol>
+
   </body>
 </html>
