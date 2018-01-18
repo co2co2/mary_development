@@ -33,7 +33,7 @@ class Recipe < ApplicationRecord
   scope :filter_ingredients, -> (ingredient_ids){ joins(:measurements).where("measurements.ingredient_id IN (?)", ingredient_ids).uniq}
   mount_uploader :image, ImageUploader
 
-  
+
 
   def self.filter_specific(ingredients)
     recipes_list = []
