@@ -33,6 +33,10 @@ class Recipe < ApplicationRecord
   scope :filter_ingredients, -> (ingredient_ids){ joins(:measurements).where("measurements.ingredient_id IN (?)", ingredient_ids).uniq}
   mount_uploader :image, ImageUploader
 
+<<<<<<< HEAD
+
+
+
   def self.filter_specific(ingredient_set)
     recipes_list = Array.new(ingredient_set.length)
     # ARCHAIC CODE
@@ -41,7 +45,6 @@ class Recipe < ApplicationRecord
     #   # Recipes list [x]contains array of recipes
     #   recipes_list << Ingredient.find(ingredient_id).recipes
     # end
-
     ingredient_set.compact.each_with_index do |ingredient,i|
       recipes_list[i] = Array.new(ingredient.length)
       ingredient.each_with_index do |ingredient_id,j|
@@ -55,8 +58,8 @@ class Recipe < ApplicationRecord
     # [y][y]
     # [z]
     # result = [x][y]
-    # 
-    # what i want = 
+    #
+    # what i want =
     # eggs   tomato
     # 0  1    0  1
     # [x][y] [x][b]
