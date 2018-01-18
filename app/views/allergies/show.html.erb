@@ -1,4 +1,14 @@
-<h1><%= @allergy.name %> Recipes</h1>
-<% @allergy.recipes.each do |recipe|%>
-  <%=  render '/recipes/show_recipe_partial', recipe: recipe %>
-<% end %>
+<div class="container">
+  <h1><%= @allergy.name %> Recipes</h1>
+  <% if @allergy.recipes.present? %>
+    <div class="row">
+      <% @allergy.recipes.each do |recipe|%>
+        <%=  render '/recipes/show_recipe_result', recipe: recipe %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="row">
+      <p>There are no recipes for <%= @allergy.recipes %> yet.</p>
+    </div>
+  <% end %>
+</div>

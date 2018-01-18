@@ -1,7 +1,7 @@
 $primary:     $green !important;
 
 $display1-size:                1.75rem !important;
-$font-family-sans-serif:       "Raleway", Roboto, "Helvetivca Neue", Arial, sans-serif !important;
+$font-family-sans-serif:       'Roboto Slab', serif !important;
 $heading-font: 'Abril Fatface', cursive;
 
 body {
@@ -19,7 +19,7 @@ h1 {
 }
 
 .mt-6 {
-  margin-top: 4.5rem;
+  margin-top: 7rem;
 }
 
 .result-img {
@@ -46,15 +46,20 @@ h1 {
 // navigations
 .navbar {
   width: 100%;
-  background: $white;
+  background: $gray-100;
 
   @media(max-width: 34em) {
-    background: $gray-500 !important;
+    background: $gray-200 !important;
   }
 
-  .navbar-brand {
-
+  .navbar-brand{
+    img:first-child {
+      @include media-breakpoint-down(sm) {
+        display: none !important;
+      }
+    }
   }
+
 
   .navbar-toggler {
     cursor: pointer;
@@ -80,7 +85,7 @@ h1 {
 }
 
 nav{
-  background: $white;
+  background: $gray-100;
 }
 
 // Autocomplete UI
