@@ -12,5 +12,5 @@ class ApplicationController < ActionController::Base
   def not_found
     render html: "<strong>Sorry, we don't have that strain.</strong>".html_safe, status: 404
   end
-
+   config.time_zone = Time.now.in_time_zone("Eastern Time (US & Canada)")
 end

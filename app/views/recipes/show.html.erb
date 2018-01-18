@@ -18,6 +18,8 @@
 </p>
 
 <p>
+  <p><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %>
+</p>
   <strong>Recommended strain:</strong>
   <%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %>
   <br>
@@ -118,7 +120,7 @@
      This Reviewer got Baked!!!!
     <% end %>
     <p><%= review.comment %></p>
-    <p><%= review.updated_at %></p>
+    <p><%= local_time(review.updated_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %></p>
     <%= link_to "Delete", recipe_review_path(@recipe, review), method: :delete %>
   <% end %>
 <% end %>

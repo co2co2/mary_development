@@ -41,6 +41,7 @@ gem 'geocoder'
 gem 'awesome_print', require:"ap"
 gem 'carrierwave','~> 1.0'
 gem 'mini_magick'
+gem 'local_time'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -66,7 +67,7 @@ end
 
 group :test do
   gem 'factory_bot_rails'
-  
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
