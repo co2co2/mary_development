@@ -1,15 +1,14 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.label :quantity, "Quantity: " %>
-    <%= f.text_field :quantity, placeholder: '22 units' %>
+    <%= f.text_field :quantity, placeholder: '22 units', class: "form-control col-5 d-inline" %>
 
     <%= f.fields_for :ingredient do |concentrate| %>
-      <%= concentrate.select :concentrate_recipe_id, Recipe.concentrates.collect {|c| [ c.title, c.id] }, { prompt: true }, id:  'concentrateSelect' %>
+      <%= concentrate.select :concentrate_recipe_id, Recipe.concentrates.collect {|c| [ c.title, c.id] }, { prompt: true }, id:  'concentrateSelect', class: "form-control col-6 d-inline" %>
       <%= concentrate.hidden_field :name, id: 'concentrateName'%>
     <% end %>
 
 
-    <%= link_to_remove_association "remove", f, id: 'showAddConcentrate', onclick: 'addConcentrateLink()' %>
+    <%= link_to_remove_association "x", f, id: 'showAddConcentrate', onclick: 'addConcentrateLink()' %>
   </div>
 </li>
 <script type = 'text/javascript'>
