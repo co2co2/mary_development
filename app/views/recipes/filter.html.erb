@@ -1,9 +1,9 @@
 <div class="pagination-centered">
-	<h1>Search by ingredients</h1>
+	
 	<h2>What's in your pantry?</h2>
 
 	<%= form_tag(search_path, :method => "get", id: "search-form") do %>
-	Filter Only these Ingredients
+	Recipes must contain all
 		<%= check_box_tag  "specify", '1',false%>
 		<br>
 		<div class="ingredient">
