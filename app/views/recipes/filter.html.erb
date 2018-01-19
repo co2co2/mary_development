@@ -3,7 +3,7 @@
 	<h2>What's in your pantry?</h2>
 
 	<%= form_tag(search_path, :method => "get", id: "search-form") do %>
-	Filter Only these Ingredients 
+	Filter Only these Ingredients
 		<%= check_box_tag  "specify", '1',false%>
 		<br>
 		<div class="ingredient">
@@ -13,8 +13,8 @@
 	    </div>
 		<div class="ingredient">
 			<a href="/" class="addIngredient"><%= image_tag("https://image.flaticon.com/icons/png/128/54/54443.png") %></a>
-		
+
 		</div>
-		<%= submit_tag "Search" %>
+		<%= submit_tag "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
 	<% end %>
 </div>
