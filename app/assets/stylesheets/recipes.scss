@@ -33,16 +33,41 @@
 	margin-top:6%;
 	display:inline-block;
 	vertical-align:middle;
+	margin-left:170px;
+	@media(min-width:1202px){
+		margin-left: 370px;
+    	margin-top: 4%;
+	}
+	@media(min-width:999px){
+		margin-left:280px;
+		margin-top:5%;
+	}
+	@media(max-width: 767px){
+		margin-top:8%;
+		margin-left:70px;
+	}
+	@media(max-width:505px){
+		margin-top:9%;
+		margin-left:60px;
+	}
+	@media(max-width:483px){
+		margin-left:50px;
+	}
+	@media(max-width:464px){
+		margin-left:40px;
+	}
+	@media(max-width:435px){
+		margin-left:0px;
+	}
 }
-.ul{
+ol{
 	padding-top:10px;
-	border: 1px solid gainsboro;
-    border-radius: 5%;
     li{
     	margin-bottom:5px;
     }
 }
 .extra-info{
+	padding-top:2%;
 	border-radius:25px;
 	border-color: gainsboro;
 }
@@ -53,13 +78,15 @@
     border-radius: 25px;
 }
 .build{
-	margin-top:1%;
-	margin-bottom:1%;
+	margin-top:3%;
+	margin-bottom:3%;
 }
 .find-dispensaries{
 	colour:white;
 }
-
+.description{
+	padding:0 10px;
+}
 .recommended-strain{
 	margin-bottom:2%;
 }
