@@ -21,13 +21,18 @@
 //Recipes show page
 .favourite,.unfavourite{
 	width:25px;
-	height:25px;
+	height:100%;
 }
 .unfavourite{
 	content:url("https://image.flaticon.com/icons/png/512/148/148836.png");
 }
 .favourite{
 	content:url("https://image.flaticon.com/icons/svg/149/149217.svg");
+}
+.social-media{
+	margin-top:6%;
+	display:inline-block;
+	vertical-align:middle;
 }
 .ul{
 	padding-top:10px;
@@ -37,10 +42,15 @@
     	margin-bottom:5px;
     }
 }
+.extra-info{
+	border-radius:25px;
+	border-color: gainsboro;
+}
 .recipe-ingredients{
 	padding-top:10px;
-	border: 1px solid gainsboro;
-    border-radius: 5%;
+	padding-left:10px;
+	border: 1px solid #e9ecef;
+    border-radius: 25px;
 }
 .build{
 	margin-top:1%;
@@ -50,7 +60,12 @@
 .recommended-strain{
 	margin-bottom:2%;
 }
-
+.author{
+	margin-top:10px;
+}
+// .comment{
+// 	width:500px;
+// }
 h3{
 	padding-left:0px !important;
 }
