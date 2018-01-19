@@ -1,28 +1,54 @@
-<h2><%= @strain.name %></h2>
-<%= image_tag @strain.image, alt: @strain.name %>
-<p>
-  <h3>Race:</h3> <%= @strain.race %>
-</p>
-<p>
-  <h3>Flavours</h3>
-  <% @strain.flavours.each do |flavour| %>
-    <%= flavour %>
-  <% end %>
-</p>
-<p>
-  <h3>Effects</h3>
-  <h2>Positive</h2>
-  <% @positives.each do |effect| %>
-    <%= effect.name %>
-  <% end %>
-  <h2>Negative</h2>
-  <% @negatives.each do |effect| %>
-    <%= effect.name %>
-  <% end %>
-  <h2>Medical</h2>
-  <% @medicals.each do |effect| %>
-    <%= effect.name %>
-  <% end %>
-</p>
+<div class="contrainer d-flex align-content-center">
+  <div class="d-flex flex-column m-auto">
 
-<%= link_to 'Find Dispensary', search_dispensaries_path %>
+    <div class="m-auto">
+
+    <h2><%= @strain.name %></h2><span> <%= link_to 'Find Dispensary', search_dispensaries_path %></span>
+    </div>
+    <br>
+
+  <div class="row">
+    <div class="d-flex align-items-end strain-show col-12 col-md-6">
+    <%= image_tag @strain.image, alt: @strain.name, class:"img-fluid rounded " %>
+    </div>
+
+    <div class="strain-show col-12 col-md-6">
+    <p>
+      <h3>Race</h3> <%= @strain.race.capitalize %>
+    </p>
+    <p>
+      <h3>Flavours</h3>
+      <% @strain.flavours.each do |flavour| %>
+        <%= flavour %>
+      <% end %>
+    </p>
+    <p>
+      <h3>Effects</h3>
+      <!-- <ul> -->
+      <h6 class='strain-effects'>Positive</h6>
+      <% @positives_array = [] %>
+      <% @positives.each do |effect| %>
+        <% @positives_array << effect.name %>
+      <% end %>
+      <%= @positives_array.join(', ') %>
+
+      <h6 class='strain-effects'>Negative</h6>
+      <% @negatives_array = [] %>
+      <% @negatives.each do |effect| %>
+        <% @negatives_array << effect.name %>
+      <% end %>
+      <%= @negatives_array.join(', ') %>
+
+      <h6 class='strain-effects'>Medical</h6>
+      <% @medical_array = [] %>
+      <% @medicals.each do |effect| %>
+        <% @medical_array << effect.name %>
+      <% end %>
+      <%=  @medical_array.join(', ') %>
+    <!-- </ul> -->
+      </p>
+      </div>
+    </div>
+
+  </div>
+</div>

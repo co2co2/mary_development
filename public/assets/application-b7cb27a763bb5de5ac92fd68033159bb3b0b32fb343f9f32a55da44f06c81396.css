@@ -9129,6 +9129,90 @@ a.text-dark:focus, a.text-dark:hover {
   visibility: hidden !important;
 }
 
+@media print {
+  /* line 13, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  *,
+  *::before,
+  *::after {
+    text-shadow: none !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+  }
+
+  /* line 23, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  /* line 33, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+
+  /* line 48, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  /* line 51, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /* line 62, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  thead {
+    display: table-header-group;
+  }
+
+  /* line 66, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  /* line 71, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* line 78, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  /* line 86, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  .navbar {
+    display: none;
+  }
+
+  /* line 89, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  .badge {
+    border: 1px solid #000;
+  }
+
+  /* line 93, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  .table {
+    border-collapse: collapse !important;
+  }
+  /* line 96, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  .table td,
+  .table th {
+    background-color: #fff !important;
+  }
+
+  /* line 102, /Users/LH/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0/gems/bootstrap-4.0.0.beta3/assets/stylesheets/bootstrap/_print.scss */
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #ddd !important;
+  }
+}
 /* line 13, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 html {
   min-height: 100%;
@@ -9149,15 +9233,15 @@ a:hover {
   color: #C9AC68 !important;
 }
 
-/* line 34, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 35, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 #mary main a {
   color: #C9AC68 !important;
 }
-/* line 36, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 37, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 #mary main a:hover {
   color: #96C53D !important;
 }
-/* line 42, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 43, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 #mary footer {
   color: #FFF;
   background-color: #40A84F !important;
@@ -9167,148 +9251,155 @@ a:hover {
   bottom: 0;
   font-size: 0.8rem;
 }
-/* line 49, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 50, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 #mary footer strong {
   text-transform: uppercase;
   color: #FFF;
   margin-bottom: 1rem;
 }
-/* line 55, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 56, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 #mary footer li {
   padding-bottom: 0.5rem !important;
 }
-/* line 59, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 60, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 #mary footer .links {
   color: #175700 !important;
   text-decoration: none;
 }
-/* line 63, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 64, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 #mary footer .links:hover {
   color: #40A84F !important;
 }
 
-/* line 71, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 72, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 input[disabled] {
   border: 0 !important;
 }
 
-/* line 75, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
-h1, h2, h3, h4, h6 {
+/* line 76, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+h1, h2, h3, h4, h6, .h3 {
   color: #C9AC68;
   font-family: "Abril Fatface", cursive;
 }
 
-/* line 80, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 81, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 h1 {
   font-size: 2rem !important;
 }
 
-/* line 84, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 85, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 h2 {
   font-size: 3.5rem;
 }
 
-/* line 88, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 89, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+h5 {
+  color: #40A84F !important;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* line 95, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 h6 {
   color: #175700;
   font-size: 1.3rem;
 }
 
-/* line 93, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 100, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .mt-6 {
   margin-top: 7rem;
 }
 
-/* line 97, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 104, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .mb-6 {
-  margin-bottom: 17rem;
+  margin-bottom: 27rem;
 }
 
-/* line 101, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 108, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .result-img {
   min-width: 250px;
 }
 
-/* line 107, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 114, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .ui-dialog-titlebar {
   display: none;
 }
 
-/* line 111, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 118, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .ui-widget-overlay {
   z-index: 1055 !important;
   background-color: rgba(30, 30, 30, 0.8) !important;
   opacity: 1 !important;
 }
 
-/* line 118, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 125, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .noscroll {
   overflow: hidden;
 }
 
-/* line 124, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 131, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .navbar {
   width: 100%;
   background: #f8f9fa;
 }
 @media (max-width: 34em) {
-  /* line 124, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+  /* line 131, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
   .navbar {
     background: #40A84F !important;
   }
-  /* line 132, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+  /* line 139, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
   .navbar .btn-outline-success {
     color: #FFF !important;
     border-color: #FFF;
   }
-  /* line 135, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+  /* line 142, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
   .navbar .btn-outline-success:hover {
     background-color: #96C53D !important;
   }
 }
 @media (max-width: 767.99px) {
-  /* line 142, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+  /* line 149, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
   .navbar .navbar-brand img:first-child {
     display: none !important;
   }
 }
-/* line 150, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 157, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .navbar .navbar-toggler {
   cursor: pointer;
   outline: 0;
 }
-/* line 155, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 162, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .navbar .nav-link {
   text-transform: uppercase;
   font-weight: bold;
 }
-/* line 160, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 167, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .navbar .nav-item {
   padding: 0;
 }
 @media (max-width: 34em) {
-  /* line 163, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+  /* line 170, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
   .navbar .nav-item .nav-link {
     font-weight: normal;
     color: #FFF !important;
   }
-  /* line 167, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+  /* line 174, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
   .navbar .nav-item .nav-link:hover {
     color: #96C53D !important;
   }
 }
 
-/* line 176, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 183, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 nav {
   background: #f8f9fa;
 }
-/* line 180, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 187, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 nav .dropdown-item:hover {
   background-color: #FFF !important;
   color: #C9AC68 !important !important;
 }
 
-/* line 188, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 195, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 ul.ui-autocomplete {
   position: absolute;
   list-style: none;
@@ -9317,36 +9408,57 @@ ul.ui-autocomplete {
   border: solid 1px #40A84F !important;
   cursor: default;
 }
-/* line 195, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 202, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 ul.ui-autocomplete li {
   background-color: #FFF;
   border-top: solid 1px #C9AC68 !important;
   margin: 0;
   padding: 0;
 }
-/* line 200, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 207, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 ul.ui-autocomplete li div {
   color: #000;
   display: block;
   padding: 3px;
 }
-/* line 205, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 212, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 ul.ui-autocomplete li div.ui-state-hover, ul.ui-autocomplete li div.ui-state-active {
   background-color: #96C53D;
   border-top: solid 1px #96C53D;
   border-bottom: solid 1px #96C53D;
 }
 
-/* line 212, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 219, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .ui-helper-hidden-accessible {
   display: none;
 }
 
-/* line 213, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+/* line 220, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
 .ui-autocomplete {
   height: 200px;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+/* line 225, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+#notice {
+  color: green;
+}
+
+/* line 229, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+.field_with_errors {
+  padding: 2px;
+  border: 2px #F7714C solid;
+  display: table;
+}
+
+/* line 235, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/_custom.scss */
+#error_explanation {
+  color: #C9AC68 !important;
+  width: 450px;
+  border: 2px solid #F7714C;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
 }
 
 /* line 4, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
@@ -9376,7 +9488,7 @@ ul.ui-autocomplete li div.ui-state-hover, ul.ui-autocomplete li div.ui-state-act
 /* line 22, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
 .favourite, .unfavourite {
   width: 25px;
-  height: 25px;
+  height: 100%;
 }
 
 /* line 26, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
@@ -9390,45 +9502,64 @@ ul.ui-autocomplete li div.ui-state-hover, ul.ui-autocomplete li div.ui-state-act
 }
 
 /* line 32, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
+.social-media {
+  margin-top: 6%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* line 37, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
 .ul {
   padding-top: 10px;
   border: 1px solid gainsboro;
   border-radius: 5%;
 }
-/* line 36, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
+/* line 41, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
 .ul li {
   margin-bottom: 5px;
 }
 
-/* line 40, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
-.recipe-ingredients {
-  padding-top: 10px;
-  border: 1px solid gainsboro;
-  border-radius: 5%;
+/* line 45, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
+.extra-info {
+  border-radius: 25px;
+  border-color: gainsboro;
 }
 
-/* line 45, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
+/* line 49, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
+.recipe-ingredients {
+  padding-top: 10px;
+  padding-left: 10px;
+  border: 1px solid #e9ecef;
+  border-radius: 25px;
+}
+
+/* line 55, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
 .build {
   margin-top: 1%;
   margin-bottom: 1%;
 }
 
-/* line 49, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
+/* line 59, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
 .find-dispensaries {
   colour: white;
 }
 
-/* line 52, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
+/* line 63, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
+.recommended-strain {
+  margin-bottom: 2%;
+}
+
+/* line 66, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
+.author {
+  margin-top: 10px;
+}
+
+/* line 72, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
 h3 {
   padding-left: 0px !important;
 }
 
-/* line 55, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
-h5 {
-  text-decoration: underline;
-}
-
-/* line 59, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
+/* line 76, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/recipes.scss */
 div > img, .img-fluid {
   width: 100%;
 }
@@ -9603,9 +9734,4 @@ div > img, .img-fluid {
   text-align: left;
   line-height: 22px;
   color: #666;
-}
-
-/* line 23, /Users/LH/Desktop/bitmaker/projects/mary_development/app/assets/stylesheets/application.scss */
-.social-share-button .ssb-icon {
-  color: green;
 }

@@ -54,13 +54,11 @@ class RecipesController < ApplicationController
     if type == "favourite"
       @favourite = current_user.favourites.build(recipe_id: params[:recipe_id])
       @favourite.save
-      flash[:notice] = 'You have favourited this Recipe!'
     else type == "unfavourite"
       @favourite = Favourite.where(user_id: current_user.id, recipe_id: params[:recipe_id])
       current_user.favourites.delete(@favourite)
-      flash[:notice] = 'You have unfavourited this Recipe!'
     end
-    redirect_back(fallback_location: 'recipes#show')
+    # redirect_back(fallback_location: 'recipes#show')
   end
 
   # GET /recipes
@@ -111,13 +109,6 @@ class RecipesController < ApplicationController
 
     @recipe = current_user.recipes.build(recipe_params)
 
-     params[:recipe][:allergy].each do |key,value|
-       if value["name"] == "1"
-          allergy = Allergy.find(key)
-         @recipe.allergies << allergy
-       end
-     end
-
   # if params[:recipe][:measurements_attributes]
   #   # try to save ingredient unique, check if name exists in db
   #  params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
@@ -153,12 +144,13 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
+    @recipe.allergies.destroy_all
      params[:recipe][:allergy].each do |key,value|
       if value["name"] == "1"
           allergy = Allergy.find(key)
-         @recipe.allergies << allergy
+          @recipe.allergies << allergy
        end
-    end
+      end
 
     respond_to do |format|
       if @recipe.update(recipe_params)

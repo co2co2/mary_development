@@ -1,13 +1,13 @@
 <div class="container">
   <h2><%= @category.name %></h2>
   <% if @category.recipes.present? %>
-    <div class="row">
     <% @category.recipes.each do |recipe|%>
+    <div class="row py-3 py-sm-3 py-lg-1 ">
       <%=  render '/recipes/show_recipe_result', recipe: recipe %>
-    <% end %>
     </div>
+    <% end %>
   <% else %>
-    <div class="row">
+    <div class="row py-3">
       <p>There are no recipes for <%= @category.name %> yet.</p>
     </div>
   <% end %>

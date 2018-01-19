@@ -2,7 +2,7 @@
 <%= form_for recipe do |form| %>
   <% if recipe.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+      <h3><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h3>
 
       <ul>
       <% recipe.errors.full_messages.each do |message| %>
@@ -12,55 +12,55 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :recipe_category_id, 'Category' %>
-    <%= form.select :recipe_category_id, RecipeCategory.all.collect {|category| [ category.name, category.id ] }, include_blank: true, id: :recipe_category_id %>
+  <div class="form-group col-md-5 col-sm-12 pt-3">
+    <%= form.label :title, class:"h3" %>
+    <%= form.text_field :title, id: :recipe_title, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :strain_name, 'Recommended Strain'%>
-    <%= form.text_field :strain_name, data: {autocomplete_source: strains_path}%>
-    <%= form.hidden_field :strain_id, id: 'strainId'%>
+  <div class="form-group col-md-5 col-sm-12">
+    <%= form.label :recipe_category_id, 'Category', class:"h3" %>
+    <%= form.select :recipe_category_id, RecipeCategory.all.collect {|category| [ category.name, category.id ] }, include_blank: true, id: :recipe_category_id, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :concentrate, 'Is this a concentrate?' %>
-    <%= form.check_box :concentrate %> Yes
+
+  <div class="form-group col-md-5 col-sm-12">
+    <%= form.label :concentrate, 'Is this a concentrate?', class:"h6" %>
+    <%= form.check_box :concentrate, class: "form-check-label" %> Yes
   </div>
 
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :recipe_title %>
+  <div class="form-group col-md-5 col-sm-12">
+    <%= form.label :strain_name, 'Recommended Strain', class:"h3" %>
+    <%= form.text_field :strain_name, data: {autocomplete_source: strains_path}, class: "form-control"%>
+    <%= form.hidden_field :strain_id, id: 'strainId' %>
   </div>
 
-  <div class="form-group">
-
-    <%= form.label :image %>
+  <div class="form-group col-md-5 col-sm-12">
+    <%= form.label :image, class: "h3" %>
     <% if recipe.image? %>
     <%= image_tag recipe.image.thumb.url %>
-      <%= label_tag :remove_image do %>Remove image<%= form.check_box :remove_image %>
+      <%= label_tag :remove_image do %>Remove image<%= form.check_box :remove_image, class: "form-check-label" %>
       <% end %>
     <% end %>
-    <%= form.file_field :image, id: :recipe_image %> </br>
-    or<%= form.text_field :remote_image_url %><small>Enter image URL</small>
+    <%= form.file_field :image, id: :recipe_image, class: "form-control" %> </br>
+    or<%= form.text_field :remote_image_url, class: "form-control" %><small>Enter image URL</small>
   </div>
 
-  <div class="form-group">
-    <%= form.label :video %>
-    <%= form.text_field :video, id: :recipe_video %>
+  <div class="form-group col-md-5 col-sm-12">
+    <%= form.label :video, class:"h3" %>
+    <%= form.text_field :video, id: :recipe_video, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :recipe_description %>
+  <div class="form-group col-md-5 col-sm-12">
+    <%= form.label :description, class:"h3" %>
+    <%= form.text_area :description, id: :recipe_description, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :prep_time, 'Cook time(in minute)' %>
-    <%= form.number_field :prep_time, min:0, id: :recipe_prep_time %>
+  <div class="form-group col-md-5 col-sm-12">
+    <%= form.label :prep_time, 'Cook time (in minutes)', class:"h3" %>
+    <%= form.number_field :prep_time, min:0, id: :recipe_prep_time, class: "form-control" %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-6 col-sm-12">
   <h3>Ingredients</h3>
   <fieldset id="recipe-ingredients">
   <ul>
@@ -84,26 +84,26 @@
     <%= link_to_add_association 'Add concentrate', form, :measurements, partial: 'concentrate_fields', 'data-association-insertion-node' => "#recipe-ingredients ul", 'data-association-insertion-method' => "append", id: 'addConcentrate', :wrap_object => Proc.new {|measurement| measurement.build_ingredient; measurement } %>
   </fieldset>
   </div>
-  <div class="form-group">
+  <div class="form-group col-md-8 col-sm-12">
     <h3>Allergies</h3>
     <% allergies.each do |allergy| %>
     <%= form.fields_for 'allergy[]', allergy do |allergy_field| %>
-         <%= allergy.name %> <%= allergy_field.check_box :name %>
+         <%= allergy.name %> <%= allergy_field.check_box :name, class: "form-check-label" %>
     <% end %>
     <% end %>
 
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-6 col-sm-12">
     <h3>Instructions</h3>
     <%= form.nested_fields_for :instructions do |step| %>
-      <%= step.text_field :step %>
+      <%= step.text_field :step, class: "form-control col-11 d-inline" %>
       <%= step.remove_nested_fields_link %>
       <% end %>
       <%= form.add_nested_fields_link :instructions, 'Add step' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group col-md-6 col-sm-12 d-flex justify-content-end">
+    <%= form.submit  class: "btn btn-outline-success my-2 my-sm-0" %>
   </div>
 <% end %>

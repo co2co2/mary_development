@@ -1,5 +1,5 @@
 
-<div class="col col-sm col-lg-4">
+<div class="col-12 col-sm-12 col-lg-4">
   <!-- image -->
   <%= link_to recipe_path(recipe.id) do %>
     <% if recipe.image.url == "" || recipe.image.url == nil %>
@@ -10,7 +10,7 @@
   <% end %>
 </div>
 
-<div class="col col-sm col-lg-8">
+<div class="col-12 col-sm-12 col-lg-8">
   <!-- title -->
   <h4><%= link_to recipe.title, recipe %></h4>
 
@@ -18,7 +18,7 @@
   <p>
     <% if recipe.user %>
       <% if recipe.user.avatar? %>
-      <%= image_tag recipe.user.avatar.thumb.url %>
+      <%= link_to (image_tag recipe.user.avatar.thumb.url),   user_path(recipe.user) %>
     <% end %>
       Made by: <%= link_to recipe.user.username,   user_path(recipe.user) %>
     <% else %>

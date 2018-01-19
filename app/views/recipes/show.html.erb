@@ -1,14 +1,15 @@
-<div class="row align-items-center">
-  <h3 class="col-sm-6"><%= @recipe.title %></h3>
-  <% if user_signed_in? %>
-    <%= link_to recipe_favourite_path(@recipe, type: @favourite_link), method: :put do%>
-      <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: @favourite_link) %>
+<div class="row p-0 title d-flex">
+  <h2 class="col-sm-12 p-0"><%= @recipe.title %></h2>
+  <div class="mr-auto p-2 d-line">
+    <h4 class="d-inline">Category:</h4>
+    <%= @recipe.recipe_category.name %>
+  </div>
+  <div class="p-2 d-inline">
+    <% @recipe.allergies.each do |allergy|%>
+    <%= allergy.name %>
     <% end %>
-  <% else %>
-    <%= link_to new_user_session_path do%>
-      <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite") %>
-    <% end %>
-  <% end %>
+  </div>
+
 </div>
 <!-- Recipe Image -->
 <div class="row">
@@ -20,25 +21,54 @@
     </div>
   <% end %>
 </div>
+<!-- Author -->
+<div class="row">
+  <div class="col-6 col-sm-6 author">
+    <span>By:
+    <% if @recipe.user %>
+      <% if @recipe.user.avatar? %>
+        <%= link_to (image_tag @recipe.user.avatar.thumb.url), user_path(@recipe.user) %>
+      <% end %>
+        <%= link_to @recipe.user.username, user_path(@recipe.user) %>
+    <% else %>
+      This Creator got Baked!!!!
+    <% end %>
+
+  </span>
+  </div>
+  <div class="col-sm-6 col-6">
+    <span class="social-media"><%= social_share_button_tag(@recipe.title) %></span>
+
+    <% if user_signed_in? %>
+      <%= link_to recipe_favourite_path(@recipe),class: "#{@favourite_link} float-right",id: "fav", method: "PUT" do%>
+        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg",id: "fav-image", class: @favourite_link) %>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path do%>
+        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite") %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
 <div>
 <!-- Recipe Description -->
-<div class="row">
+<div class="row description">
   <p><%= @recipe.description %></p>
 </div>
 <!-- Cook Time -->
-<div class="row border text-center">
-  <div class="col-xs-4 col-sm-4 align-middle">
-    <h5>Cook Time</h5>
-    <p><%= @recipe.minutes_to_hours(@recipe.prep_time)%></p>
+<div class="row border text-center extra-info">
+  <div class="col-4 col-sm-4 ">
+    <h5>Favourited</h5>
+    <p><%= @recipe.favourites.count%></p>
   </div>
-  <div class="col-xs-4 col-sm-4 ">
-    <h5>Cook Time</h5>
-    <p><%= @recipe.minutes_to_hours(@recipe.prep_time)%></p>
-  </div>
-  <div class="col-xs-4 col-sm-4 ">
+  <div class="col-4 col-sm-4 ">
     <h5>Views</h5>
     <p><%= @recipe.views%></p>
+  </div>
+  <div class="col-4 col-sm-4 ">
+    <h5>Cook Time</h5>
+    <p><%= @recipe.minutes_to_hours(@recipe.prep_time)%></p>
   </div>
 </div>
 <!-- Ingredients + Instructions-->
@@ -60,17 +90,17 @@
         <li><%= instruction.step %></li>
       <% end %>
     </ol>
-  </div> 
+  </div>
 </div>
 
 <!-- Recommended Strain -->
-<div class="row text-center">
+<div class="row text-center recommended-strain">
   <div class="col-sm-12">
-    <h4>Recommended Strain:</h4> 
-    <%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %>
+    <p>Recommended Strain:</p>
+    <h4><%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %></h4>
   </div>
   <div class="col-sm-12">
-    <%= link_to 'Find a Dispensary near you!', search_dispensaries_path ,class: "btn btn-success find-dispensaries"%>
+    <%= button_to 'Find a Dispensary near you!', search_dispensaries_path, method: "get", class: "btn btn-outline-success find-dispensaries" %>
   </div>
 </div>
 <!-- Video -->
@@ -83,51 +113,22 @@
   <% end %>
   </div>
 </div>
-
-
-<p>By
-  <% if @recipe.user %>
-    <% if @recipe.user.avatar? %>
-    <%= image_tag @recipe.user.avatar.thumb.url %>
-    <% end %>
-    <%= link_to @recipe.user.username, user_path(@recipe.user) %>
-  <% else %>
-   This Creator got Baked!!!!
-  <% end %>
-</p>
-<p>
-  <strong>Category:</strong>
-  <%= @recipe.recipe_category.name %>
-</p>
-
-<p>
-  <p><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %>
-</p>
-  <strong>Recommended strain:</strong>
-  <%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %>
-  <br>
-  <%= link_to 'Find Dispensary', search_dispensaries_path %>
-</p>
-
-
-
-
-
-
 </div>
 
-<%= social_share_button_tag(@recipe.title) %>
+  <p><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %>
+  </p>
 
-
-
-<% if  user_signed_in? && current_user == @recipe.user%>
-  <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-  <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure to delete this recipe?' }  %> |
-<% end %>
-  <%= link_to 'Back', recipes_path %>
-
-
-<% if user_signed_in? %>
+<div class="row">
+  <div class="col-sm-12">
+    <% if  user_signed_in? && current_user == @recipe.user%>
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+    <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure to delete this recipe?' }  %> |
+  <% end %>
+    <%= link_to 'Back', recipes_path %>
+  </div>
+</div>
+<div class="row">
+  <% if user_signed_in? %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -142,14 +143,17 @@
 
   <%= form_for([@recipe, @review]) do |f|%>
     <div class="review-form">
-      <%= f.label :comment %>
-      <%= f.text_area :comment %><br>
-      <%= f.submit %>
+      <%= f.text_area :comment, class: "form-control" %><br>
+      <%= f.submit class: "btn btn-success"%>
     </div>
   <% end %>
-
-
 <% end %>
+</div>
+
+
+
+
+
 
 <% if @reviews %>
   <% @reviews.each do |review|%>
