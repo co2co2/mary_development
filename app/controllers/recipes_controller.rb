@@ -109,13 +109,6 @@ class RecipesController < ApplicationController
 
     @recipe = current_user.recipes.build(recipe_params)
 
-     params[:recipe][:allergy].each do |key,value|
-       if value["name"] == "1"
-          allergy = Allergy.find(key)
-         @recipe.allergies << allergy
-       end
-     end
-
   # if params[:recipe][:measurements_attributes]
   #   # try to save ingredient unique, check if name exists in db
   #  params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
