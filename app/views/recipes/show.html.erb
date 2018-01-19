@@ -1,13 +1,7 @@
 <div class="row align-items-center">
-  <h3 class="col-sm-6"><%= @recipe.title %></h3>
-  <% if user_signed_in? %>
-    <%= link_to recipe_favourite_path(@recipe, type: @favourite_link), method: :put do%>
-      <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: @favourite_link) %>
-    <% end %>
-  <% else %>
-    <%= link_to new_user_session_path do%>
-      <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite") %>
-    <% end %>
+  <h3 class="col-sm-12"><%= @recipe.title %></h3>
+  <% @recipe.allergies.each do |allergy|%>
+    <%= allergy.name %>
   <% end %>
 </div>
 <!-- Recipe Image -->
@@ -20,6 +14,35 @@
     </div>
   <% end %>
 </div>
+<!-- Author -->
+<div class="row">
+  <div class="col-xs-6 col-sm-6 author">
+    <span>By: 
+    <% if @recipe.user %>
+      <% if @recipe.user.avatar? %>
+        <%= image_tag @recipe.user.avatar.thumb.url %>
+      <% end %>
+        <%= link_to @recipe.user.username, user_path(@recipe.user) %>
+    <% else %>
+      This Creator got Baked!!!!
+    <% end %>
+
+  </span>
+  </div>
+  <div class="col-sm-6 col-xs-6">
+    <span class="social-media"><%= social_share_button_tag(@recipe.title) %></span>
+    
+    <% if user_signed_in? %>
+      <%= link_to recipe_favourite_path(@recipe),class: "#{@favourite_link} float-right",id: "fav", method: "PUT" do%>
+        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg",id: "fav-image", class: @favourite_link) %>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path do%>
+        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite") %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
 <div>
 <!-- Recipe Description -->
@@ -27,8 +50,8 @@
   <p><%= @recipe.description %></p>
 </div>
 <!-- Cook Time -->
-<div class="row border text-center">
-  <div class="col-xs-4 col-sm-4 align-middle">
+<div class="row border text-center extra-info">
+  <div class="col-xs-4 col-sm-4 ">
     <h5>Cook Time</h5>
     <p><%= @recipe.minutes_to_hours(@recipe.prep_time)%></p>
   </div>
@@ -64,7 +87,7 @@
 </div>
 
 <!-- Recommended Strain -->
-<div class="row text-center">
+<div class="row text-center recommended-strain">
   <div class="col-sm-12">
     <h4>Recommended Strain:</h4> 
     <%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %>
@@ -83,51 +106,26 @@
   <% end %>
   </div>
 </div>
-
-
-<p>By
-  <% if @recipe.user %>
-    <% if @recipe.user.avatar? %>
-    <%= image_tag @recipe.user.avatar.thumb.url %>
-    <% end %>
-    <%= link_to @recipe.user.username, user_path(@recipe.user) %>
-  <% else %>
-   This Creator got Baked!!!!
-  <% end %>
-</p>
+</div>
 <p>
   <strong>Category:</strong>
   <%= @recipe.recipe_category.name %>
 </p>
 
-<p>
   <p><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %>
-</p>
-  <strong>Recommended strain:</strong>
-  <%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %>
-  <br>
-  <%= link_to 'Find Dispensary', search_dispensaries_path %>
-</p>
+  </p>
 
-
-
-
-
-
+<div class="row">
+  <div class="col-sm-12">
+    <% if  user_signed_in? && current_user == @recipe.user%>
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+    <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure to delete this recipe?' }  %> |
+  <% end %>
+    <%= link_to 'Back', recipes_path %>
+  </div>
 </div>
-
-<%= social_share_button_tag(@recipe.title) %>
-
-
-
-<% if  user_signed_in? && current_user == @recipe.user%>
-  <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-  <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure to delete this recipe?' }  %> |
-<% end %>
-  <%= link_to 'Back', recipes_path %>
-
-
-<% if user_signed_in? %>
+<div class="row">
+  <% if user_signed_in? %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -142,14 +140,17 @@
 
   <%= form_for([@recipe, @review]) do |f|%>
     <div class="review-form">
-      <%= f.label :comment %>
-      <%= f.text_area :comment %><br>
+      <%= f.text_area :comment, class: "form-control" %><br>
       <%= f.submit %>
     </div>
   <% end %>
-
-
 <% end %>
+</div>
+
+
+
+
+
 
 <% if @reviews %>
   <% @reviews.each do |review|%>
