@@ -1,13 +1,12 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.label :quantity, "Quantity: " %>
-    <%= f.text_field :quantity, placeholder: '1/4 cup' %>
+    <%= f.text_field :quantity, placeholder: '1/4 cup', class: "form-control col-5 d-inline" %>
 
     <%= f.fields_for :ingredient do |measurement_ingredient| %>
-      <%= measurement_ingredient.text_field :name, placeholder: 'ingredient' %>
+      <%= measurement_ingredient.text_field :name, placeholder: 'ingredient', class: "form-control col-6 d-inline" %>
     <% end %>
 
-    <%= link_to_remove_association "remove", f %>
+    <%= link_to_remove_association "x", f %>
   </div>
 </li>
 

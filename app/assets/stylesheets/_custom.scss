@@ -45,6 +45,27 @@ a {
     background-color: $green;
     background: linear-gradient(to right, #40A84F, $light-green, $light-green, #40A84F); /* Standard syntax (must be last) */
     bottom: 0;
+    font-size: 0.8rem;
+
+    strong {
+      text-transform: uppercase;
+      color: #FFF;
+      // font-family: $heading-font;
+      margin-bottom: 1rem;
+    }
+    li{
+      padding-bottom: 0.5rem !important;
+    }
+
+    .links{
+
+      color: $dark-green !important;
+      text-decoration: none;
+      &:hover{
+        color: $green;
+      }
+    }
+
   }
 }
 
@@ -52,7 +73,7 @@ input[disabled] {
   border: 0 !important;
 }
 
-h1, h2, h3, h4, h6 {
+h1, h2, h3, h4, h6, .h3 {
   color: #C9AC68;
   font-family: $heading-font;
 }
@@ -65,6 +86,12 @@ h2 {
   font-size: $display4-size;
 }
 
+h5 {
+  color: $green;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
 h6 {
   color: $dark-green;
   font-size: 1.3rem;
@@ -75,7 +102,7 @@ h6 {
 }
 
 .mb-6 {
-  margin-bottom: 10rem;
+  margin-bottom: 27rem;
 }
 
 .result-img {
@@ -193,3 +220,24 @@ ul.ui-autocomplete {
 .ui-autocomplete { height: 200px;
    overflow-y: scroll;
    overflow-x: hidden;}
+
+//Error messages
+#notice {
+ color: green;
+}
+
+.field_with_errors {
+ padding: 2px;
+ border: 2px #F7714C solid;
+ display: table;
+}
+
+#error_explanation {
+  color: $bread;
+ width: 450px;
+ border: 2px solid #F7714C;
+ padding: 7px 7px 0;
+ margin-bottom: 20px;
+}
+
+// Forms
