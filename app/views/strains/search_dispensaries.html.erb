@@ -1,18 +1,18 @@
 <h2>Find a dispensary near you!</h2>
 <%= form_tag dispensaries_path, :method => :get do %>
-<div>
+<div class="form-group pt-5">
 
   <div id='address-search'>
-    <%= label_tag :current_address, 'Address' %>
-    <%= text_field_tag :current_address, params[:current_address], placeholder: "ex: Toronto Canada", :id => 'addressSearch' %>
-    <span>OR</span>
-    <button id='current_location_btn'>Use my current location</button>
+    <%= label_tag :current_address, 'Address: ' %>
+    <%= text_field_tag :current_address, params[:current_address], placeholder: "ex: Toronto Canada", :id => 'addressSearch', class: "form-control col-10 col-sm-10 col-md-5 d-inline" %>
+    <span> OR</span>
+    <button id='current_location_btn' class="btn btn-outline-success my-2 my-sm-0">Use my current location</button>
   </div>
   <div id='radius-search'>
-    <%= label_tag :km, 'Within distance (km)' %>
-    <%= number_field_tag :km, params[:km], placeholder: "ex: 5", min: 0, max: 100%>
+    <%= label_tag :km, 'Within distance (km): ' %>
+    <%= number_field_tag :km, params[:km], placeholder: "ex: 5", min: 0, max: 100, class:"form-control col-2 col-sm-2 col-md-1 d-inline" %>
   </div>
-    <%= submit_tag "enter" %>
+    <%= submit_tag "enter", class: "btn btn-outline-success my-2 my-sm-0" %>
 </div>
 <% end %>
 

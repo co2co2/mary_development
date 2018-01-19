@@ -1,17 +1,28 @@
 <h2><%= @user.username %>'s kitchen</h2>
 
-<br>
-<% if @user.avatar.url == nil%>
-<%= image_tag'https://s-media-cache-ak0.pinimg.com/originals/bc/38/45/bc38450b9bf487d16c8ee96ba65e1584.jpg'%>
-  <% else %>
-    <%=image_tag @user.avatar, alt: @user.username %>
-<% end %></br>
+<div class="container px-0 pt-2">
+  <div class="row">
 
-<h3>About <%= @user.username %></h3>
-  <p><%= @user.bio %></p>
-<b>contact:<%= @user.email %></b>
+    <div class="col-4">
+      <% if @user.avatar.url == nil%>
+      <%= image_tag'https://s-media-cache-ak0.pinimg.com/originals/bc/38/45/bc38450b9bf487d16c8ee96ba65e1584.jpg'%>
+        <% else %>
+          <%=image_tag @user.avatar, alt: @user.username %>
+      <% end %></br>
+    </div>
+    <div class="col-8">
+      <h3>About <%= @user.username %></h3>
+      <% if  user_signed_in? && current_user == @user%>
+        <%= link_to 'Edit your profile',  edit_user_registration_path(@user) %>
+      <% end %>
+      <p><%= @user.bio %></p>
+      <b>contact:<%= @user.email %></b>
+    </div>
+  </div>
+</div>
+<br><br>
 
-<div class="container">
+<div class="container px-0">
 <h2><%= @user.username %>'s Recipes</h2>
   <% if  !@user.recipes.empty?%>
     <div class="row">
@@ -25,10 +36,9 @@
       <p>This user has no recipes! </p>
   <% end %>
 </div>
-<br><br>
 
 <% if  user_signed_in? && current_user == @user%>
-  <div class="container">
+  <div class="container px-0">
   	<h2>Favourites</h2>
   	<% if !@fav_recipes.empty? %>
       <div class="row">
@@ -41,6 +51,5 @@
   	<% else %>
   		<p>You have no favourite recipes!</p>
   	<% end %>
-    <%= link_to 'Edit your profile',  edit_user_registration_path(@user) %>
   </div>
 <% end %>
