@@ -144,12 +144,13 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
+    @recipe.allergies.destroy_all
      params[:recipe][:allergy].each do |key,value|
       if value["name"] == "1"
           allergy = Allergy.find(key)
-         @recipe.allergies << allergy
+          @recipe.allergies << allergy
        end
-    end
+      end
 
     respond_to do |format|
       if @recipe.update(recipe_params)
