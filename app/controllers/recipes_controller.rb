@@ -54,13 +54,11 @@ class RecipesController < ApplicationController
     if type == "favourite"
       @favourite = current_user.favourites.build(recipe_id: params[:recipe_id])
       @favourite.save
-      flash[:notice] = 'You have favourited this Recipe!'
     else type == "unfavourite"
       @favourite = Favourite.where(user_id: current_user.id, recipe_id: params[:recipe_id])
       current_user.favourites.delete(@favourite)
-      flash[:notice] = 'You have unfavourited this Recipe!'
     end
-    redirect_back(fallback_location: 'recipes#show')
+    # redirect_back(fallback_location: 'recipes#show')
   end
 
   # GET /recipes
