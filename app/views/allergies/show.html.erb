@@ -1,13 +1,13 @@
 <div class="container">
   <h2><%= @allergy.name %> Recipes</h2>
   <% if @allergy.recipes.present? %>
-    <div class="row">
+    <div class="row py-3 py-sm-3 py-lg-1 ">
       <% @allergy.recipes.each do |recipe|%>
         <%=  render '/recipes/show_recipe_result', recipe: recipe %>
       <% end %>
     </div>
   <% else %>
-    <div class="row">
+    <div class="row py-3">
       <p>There are no recipes for <%= @allergy.recipes %> yet.</p>
     </div>
   <% end %>

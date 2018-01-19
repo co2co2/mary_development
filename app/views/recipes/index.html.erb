@@ -1,6 +1,6 @@
-<p class="py-3">
-<% if user_signed_in? %><h5 class="mt-5 pt-5 d-inline"> Welcome </h5><h6 class="d-inline"><%= link_to current_user.username,   user_path(current_user) %></h6><h5 class="mt-5 pt-5 d-inline">, What would you like to cook today? </h5><% end %>
-</p>
+<div class="pt-3">
+<% if user_signed_in? %><h5 class="mt-5 pt-5 d-inline"> Welcome </h5><h6 class="d-inline"><%= link_to current_user.username,   user_path(current_user), class:"userwelcome" %></h6><h5 class="mt-5 pt-5 d-inline">, What would you like to cook today? </h5><% end %>
+</div>
 
 <h2>Our Star Recipes!</h2>
 
@@ -36,7 +36,7 @@
 
 <br><br>
 
-<div class="container">
+<div class="container px-0">
   <h2>Most Recent</h2>
   <div class="row">
     <% Recipe.recent.each do |recipe|  %>
@@ -48,7 +48,7 @@
 </div>
 
   <br><br>
-<div class="container">
+<div class="container px-0">
   <h2>Most Viewed</h2>
   <div class="row">
   	<% Recipe.most_viewed.each do |recipe|%>
