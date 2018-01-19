@@ -31,11 +31,15 @@ a {
 
 #mary{
   main {
-    
+
     a{
       color:          #C9AC68 !important;
       &:hover{
         color:        #96C53D !important;
+      }
+
+      &.userwelcome {
+        color: $light-green !important;
       }
     }
   }
@@ -83,6 +87,7 @@ h1 {
 }
 
 h2 {
+  padding-top: 1rem;
   font-size: $display4-size;
 }
 
@@ -223,12 +228,6 @@ ul.ui-autocomplete {
 
 .strain-effects {
   font-size: 1.5rem;
-  color: black;
-}
-
-#strain-image {
-  width: 100%;
-  vertical-align: bottom;
 }
 
 .strain-show {
@@ -236,14 +235,6 @@ ul.ui-autocomplete {
   width: 20rem;
 }
 
-#right-side-strain {
-  margin-left: 2rem;
-}
-
-#strain-container {
-  width: 83%;
-  margin-left: 15rem;
-}
 
 //Error messages
 #notice {
@@ -265,4 +256,7 @@ ul.ui-autocomplete {
 }
 
 // Forms
-
+.avatar-thumb {
+  max-width: 50px;
+  height: auto;
+}
