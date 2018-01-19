@@ -59,15 +59,13 @@ resbody = JSON.parse(response.body)
 # destroy all previous data
 
 # Dispensaries
-dispensary1 = Dispensary.create!(name: 'The Toronto Dispensary', address: '33 Kensington Ave, Toronto')
-dispensary2 = Dispensary.create!(name: 'Toronto 365 Dispensary', address: '365 King St W, Toronto')
-dispensary3 = Dispensary.create!(name: 'The Green Room', address: '402 Spadina Ave, Toronto')
-dispensary4 = Dispensary.create!(name: 'Best Budz Dispensary', address: '24 Wellsley St West Unit #1B (in the rear), Toronto')
-dispensary5 = Dispensary.create!(name: 'Canna Clinic Medicinal Society', address: '44 Kensington Ave, Toronto')
-dispensary6 = Dispensary.create!(name: 'Zen Zoo', address: '480 Queen St W, Toronto')
-# puts "exiting"
-# binding.pry
-# exit
+# dispensary1 = Dispensary.create!(name: 'The Toronto Dispensary', address: '33 Kensington Ave, Toronto')
+# dispensary2 = Dispensary.create!(name: 'Toronto 365 Dispensary', address: '365 King St W, Toronto')
+# dispensary3 = Dispensary.create!(name: 'The Green Room', address: '402 Spadina Ave, Toronto')
+# dispensary4 = Dispensary.create!(name: 'Best Budz Dispensary', address: '24 Wellsley St West Unit #1B (in the rear), Toronto')
+# dispensary5 = Dispensary.create!(name: 'Canna Clinic Medicinal Society', address: '44 Kensington Ave, Toronto')
+# dispensary6 = Dispensary.create!(name: 'Zen Zoo', address: '480 Queen St W, Toronto')
+
 
 # Users
 user1 = User.create!(email:'cat@gmail.com', username: 'cat', password:'valid_password', password_confirmation: 'valid_password',

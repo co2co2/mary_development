@@ -255,6 +255,26 @@ ul.ui-autocomplete {
  margin-bottom: 20px;
 }
 
+// flash notices
+.notice{
+  background-color: $light-green;
+  color: #FFF;
+  padding:0;
+  margin: auto;
+  text-align: center;
+  z-index: 1020 !important;
+  position: fixed;
+  top: 7.3rem;
+  opacity: 0.9;
+
+}
+
+.alert {
+  @extend .notice;
+  background-color: $bread;
+}
+
+
 // Forms
 .avatar-thumb {
   max-width: 50px;
