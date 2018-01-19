@@ -3,16 +3,16 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
+
+  <div class="form-group col-md-5 col-sm-12 pt-3">
+    <%= f.label :avatar, class: "h3"%>
     <div class="container py-2">
-      <h3 class="d-inline">got a new look?</h3>
+      <strong>got a new look?</strong>
       <% if @user.avatar? %>
       <%= image_tag @user.avatar.thumb.url, class: "avatar-thumb align-bottom" %>
       <% end %>
     </div>
-
-  <div class="custom-file form-group col-md-5 col-sm-12 pt-3">
-    <%= f.file_field :avatar, id: :user_avatar, class: "custom-file-input" %>
-    <%= f.label :avatar, "Choose file", class:"custom-file-label ml-3" %>
+    <%= f.file_field :avatar, id: :user_avatar, class: "form-control" %>
   </div>
 
 

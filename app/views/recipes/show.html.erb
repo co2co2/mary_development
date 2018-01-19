@@ -1,8 +1,15 @@
-<div class="row align-items-center title">
-  <h2 class="col-sm-12"><%= @recipe.title %></h2>
-  <% @recipe.allergies.each do |allergy|%>
+<div class="row p-0 title d-flex">
+  <h2 class="col-sm-12 p-0"><%= @recipe.title %></h2>
+  <div class="mr-auto p-2 d-line">
+    <h4 class="d-inline">Category:</h4>
+    <%= @recipe.recipe_category.name %>
+  </div>
+  <div class="p-2 d-inline">
+    <% @recipe.allergies.each do |allergy|%>
     <%= allergy.name %>
-  <% end %>
+    <% end %>
+  </div>
+
 </div>
 <!-- Recipe Image -->
 <div class="row">
@@ -17,10 +24,10 @@
 <!-- Author -->
 <div class="row">
   <div class="col-6 col-sm-6 author">
-    <span>By: 
+    <span>By:
     <% if @recipe.user %>
       <% if @recipe.user.avatar? %>
-        <%= image_tag @recipe.user.avatar.thumb.url %>
+        <%= link_to (image_tag @recipe.user.avatar.thumb.url), user_path(@recipe.user) %>
       <% end %>
         <%= link_to @recipe.user.username, user_path(@recipe.user) %>
     <% else %>
@@ -31,7 +38,7 @@
   </div>
   <div class="col-sm-6 col-6">
     <span class="social-media"><%= social_share_button_tag(@recipe.title) %></span>
-    
+
     <% if user_signed_in? %>
       <%= link_to recipe_favourite_path(@recipe),class: "#{@favourite_link} float-right",id: "fav", method: "PUT" do%>
         <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg",id: "fav-image", class: @favourite_link) %>
@@ -83,17 +90,17 @@
         <li><%= instruction.step %></li>
       <% end %>
     </ol>
-  </div> 
+  </div>
 </div>
 
 <!-- Recommended Strain -->
 <div class="row text-center recommended-strain">
   <div class="col-sm-12">
-    <p>Recommended Strain:</p> 
+    <p>Recommended Strain:</p>
     <h4><%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %></h4>
   </div>
   <div class="col-sm-12">
-    <%= link_to 'Find a Dispensary near you!', search_dispensaries_path ,class: "btn btn-outline-success find-dispensaries"%>
+    <%= button_to 'Find a Dispensary near you!', search_dispensaries_path, method: "get", class: "btn btn-outline-success find-dispensaries" %>
   </div>
 </div>
 <!-- Video -->
@@ -107,10 +114,6 @@
   </div>
 </div>
 </div>
-<p>
-  <strong>Category:</strong>
-  <%= @recipe.recipe_category.name %>
-</p>
 
   <p><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %>
   </p>
