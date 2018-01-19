@@ -1,3 +1,6 @@
+<p class="py-3">
+<% if user_signed_in? %><h5 class="mt-5 pt-5 d-inline"> Welcome </h5><h6 class="d-inline"><%= link_to current_user.username,   user_path(current_user) %></h6><h5 class="mt-5 pt-5 d-inline">, What would you like to cook today? </h5><% end %>
+</p>
 
 <h2>Our Star Recipes!</h2>
 
@@ -9,7 +12,7 @@
  	</ol>
 	<div class="carousel-inner">
 	  	<% Recipe.most_favourite.each_with_index do |recipe,i|  %>
-	  		
+
 		  		<div class="carousel-item <%= i == 0 ? 'active' : ''%>">
 		        	<%=image_tag recipe.image, alt: recipe.title, class: "d-block w-100 img-fluid" %>
 		        	<div class="carousel-caption d-none d-md-block">
@@ -55,6 +58,3 @@
   	<% end %>
   </div>
 </div>
-<p>
-<%= link_to 'New Recipe', new_recipe_path %>
-</p>

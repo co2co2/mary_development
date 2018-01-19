@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  $('.carousel').carousel()
+$('.carousel').carousel()
 $(document).on('turbolinks:load', function() {
   //toggle menus
   $(document).ready(function() {
@@ -22,6 +22,34 @@ $(document).on('turbolinks:load', function() {
       $('#categories').collapse('hide');
     })
   })
+  //favourite ajax call
+  $('#fav').on('click',function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    if ($(this).hasClass('favourite')){
+      $.ajax({
+        url: $(this).attr('href'),
+        method: "PUT",
+        data: "type=favourite"
+      }).done(function(){
+        $('#fav').addClass('unfavourite')
+        $('#fav').removeClass('favourite')
+        $('#fav-image').addClass('unfavourite')
+        $('#fav-image').removeClass('favourite')
+      });
+    }else{
+      $.ajax({
+        url: $(this).attr('href'),
+        method: "PUT",
+        data: "type=unfavourite"
+      }).done(function(){
+        $('#fav').addClass('favourite')
+        $('#fav').removeClass('unfavourite')
+        $('#fav-image').addClass('favourite')
+        $('#fav-image').removeClass('unfavourite')
+      });
+    }
+  });
 
   //autocomplete for strains
   $('#recipe_strain_name').focusout(function(){
@@ -91,6 +119,7 @@ $(document).on('turbolinks:load', function() {
   })
 
 });
+
 
   // Age verification dialog box
   var now = new Date().getTime();

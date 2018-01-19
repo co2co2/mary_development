@@ -42,7 +42,8 @@ gem 'awesome_print', require:"ap"
 gem 'carrierwave','~> 1.0'
 gem 'mini_magick'
 gem 'local_time'
-
+gem 'social-share-button'
+gem 'rails_12factor', group: :production
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
