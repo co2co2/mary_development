@@ -133,7 +133,6 @@
     <main class="container mt-6 mb-6 pb-5">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <p class="mt-5 pt-5"><% if user_signed_in? %> Welcome <%= current_user.username %> <% end %></p>
       <%= yield %>
     </main>
 
@@ -148,6 +147,7 @@
         <div class="col">
           <ul class="nav flex-column">
             <strong>Site Map</strong>
+            <li><%= link_to 'Home', root_path, class: "links" %></li>
             <li><a href="" class="links">About Us</a></li>
             <li><a href="" class="links">Contact</a></li>
             <li><a href="" class="links">Terms & Conditions</a></li>
