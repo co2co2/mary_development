@@ -1,7 +1,18 @@
-<h2><%= @strain.name %></h2>
-<%= image_tag @strain.image, alt: @strain.name %>
+<div id="strain-container">
+
+<div>
+
+<h2><%= @strain.name %></h2><span> <%= link_to 'Find Dispensary', search_dispensaries_path %></span>
+</div>
+<br>
+
+<div class="strain-show">
+<%= image_tag @strain.image, alt: @strain.name, :id => 'strain-image' %>
+</div>
+
+<div class="strain-show"  id="right-side-strain">
 <p>
-  <h3>Race:</h3> <%= @strain.race %>
+  <h3>Race</h3> <%= @strain.race.capitalize %>
 </p>
 <p>
   <h3>Flavours</h3>
@@ -11,18 +22,29 @@
 </p>
 <p>
   <h3>Effects</h3>
-  <h2>Positive</h2>
+  <!-- <ul> -->
+  <h2 class='strain-effects'>Positive</h2>
+  <% @positives_array = [] %>
   <% @positives.each do |effect| %>
-    <%= effect.name %>
+    <% @positives_array << effect.name %>
   <% end %>
-  <h2>Negative</h2>
-  <% @negatives.each do |effect| %>
-    <%= effect.name %>
-  <% end %>
-  <h2>Medical</h2>
-  <% @medicals.each do |effect| %>
-    <%= effect.name %>
-  <% end %>
-</p>
+  <%= @positives_array.join(', ') %>
 
-<%= link_to 'Find Dispensary', search_dispensaries_path %>
+  <h2 class='strain-effects'>Negative</h2>
+  <% @negatives_array = [] %>
+  <% @negatives.each do |effect| %>
+    <% @negatives_array << effect.name %>
+  <% end %>
+  <%= @negatives_array.join(', ') %>
+
+  <h2 class='strain-effects'>Medical</h2>
+  <% @medical_array = [] %>
+  <% @medicals.each do |effect| %>
+    <% @medical_array << effect.name %>
+  <% end %>
+  <%=  @medical_array.join(', ') %>
+<!-- </ul> -->
+</p>
+</div>
+
+</div>
