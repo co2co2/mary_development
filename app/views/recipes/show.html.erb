@@ -37,6 +37,13 @@
   </span>
   </div>
   <div class="col-sm-6 col-6">
+    <div class="rating">
+      <span>☆</span>
+      <span>☆</span>
+      <span>☆</span>
+      <span>☆</span>
+      <span>☆</span>
+    </div>
     <span class="social-media"><%= social_share_button_tag(@recipe.title) %></span>
 
     <% if user_signed_in? %>
@@ -73,7 +80,7 @@
 </div>
 <!-- Ingredients + Instructions-->
 <div class="row build">
-  <div class="col-xs-6 col-sm-6">
+  <div class="col-6 col-sm-6">
     <div class="recipe-ingredients">
     <h4>Ingredients:</h4>
     <ul>
