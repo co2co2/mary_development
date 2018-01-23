@@ -98,6 +98,24 @@ ol{
 // .comment{
 // 	width:500px;
 // }
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  transition: all 1s ease-in-out;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+   color:#f2ee87;
+}
+
 h3{
 	padding-left:0px !important;
 }
