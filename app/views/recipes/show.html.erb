@@ -1,29 +1,42 @@
 <div class="row p-0 title d-flex">
-  <h2 class="col-sm-12 p-0"><%= @recipe.title %></h2>
+  <h2 class="p-0 d-inline">
+    <%= @recipe.title %>
+    <div class="rating ">
+      <span>☆</span>
+      <span>☆</span>
+      <span>☆</span>
+      <span>☆</span>
+      <span>☆</span>
+    </div>    
+  </h2>
+</div>
+<div class="row">
   <div class="mr-auto p-2 d-line">
-    <h4 class="d-inline">Category:</h4>
     <%= @recipe.recipe_category.name %>
-  </div>
-  <div class="p-2 d-inline">
     <% @recipe.allergies.each do |allergy|%>
-    <%= allergy.name %>
+      | <%= allergy.name %>
     <% end %>
   </div>
-
+  <div class="p-2 d-inline">
+    <% if  user_signed_in? && current_user == @recipe.user%>
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+    <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure to delete this recipe?' }  %>
+  <% end %>
+  </div>
 </div>
 <!-- Recipe Image -->
 <div class="row">
   <% if @recipe.image.url == "" || @recipe.image.url == nil %>
     <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w' %>
   <% else %>
-    <div class="col-x2-12 img-fluid">
+    <div class="col-12 offset-lg-2 col-lg-8 img-fluid">
       <%=image_tag @recipe.image, alt: @recipe.title %>
     </div>
   <% end %>
 </div>
 <!-- Author -->
 <div class="row">
-  <div class="col-6 col-sm-6 author">
+  <div class="col-6 col-sm-4 offset-sm-2 author">
     <span>By:
     <% if @recipe.user %>
       <% if @recipe.user.avatar? %>
@@ -36,16 +49,17 @@
 
   </span>
   </div>
-  <div class="col-sm-6 col-6">
-    <span class="social-media"><%= social_share_button_tag(@recipe.title) %></span>
+  <div class="col-sm-4 col-6 d-flex align-items-center justify-content-end">
+    
+    <%= social_share_button_tag(@recipe.title) %>
 
     <% if user_signed_in? %>
-      <%= link_to recipe_favourite_path(@recipe),class: "#{@favourite_link} float-right",id: "fav", method: "PUT" do%>
-        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg",id: "fav-image", class: @favourite_link) %>
+      <%= link_to recipe_favourite_path(@recipe),class: "#{@favourite_link}",id: "fav", method: "PUT", title:"Save this recipe!" do%>
+        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg",id: "fav-image", class: @favourite_link, title: "Save this recipe!") %>
       <% end %>
     <% else %>
       <%= link_to new_user_session_path do%>
-        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite") %>
+        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite", title: "Save this recipe!") %>
       <% end %>
     <% end %>
   </div>
@@ -54,7 +68,9 @@
 <div>
 <!-- Recipe Description -->
 <div class="row description">
-  <p><%= @recipe.description %></p>
+  <div class="offset-sm-2 col-sm-8">
+    <p><%= @recipe.description %></p>
+  </div>
 </div>
 <!-- Cook Time -->
 <div class="row border text-center extra-info">
@@ -73,7 +89,7 @@
 </div>
 <!-- Ingredients + Instructions-->
 <div class="row build">
-  <div class="col-xs-6 col-sm-6">
+  <div class=" col-sm-6">
     <div class="recipe-ingredients">
     <h4>Ingredients:</h4>
     <ul>
@@ -118,15 +134,7 @@
   <p><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %>
   </p>
 
-<div class="row">
-  <div class="col-sm-12">
-    <% if  user_signed_in? && current_user == @recipe.user%>
-    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-    <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure to delete this recipe?' }  %> |
-  <% end %>
-    <%= link_to 'Back', recipes_path %>
-  </div>
-</div>
+
 <div class="row">
   <% if user_signed_in? %>
   <% if @review.errors.any? %>
@@ -141,9 +149,9 @@
     </div>
   <% end %>
 
-  <%= form_for([@recipe, @review]) do |f|%>
+  <%= form_for([@recipe, @review], :html=>{class: "offset-2 col"}) do |f|%>
     <div class="review-form">
-      <%= f.text_area :comment, class: "form-control" %><br>
+      <%= f.text_area :comment, class: "form-control", rows: 3 %><br>
       <%= f.submit class: "btn btn-success"%>
     </div>
   <% end %>
