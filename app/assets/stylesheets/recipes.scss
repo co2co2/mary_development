@@ -72,13 +72,26 @@ ol{
 .social-share-button{
 	display:inline;
 }
+
+
+h3{
+	padding-left:0px !important;
+}
+
+div > img, .img-fluid{
+	width:100%;
+	// @media(min-width: 992px)
+	// {
+	// 	max-width:750px;
+	// }
+}
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
   font-size:1rem;
 }
 .rating > span {
-  display: inline;
+  display: inline-block;
   position: relative;
   width: 1.1em;
 }
@@ -89,10 +102,11 @@ ol{
    color:#f2ee87;
 }
 
-h3{
-	padding-left:0px !important;
+.form-control{
+	border: 0px solid black;
+	border-bottom: 1px solid #96C53D;
+	border-top:1px solid #96C53D;
+	border-radius:0px;
+	resize: none;
 }
 
-div > img, .img-fluid{
-	width:100%;
-}

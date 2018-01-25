@@ -29,7 +29,7 @@
   <% if @recipe.image.url == "" || @recipe.image.url == nil %>
     <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w' %>
   <% else %>
-    <div class="col-12 col-sm-8 offset-sm-2 img-fluid">
+    <div class="col-12 offset-lg-2 col-lg-8 img-fluid">
       <%=image_tag @recipe.image, alt: @recipe.title %>
     </div>
   <% end %>
@@ -134,11 +134,7 @@
   <p><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %>
   </p>
 
-<div class="row">
-  <div class="col-sm-12">
-    <%= link_to 'Back', recipes_path %>
-  </div>
-</div>
+
 <div class="row">
   <% if user_signed_in? %>
   <% if @review.errors.any? %>
@@ -153,9 +149,9 @@
     </div>
   <% end %>
 
-  <%= form_for([@recipe, @review]) do |f|%>
+  <%= form_for([@recipe, @review], :html=>{class: "offset-2 col"}) do |f|%>
     <div class="review-form">
-      <%= f.text_area :comment, class: "form-control" %><br>
+      <%= f.text_area :comment, class: "form-control", rows: 3 %><br>
       <%= f.submit class: "btn btn-success"%>
     </div>
   <% end %>
