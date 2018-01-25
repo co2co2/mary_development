@@ -44,8 +44,7 @@ ol{
 	border-color: gainsboro;
 }
 .recipe-ingredients{
-	padding-top:10px;
-	padding-left:10px;
+	padding: 1em 1em;
 	border: 1px solid #e9ecef;
     border-radius: 25px;
 }
@@ -57,6 +56,7 @@ ol{
 	colour:white;
 }
 .description{
+	margin-top: 1%;
 	padding:0 10px;
 }
 .recommended-strain{
@@ -76,6 +76,7 @@ ol{
   unicode-bidi: bidi-override;
   direction: rtl;
   display:inline;
+  font-size:1rem;
 }
 .rating > span {
   display: inline-block;
