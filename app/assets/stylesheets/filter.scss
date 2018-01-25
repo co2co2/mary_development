@@ -1,19 +1,18 @@
 .addIngredient, .removeIngredient{
 	img{
-		width:50px;
-		heght:50px;
+		width: 45px;
+		height: 45px;
 	}
 
 }
 .ingredient{
-	margin:5px 0;
+	margin: 5px 0;
 }
-#ingredient_{
-	border-color:transparent;
+.ingredient_{
+  @extend .form-control, .col-10, .col-sm-10, .col-md-4, .d-inline;
 	transition: all 0.2s ease-in-out;
 	border-radius: 10px;
 	&:hover{
-
-		border-color:#45f442;
+		border-color: $green;
 	}
 }
