@@ -75,14 +75,12 @@ ol{
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
-  display:inline;
   font-size:1rem;
 }
 .rating > span {
-  display: inline-block;
+  display: inline;
   position: relative;
   width: 1.1em;
-  transition: all 1s ease-in-out;
 }
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {

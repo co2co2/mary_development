@@ -1,7 +1,7 @@
 <div class="row p-0 title d-flex">
   <h2 class="p-0 d-inline">
     <%= @recipe.title %>
-    <div class="rating">
+    <div class="rating ">
       <span>☆</span>
       <span>☆</span>
       <span>☆</span>
@@ -9,7 +9,8 @@
       <span>☆</span>
     </div>    
   </h2>
-  
+</div>
+<div class="row">
   <div class="mr-auto p-2 d-line">
     <%= @recipe.recipe_category.name %>
     <% @recipe.allergies.each do |allergy|%>
@@ -53,12 +54,12 @@
     <%= social_share_button_tag(@recipe.title) %>
 
     <% if user_signed_in? %>
-      <%= link_to recipe_favourite_path(@recipe),class: "#{@favourite_link}",id: "fav", method: "PUT" do%>
-        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg",id: "fav-image", class: @favourite_link) %>
+      <%= link_to recipe_favourite_path(@recipe),class: "#{@favourite_link}",id: "fav", method: "PUT", title:"Save this recipe!" do%>
+        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg",id: "fav-image", class: @favourite_link, title: "Save this recipe!") %>
       <% end %>
     <% else %>
       <%= link_to new_user_session_path do%>
-        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite") %>
+        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite", title: "Save this recipe!") %>
       <% end %>
     <% end %>
   </div>
@@ -67,7 +68,7 @@
 <div>
 <!-- Recipe Description -->
 <div class="row description">
-  <div class="offset-2">
+  <div class="offset-sm-2 col-sm-8">
     <p><%= @recipe.description %></p>
   </div>
 </div>
