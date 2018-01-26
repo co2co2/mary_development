@@ -2,62 +2,92 @@
 <!-- Our app -->
   <div class="">
     <h2>About Mary</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>
+    <h6>Cannabis could be healthy, tasty and trendy. </h6>
+    Edible Marijuana is Booming, no longer limited to pot brownies! They are in lots of delicious recipes nowadays.
+    </p>
+    <p>
+    <h6>Not sure what to cook?</h6>
+     Whether you are a medical marijuana patient who wants a more tasty home remedy, or a foodie who wants to treat yourself & friends, we makes the process of finding the right recipe for you quick and simple. Using Mary’s search tool to filter them according to your mood, the effects you want to have, or sort by ingredients in your fridge, and more!  You can save your favourite recipes for later, or share with your friends instantly. You can upload your own recipe to be rated and reviewed.
+   <br><br>
+    Mary’s cannabis information resource is crowdsourced from various cannabis APIs and does not constitute professional medical advice, which is something to bear in mind. Mary could search for dispensaries near you, but we don’t ensure it’s price and quality.</p>
   </div>
 
 <!-- Our Team -->
-  <div class="">
+  <div class="mt-5">
     <div class="row">
       <h1>Creators of Mary</h1>
     </div>
+    <!-- About each team player -->
     <div class="row">
-      <!-- About each team player -->
       <!-- coco -->
-      <div class="team-person col-md-3 col-sm-6 col-xs-12 inline-column">
+      <div class="team-person col-xs-12 col-md-6 col-lg-3 inline-column">
         <div class="team-person-image">
           <img src="http://thegem2.codexthemes.netdna-cdn.com/thegem/wp-content/uploads/2016/03/9-26-thegem-portfolio-justified-fullwidth-4x.jpg" alt="">
         </div>
         <div class="team-person-info">
           <h4>Coco Young</h4>
           <h5>Web Developer/Journalist</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
-          <a href="#">coco@gmail.com</a>
+          <p>Give her a topic, she can turn it into an engaging story! A coding Bootcamp or Le Cordon Bleu was once a tough choice for her, <i>Baking with Mary</i> has made up for the losses.</p>
+          <%= mail_to "coco8287@hotmail.com", "Contact Coco", subject: "About Mary" %>
+          <br><br>
+          <%= link_to("https://www.linkedin.com/in/coco-yeung-42a2295/", target: :_blank) do %>
+            <i class="ion-social-linkedin icon"></i>
+          <% end %>
+          <%= link_to (octicon "mark-github", height: "28px", :"aria-label" => "github", class: "icon"), "https://github.com/co2co2", target: :_blank %>
         </div>
       </div>
       <!-- Lena -->
-      <div class="team-person col-md-3 col-sm-6 col-xs-12 inline-column">
+      <div class="team-person col-xs-12 col-md-6 col-lg-3 inline-column">
         <div class="team-person-image">
           <img src="http://thegem2.codexthemes.netdna-cdn.com/thegem/wp-content/uploads/2016/03/3-41-thegem-portfolio-justified-fullwidth-4x.jpg" alt="">
         </div>
         <div class="team-person-info">
           <h4>Lena He</h4>
           <h5>Web Developer/Designer</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
-          <a href="#">lena@gmail.com</a>
+          <p>A graphic designer turned programmer. She loves front end, making responsive UIs, designing back end schema models. Lena’s finger print is all over the project. She’s Mary, she is crazy.</p>
+          <%= mail_to "qy.lena@gmail.com", "Contact Lena", subject: "About Mary" %>
+          <br><br>
+          <%= link_to("https://www.linkedin.com/in/lena-he-77781764/", target: :_blank) do %>
+            <i class="ion-social-linkedin icon"></i>
+          <% end %>
+          <%= link_to (octicon "mark-github", height: "28px", :"aria-label" => "github", class: "icon"), "https://github.com/leneehe", target: :_blank %>
+          <%= link_to octicon("briefcase", height: "28px", :"aria-label" => "Portfolio", class: "icon"), "http://www.lenahedesign.com", target: :_blank %>
         </div>
       </div>
       <!-- William Situ -->
-      <div class="team-person col-md-3 col-sm-6 col-xs-12 inline-column">
+      <div class="team-person col-xs-12 col-md-6 col-lg-3 inline-column">
         <div class="team-person-image">
           <img src="http://thegem2.codexthemes.netdna-cdn.com/thegem/wp-content/uploads/2016/03/15-8-thegem-portfolio-justified-fullwidth-4x.jpg" alt="">
         </div>
         <div class="team-person-info">
           <h4>William Situ</h4>
-          <h5>Web Developer/Electrician</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
-          <a href="#">william@gmail.com</a>
+          <h5>Web Developer/Technician</h5>
+          <p>William loves cooking as much as coding, he just want to building a mighty recipe app to deal with the everyday dilemmas ’what to cook today?’ Moved by his funky teammates, he decided to add some spice into his recipes.</p>
+          <%= mail_to "situ_william@yahoo.com", "Contact William", subject: "About Mary" %>
+          <br><br>
+          <%= link_to("https://www.linkedin.com/in/william-situ-1a466895/", target: :_blank) do %>
+            <i class="ion-social-linkedin icon"></i>
+          <% end %>
+          <%= link_to (octicon "mark-github", height: "28px", :"aria-label" => "github", class: "icon"), "https://github.com/Buraisx", target: :_blank %>
+          <%= link_to octicon("home", height: "28px", :"aria-label" => "Website", class: "icon"), "http://www.williamsitu.ca", target: :_blank %>
         </div>
       </div>
       <!-- Tyler Teng -->
-      <div class="team-person col-md-3 col-sm-6 col-xs-12 inline-column">
+      <div class="team-person col-xs-12 col-md-6 col-lg-3 inline-column">
         <div class="team-person-image">
           <img src="http://thegem2.codexthemes.netdna-cdn.com/thegem/wp-content/uploads/2016/03/7-34-thegem-portfolio-justified-fullwidth-4x.jpg" alt="">
         </div>
         <div class="team-person-info">
           <h4>Tyler Teng</h4>
           <h5>Web Developer/Designer</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
-          <a href="#">tyler@gmail.com</a>
+          <p>A talented young programmer from New York, currently in Boston judging and mentoring for a hackathon event… with Mary Jane.</p>
+          <%= mail_to "teng.ty4@gmail.com", "Contact Tyler", subject: "About Mary" %>
+          <br><br>
+          <%= link_to("http://linkedin.com/in/tyler-teng-9a5b54152", target: :_blank) do %>
+            <i class="ion-social-linkedin icon"></i>
+          <% end %>
+          <%= link_to (octicon "mark-github", height: "28px", :"aria-label" => "github", class: "icon"), "https://github.com/tylteng", target: :_blank %>
         </div>
       </div>
 
