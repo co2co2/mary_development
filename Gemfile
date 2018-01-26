@@ -44,6 +44,8 @@ gem 'mini_magick'
 gem 'local_time'
 gem 'social-share-button'
 gem 'rails_12factor', group: :production
+# This rails helper let's you easily include svg octicons in your rails apps.
+gem 'octicons_helper'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
