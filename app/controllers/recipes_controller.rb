@@ -12,17 +12,23 @@ class RecipesController < ApplicationController
   end
 
   def search_results
+    # Search bar
     if params[:search]
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
+      # ingredient filter
     elsif params[:ingredient]
       # if ingredient params length 2, length will be two
       @ingredient_set = Array.new(params[:ingredient].length)
-      # length is equal to all the queries found by ingredient_id
       @ingredients = []
+
       params[:ingredient].each_with_index do |ingredient,i|
         if !ingredient.empty?
 
           ingredient_id = Ingredient.where("lower(name) LIKE ?","%#{ingredient.singularize.downcase}%")
+          # Query for egg
+          # query for egg yolk
+          # Query for eggs
+          # youd get 3 ingredients
           if !ingredient_id.empty?
             @ingredients = []
             ingredient_id.each_with_index do |ingredient,j|
@@ -30,11 +36,19 @@ class RecipesController < ApplicationController
             end #loop for ingredient LIKE query
           end #checked for nil object
             @ingredient_set[i] = @ingredients
+             #@ingredients[0][0]
+               #@ingredients[0][1]
+                #@ingredients[0][2]
+                 #@ingredients[1][0]
+               #@ingredients[1][1]
+                #@ingredients[1][2]
         end#checked empty params
       end #looped ingredient params
       # test
       # ingredient_set[0-1]
       # ingredient[0-5]
+      
+      # checkbox
       if params[:specify]
         @recipes = Recipe.filter_specific(@ingredient_set)
       else
@@ -61,18 +75,12 @@ class RecipesController < ApplicationController
     # redirect_back(fallback_location: 'recipes#show')
   end
 
-  # GET /recipes
-  # GET /recipes.json
+
   def index
-    if params[:search]
-      @recipes = Recipe.search(params[:search]).order("created_at DESC")
-    else
-      @recipes = Recipe.all.order("created_at DESC")
-    end
+    # @recipes = Recipe.all.order("created_at DESC")
   end
 
   # GET /recipes/1
-  # GET /recipes/1.json
   def show
     @reviews = @recipe.reviews
     @review = Review.new
@@ -109,18 +117,18 @@ class RecipesController < ApplicationController
 
     @recipe = current_user.recipes.build(recipe_params)
 
-  # if params[:recipe][:measurements_attributes]
-  #   # try to save ingredient unique, check if name exists in db
-  #  params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
-  #     ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
-  #     if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-  #
-  #       ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-  #         @recipe.measurements[i].ingredient = ingredient
-  #
-  #     end
-  #   end
-  # end
+  if params[:recipe][:measurements_attributes]
+    # try to save ingredient unique, check if name exists in db
+   params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
+      ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
+      if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
+  
+        ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
+          @recipe.measurements[i].ingredient = ingredient
+  
+      end
+    end
+  end
 
    params[:recipe][:allergy].each do |key,value|
      if value["name"] == "1"

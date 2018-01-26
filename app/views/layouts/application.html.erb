@@ -23,8 +23,9 @@
     <header>
         <div class="container">
             <div class="row">
-
+              <!-- Nav start -->
               <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+                <!-- LOGO -->
                 <a href="/" class="navbar-brand  mb-0" id="logo">
                   <%= image_tag "mary-j-logo.png", alt: "Mary Bakes", height:"92px", class: "d-inline-block align-top rounded mr-1 align-middle d-sm-none d-md-block" %>
                   <%= image_tag "apple_touch_icon.png", alt: "Mary Bakes", height:"82px", class: "d-inline-block align-top rounded mr-1 align-middle d-none d-sm-block d-md-none" %>
@@ -129,6 +130,7 @@
         </button>
       </nav>
     </header>
+    <!-- End of navbar -->
 
     <div class="notice w-100"><%= notice %></div>
     <div class="alert w-100"><%= alert %></div>
@@ -136,6 +138,7 @@
       <%= yield %>
     </main>
 
+<!-- footer area -->
     <footer class="pt-5 pb-3 position-absolute w-100">
       <div class="container">
       <div class="row pb-4">

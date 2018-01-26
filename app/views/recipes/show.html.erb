@@ -1,3 +1,6 @@
+<!-- Title section -->
+      <span><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %>
+  </span>
 <div class="row p-0 title d-flex">
   <h2 class="p-0 d-inline">
     <%= @recipe.title %>
@@ -10,13 +13,16 @@
     </div>    
   </h2>
 </div>
+
+<!-- Allergy/categories  -->
 <div class="row">
-  <div class="mr-auto p-2 d-line">
-    <%= @recipe.recipe_category.name %>
+  <div class="mr-auto p-2 d-inline">
+    <h6><%= @recipe.recipe_category.name %></h6>
     <% @recipe.allergies.each do |allergy|%>
       | <%= allergy.name %>
     <% end %>
   </div>
+
   <div class="p-2 d-inline">
     <% if  user_signed_in? && current_user == @recipe.user%>
     <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
@@ -24,32 +30,39 @@
   <% end %>
   </div>
 </div>
+
 <!-- Recipe Image -->
 <div class="row">
+  <!-- Image placeholder for no image -->
   <% if @recipe.image.url == "" || @recipe.image.url == nil %>
     <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w' %>
   <% else %>
+    <!-- Existing image  -->
     <div class="col-12 offset-lg-2 col-lg-8 img-fluid">
       <%=image_tag @recipe.image, alt: @recipe.title %>
     </div>
   <% end %>
 </div>
+
 <!-- Author -->
 <div class="row">
-  <div class="col-6 col-sm-4 offset-sm-2 author">
+  <div class="col-6 offset-lg-2 col-lg-4 author">
     <span>By:
     <% if @recipe.user %>
       <% if @recipe.user.avatar? %>
+
         <%= link_to (image_tag @recipe.user.avatar.thumb.url), user_path(@recipe.user) %>
       <% end %>
         <%= link_to @recipe.user.username, user_path(@recipe.user) %>
+
     <% else %>
       This Creator got Baked!!!!
     <% end %>
 
   </span>
   </div>
-  <div class="col-sm-4 col-6 d-flex align-items-center justify-content-end">
+  <!-- Set flexbox for socialmedia and favourites -->
+  <div class="col-6 col-lg-4 d-flex align-items-center justify-content-end">
     
     <%= social_share_button_tag(@recipe.title) %>
 
@@ -62,13 +75,14 @@
         <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite", title: "Save this recipe!") %>
       <% end %>
     <% end %>
+
   </div>
 </div>
 
 <div>
 <!-- Recipe Description -->
 <div class="row description">
-  <div class="offset-sm-2 col-sm-8">
+  <div class="offset-lg-2 col-lg-8">
     <p><%= @recipe.description %></p>
   </div>
 </div>
@@ -119,22 +133,21 @@
     <%= button_to 'Find a Dispensary near you!', search_dispensaries_path, method: "get", class: "btn btn-outline-success find-dispensaries" %>
   </div>
 </div>
+
 <!-- Video -->
-<div class="row">
-  <div class="col-sm-12">
-  <% if @recipe.video? %>
+ <% if @recipe.video? %>
+<div class="row video">
+  <div class="col-12 col-lg-8 offset-lg-2 ">
+ 
     <div class="embed-responsive embed-responsive-16by9">
       <iframe class="embed-responsive-item" src="<%= @recipe.video %>" allowfullscreen></iframe>
     </div>
-  <% end %>
+
   </div>
 </div>
 </div>
-
-  <p><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %>
-  </p>
-
-
+<% end %>
+<!-- Reviews -->
 <div class="row">
   <% if user_signed_in? %>
   <% if @review.errors.any? %>
@@ -148,8 +161,8 @@
       </ul>
     </div>
   <% end %>
-
-  <%= form_for([@recipe, @review], :html=>{class: "offset-2 col"}) do |f|%>
+  <h3>Reviews</h3>
+  <%= form_for([@recipe, @review], :html=>{class: "offset-lg-2 col-lg-8"}) do |f|%>
     <div class="review-form">
       <%= f.text_area :comment, class: "form-control", rows: 3 %><br>
       <%= f.submit class: "btn btn-success"%>
@@ -159,14 +172,10 @@
 </div>
 
 
-
-
-
-
 <% if @reviews %>
   <% @reviews.each do |review|%>
   <% if @recipe.user %>
-    <p><%= review.user.username %></p>
+    <p class="mt-5"><%= link_to (image_tag @recipe.user.avatar.thumb.url), user_path(@recipe.user) %> <%= review.user.username %></p>
     <% else %>
      This Reviewer got Baked!!!!
     <% end %>

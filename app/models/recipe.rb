@@ -51,10 +51,10 @@ class Recipe < ApplicationRecord
     # return recipes_list[0].flatten & recipes_list[1].flatten
     return recipes_list.map {|x| x.flatten}.reduce {|common,current| common & current}
     # Recipes_list
-    # [x][x]
-    # [y][y]
+    # [x] [x]
+    # [y] [y]
     # [z]
-    # result = [x][y]
+    # result = [x]   [y]
     #
     # what i want =
     # eggs   tomato

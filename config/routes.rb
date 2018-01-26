@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :strains, only: [:show, :index]
   resources :recipes do
   	resources :reviews, except: [:index, :new, :show]
+    # change to patch later
   	put :favourite
   end
   get '/404', to: 'application#not_found'

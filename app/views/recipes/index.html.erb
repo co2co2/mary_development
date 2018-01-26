@@ -1,15 +1,21 @@
 <div class="pt-3">
-<% if user_signed_in? %><h5 class="mt-5 pt-5 d-inline"> Welcome </h5><h6 class="d-inline"><%= link_to current_user.username,   user_path(current_user), class:"userwelcome" %></h6><h5 class="mt-5 pt-5 d-inline">, What would you like to cook today? </h5><% end %>
+	<% if user_signed_in? %>
+		<h5 class="mt-5 pt-5 d-inline"> Welcome </h5>
+		<h6 class="d-inline"><%= link_to current_user.username,   user_path(current_user), class:"userwelcome" %></h6>
+		<h5 class="mt-5 pt-5 d-inline">, What would you like to cook today? </h5>
+	<% end %>
 </div>
 
 <h2>Our Star Recipes!</h2>
 
 <div class="carousel slide" data-ride="carousel" id="starRecipes">
+	<!-- Symbols at the bottom of the carousel -->
 	<ol class="carousel-indicators">
 		<% Recipe.most_favourite.length.times do |i|%>
 			<li data-target="#starRecipes" data-slide-to="<%=i%>" class="<%= i==0 ? 'active' : ''%>"></li>
 	    <% end %>
  	</ol>
+ 	<!-- Carousel image slides -->
 	<div class="carousel-inner">
 	  	<% Recipe.most_favourite.each_with_index do |recipe,i|  %>
 
@@ -22,12 +28,15 @@
 		        	</div>
 		        	<div class="overlay"></div>
 	    		</div>
+
 	  	<% end %>
 	</div>
+	<!-- carousel controls -->
 	<a class="carousel-control-prev" href="#starRecipes" role="button" data-slide="prev">
 	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 	    <span class="sr-only">Previous</span>
   	</a>
+  	
  	<a class="carousel-control-next" href="#starRecipes" role="button" data-slide="next">
 	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 	    <span class="sr-only">Next</span>

@@ -27,7 +27,7 @@ end
 # Use HTTParty to get save strains
 res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
 body = JSON.parse(res.body)
-
+# Get strains picture
 response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655a6cda57d9606038d31d653fbacb020&count=50&page=2")
 resbody = JSON.parse(response.body)
 
