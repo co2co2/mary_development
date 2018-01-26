@@ -16,14 +16,14 @@
 
 <!-- Allergy/categories  -->
 <div class="row">
-  <div class="mr-auto p-2 d-inline">
+  <div class="p-2 d-inline offset-lg-2 col-lg-7 col-sm-11">
     <h6><%= @recipe.recipe_category.name %></h6>
     <% @recipe.allergies.each do |allergy|%>
       | <%= allergy.name %>
     <% end %>
   </div>
 
-  <div class="p-2 d-inline">
+  <div class="p-2 d-flex justify-content-end align-items-end col-lg-1 col-12 col-sm-1">
     <% if  user_signed_in? && current_user == @recipe.user%>
     <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
     <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure to delete this recipe?' }  %>
@@ -161,8 +161,9 @@
       </ul>
     </div>
   <% end %>
-  <h3>Reviews</h3>
+  <!-- <h3>Reviews</h3> -->
   <%= form_for([@recipe, @review], :html=>{class: "offset-lg-2 col-lg-8"}) do |f|%>
+  <h3>Reviews</h3> 
     <div class="review-form">
       <%= f.text_area :comment, class: "form-control", rows: 3 %><br>
       <%= f.submit class: "btn btn-success"%>
