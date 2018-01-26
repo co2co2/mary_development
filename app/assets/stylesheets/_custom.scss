@@ -281,3 +281,50 @@ ul.ui-autocomplete {
   max-width: 50px;
   height: auto;
 }
+
+// Static page styles
+// About the team image zoom on hover
+
+.team-person-image {
+  position: relative;
+  margin: 2%;
+  overflow: hidden;
+}
+.team-person-image img {
+  max-width: 100%;
+
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.team-person-image:hover img {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.team-person-info{
+  a, a:hover {
+    text-decoration: none;
+  }
+}
+
+@import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+// icons
+i.icon{
+  font-size: 32px;
+  color: $dark-green;
+  a:hover & {
+    color: $light-green;
+  }
+}
+
+.icon {
+  transition: .5s;
+  fill: $dark-green;
+  @extend .mr-1;
+
+  a:hover & {
+  fill: $light-green;
+  }
+}

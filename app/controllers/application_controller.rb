@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
   # rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
-
 	def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [[:username],[:avatar],[:bio]])
     devise_parameter_sanitizer.permit(:account_update, keys: [[:username],[:avatar],[:bio]])
@@ -13,4 +12,5 @@ class ApplicationController < ActionController::Base
   #   render html: "<strong>Sorry, we don't have that strain.</strong>".html_safe, status: 404
   # end
    config.time_zone = Time.now.in_time_zone("Eastern Time (US & Canada)")
+
 end
