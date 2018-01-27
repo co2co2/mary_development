@@ -25,6 +25,7 @@ $(document).on('turbolinks:load', function() {
   })
 
   //favourite ajax call
+
   $('#fav').on('click',function(e){
     e.preventDefault();
     e.stopPropagation();
@@ -38,6 +39,8 @@ $(document).on('turbolinks:load', function() {
         $('#fav').removeClass('favourite')
         $('#fav-image').addClass('unfavourite')
         $('#fav-image').removeClass('favourite')
+        var num = parseInt($('#favouritesValue').text()) + 1;
+        $('#favouritesValue').text(num);
       });
     }else{
       $.ajax({
@@ -49,9 +52,25 @@ $(document).on('turbolinks:load', function() {
         $('#fav').removeClass('unfavourite')
         $('#fav-image').addClass('favourite')
         $('#fav-image').removeClass('unfavourite')
+        var num = parseInt($('#favouritesValue').text()) - 1;
+        $('#favouritesValue').text(num);
       });
     }
   });
+  var ratingLength = document.querySelectorAll('.rating > span').length;
+  $('.rating > span').click(function(e){
+    path = window.location.pathname
+    recipeId = path.substr(path.lastIndexOf('/')+1)
+    $.ajax({
+      url: `/recipes/${recipeId}/rate`,
+      method: 'PUT',
+      data: `rating=${ratingLength - $(this).index()}`
+    }).done(function(){
+      console.log(this)
+    }).fail(function(){
+      console.log(`/recipes/${recipeId}/rate`)
+    })
+  })
 
   //autocomplete for strains
   $('#recipe_strain_name').focusout(function(){
