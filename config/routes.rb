@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :recipes do
   	resources :reviews, except: [:index, :new, :show]
     # change to patch later
+    put '/rate', to: 'recipes#rate'
   	put :favourite
   end
   # get '/404', to: 'application#not_found'
