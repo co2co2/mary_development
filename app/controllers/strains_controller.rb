@@ -31,7 +31,7 @@ class StrainsController < ApplicationController
       flash[:alert] = 'Please try again!'
       redirect_to search_dispensaries_url
     else
-    search_string = @location.split(' ').join('+')
+    # search_string = @location.split(' ').join('+')
 
     res = HTTParty.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=weed+dispensaries&location=#{Geocoder.coordinates(@location).join(',')}&key=AIzaSyBt-nsAkbJPsjhTlA2IyNzXSKaHFeCvbQU")
 
