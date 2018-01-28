@@ -153,23 +153,26 @@
 <!-- Reviews Section -->
 <div class="row">
   <% if user_signed_in? %>
-    <% if @review.errors.any? %>
-      <div id="error_explanation" class="offset-lg-2 col-lg-8">
-        <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+    <div class="offset-lg-2 col-lg-8">
+      <h1>Reviews</h1>
+      <% if @review.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
-        <ul>
-        <% @review.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+          <ul>
+          <% @review.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
     <!-- Write a review form -->
     <%= form_for([@recipe, @review], :html=>{class: "offset-lg-2 col-lg-8"}) do |f|%>
       <div class="review-form">
         <%= f.label :comment, "Write a review" %><br>
         <%= f.text_area :comment, class: "form-control", rows: 3 %><br>
-        <%= f.submit class: "btn btn-success" %>
+        <%= f.submit data: {disable_with: false}, class: "btn btn-success" %>
       </div>
     <% end %>
   <% end %>
@@ -177,12 +180,11 @@
 
 <div class="row">
   <!-- Existing user reviews -->
-  <% if @reviews.count > 0 %>
-    <div class="mt-5 offset-lg-2 col-lg-8" id="user-reviews">
-      <h1>Reviews</h1>
+  <div class="mt-5 offset-lg-2 col-lg-8">
+    <div id="user-reviews">
       <% @reviews.each do |review|%>
-        <%= render partial: '/recipes/review', locals: {review: review} %>
+      <%= render partial: '/recipes/review', locals: {review: review} %>
       <% end %>
     </div>
-  <% end %>
+  </div>
 </div>

@@ -20,26 +20,14 @@ class ReviewsController < ApplicationController
     @review.recipe = @recipe
     @review.user_id = current_user.id
 
-    if @review.save
-
-      respond_to do |format|
-        format.html do
-          redirect_to @review.recipe
-        end
-
-        format.json { render json: @review }
+    respond_to do |format|
+      if @review.save
+        format.html { render partial: '/recipes/review', locals: {review: @review} }
+      else
+        redirect_to recipe_url(@recipe)
       end
-
-    else
-      if user_signed_in?
-        if Favourite.exists?(user_id: current_user.id, recipe_id: params[:recipe_id])
-          @favourite_link = "unfavourite"
-        else
-          @favourite_link = "favourite"
-        end
-      end
-      render '/recipes/show'
     end
+
 
 	end
 
@@ -48,10 +36,14 @@ class ReviewsController < ApplicationController
 	end
 
 	def destroy
+    @recipe = Recipe.find(params[:recipe_id])
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_back(fallback_location: 'recipes#show')
-
+    # redirect_back(fallback_location: 'recipes#show')
+    respond_to do |format|
+      format.html { redirect_to recipe_url(@recipe), notice: 'Review deleted.'  }
+      # format.js
+    end
 	end
 
   def review_params
