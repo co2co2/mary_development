@@ -60,13 +60,15 @@ class RecipesController < ApplicationController
   end
 
   def rate
-    @user_rating = params[:rating]
-    @review_rating = Review.find_by(user_id: current_user.id, recipe_id: params[recipe_id])
-    @review_rating.rating = user_rating
-    if @review_rating.save
-      puts "we gucci"
+   
+    @recipe_rating = Rating.find_by(user_id: current_user.id, recipe_id: params[:recipe_id])
+    puts params[:rating]
+    if @recipe_rating != nil
+      puts 'not nill'
+      Rating.update(@recipe_rating.id ,rating: params[:rating])
     else
-      puts "shit"
+      @recipe_rating = current_user.ratings.build(recipe_id: params[:recipe_id], rating: params[:rating])
+      @recipe_rating.save
     end
   end
 
@@ -79,7 +81,6 @@ class RecipesController < ApplicationController
       @favourite = Favourite.where(user_id: current_user.id, recipe_id: params[:recipe_id])
       current_user.favourites.destroy(@favourite)
     end
-    # redirect_back(fallback_location: 'recipes#show')
   end
 
 

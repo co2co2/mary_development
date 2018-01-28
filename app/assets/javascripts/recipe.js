@@ -59,16 +59,17 @@ $(document).on('turbolinks:load', function() {
   });
   var ratingLength = document.querySelectorAll('.rating > span').length;
   $('.rating > span').click(function(e){
+    $('.rating > span').removeClass();
     path = window.location.pathname
     recipeId = path.substr(path.lastIndexOf('/')+1)
     $.ajax({
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       url: `/recipes/${recipeId}/rate`,
       method: 'PUT',
-      data: `rating=${ratingLength - $(this).index()}`
+      data: `rating=${ratingLength - $(this).index()}`,
+      custom: $(this)
     }).done(function(){
-      console.log(this)
-    }).fail(function(){
-      console.log(`/recipes/${recipeId}/rate`)
+      this.custom.addClass("rated")
     })
   })
 
