@@ -1,6 +1,5 @@
 <!-- Title section -->
-      <span><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %>
-  </span>
+<small><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %></small>
 <div class="row p-0 title d-flex">
   <h2 class="p-0 d-inline">
     <%= @recipe.title %>
@@ -10,7 +9,7 @@
       <span>☆</span>
       <span>☆</span>
       <span>☆</span>
-    </div>    
+    </div>
   </h2>
 </div>
 
@@ -25,7 +24,7 @@
 
   <div class="p-2 d-flex justify-content-end align-items-end col-lg-1 col-12 col-sm-1">
     <% if  user_signed_in? && current_user == @recipe.user%>
-    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %>&nbsp;|&nbsp;
     <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure to delete this recipe?' }  %>
   <% end %>
   </div>
@@ -63,7 +62,7 @@
   </div>
   <!-- Set flexbox for socialmedia and favourites -->
   <div class="col-6 col-lg-4 d-flex align-items-center justify-content-end">
-    
+
     <%= social_share_button_tag(@recipe.title) %>
 
     <% if user_signed_in? %>
@@ -138,7 +137,7 @@
  <% if @recipe.video? %>
 <div class="row video">
   <div class="col-12 col-lg-8 offset-lg-2 ">
- 
+
     <div class="embed-responsive embed-responsive-16by9">
       <iframe class="embed-responsive-item" src="<%= @recipe.video %>" allowfullscreen></iframe>
     </div>
@@ -163,7 +162,7 @@
   <% end %>
   <!-- <h3>Reviews</h3> -->
   <%= form_for([@recipe, @review], :html=>{class: "offset-lg-2 col-lg-8"}) do |f|%>
-  <h3>Reviews</h3> 
+  <h3>Reviews</h3>
     <div class="review-form">
       <%= f.text_area :comment, class: "form-control", rows: 3 %><br>
       <%= f.submit class: "btn btn-success"%>
@@ -181,7 +180,7 @@
      This Reviewer got Baked!!!!
     <% end %>
     <p><%= review.comment %></p>
-    <p><%= local_time(review.updated_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %></p>
+    <p><small><%= local_time(review.updated_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %></small></p>
     <%= link_to "Delete", recipe_review_path(@recipe, review), method: :delete %>
   <% end %>
 <% end %>
