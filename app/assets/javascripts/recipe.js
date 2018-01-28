@@ -42,28 +42,11 @@ $(document).on('turbolinks:load', function() {
       $('#review_comment').val('');
 
     }).fail(function() {
-      console.log('failed to add review')
+      alert('Review is too short!');
     })
 
   })
 
-  //delete review ajax call
-  // $('.delete').parent().on('submit', function(e) {
-  //     e.preventDefault();
-  //
-  //     $.ajax({
-  //       url: $(this).attr('action'),
-  //       method: 'DELETE',
-  //       data: $(this).serialize()
-  //     }).done(function(data){
-  //       $(this).parent().remove();
-  //       console.log('ok to remove')
-  //     }).fail(function() {
-  //       console.log('failed to delete review')
-  //     })
-  //
-  //   }
-  // );
 
   //favourite ajax call
 
@@ -267,4 +250,23 @@ function hideConcentrateLink() {
 
 function addConcentrateLink() {
   addConcentrate.style.display = 'inline';
+}
+
+function deleteReview() {
+
+  //delete review ajax call
+  $('.delete').parent().on('submit', function(e) {
+      e.preventDefault();
+
+      $.ajax({
+        url: $(this).attr('action'),
+        type: 'DELETE',
+        data: $(this).serialize(),
+      }).done(function(data){
+        $('.delete').closest('div').slideUp();
+        console.log('ok to remove')
+      }).fail(function() {
+        console.log('failed to delete review')
+      })
+  });
 }
