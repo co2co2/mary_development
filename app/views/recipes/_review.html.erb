@@ -1,0 +1,14 @@
+<div class="review mt-1 mb-2">
+  <% if review.user %>
+    <p class="poster"><%= link_to (image_tag review.user.avatar.thumb.url), user_path(review.user) %> <%= link_to review.user.username, user_path(review.user) %></p>
+  <% else %>
+     This Reviewer got Baked!!!
+  <% end %>
+
+  <p><%= review.comment %></p>
+  <p><small><%= local_time(review.updated_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %></small></p>
+
+  <% if user_signed_in? && current_user == review.user %>
+    <%= link_to "Delete", recipe_review_path(@recipe, review), method: :delete %>
+  <% end %>
+</div>
