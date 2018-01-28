@@ -1,4 +1,17 @@
 class ReviewsController < ApplicationController
+
+  def favourite
+    type = params[:type]
+    if type == "favourite"
+      @favourite = current_user.favourites.build(recipe_id: params[:recipe_id])
+      @favourite.save
+    else type == "unfavourite"
+      @favourite = Favourite.where(user_id: current_user.id, recipe_id: params[:recipe_id])
+      current_user.favourites.destroy(@favourite)
+    end
+    # redirect_back(fallback_location: 'recipes#show')
+  end
+
 	def create
     @recipe = Recipe.find(params[:recipe_id])
     @reviews = @recipe.reviews.order(created_at: :desc)
@@ -13,13 +26,13 @@ class ReviewsController < ApplicationController
         format.html do
           redirect_to @review.recipe
         end
-        
+
         format.json { render json: @review }
       end
 
     else
       if user_signed_in?
-        if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
+        if Favourite.exists?(user_id: current_user.id, recipe_id: params[:recipe_id])
           @favourite_link = "unfavourite"
         else
           @favourite_link = "favourite"
