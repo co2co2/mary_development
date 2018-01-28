@@ -89,10 +89,12 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1
   def show
+    #show reviews from newest to oldest
     @reviews = @recipe.reviews.order(created_at: :desc)
     @review = Review.new
     @recipe.views += 1
     @recipe.save
+
     if user_signed_in?
       if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
         @favourite_link = "unfavourite"
