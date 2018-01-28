@@ -101,15 +101,21 @@ div > img{
    color:#f2ee87;
 }
 
+.rated:before, .rated ~ span:before{
+	content: "\2605";
+   position: absolute;
+   color:#f2ee87;
+}
 .video{
 	margin-bottom: 2em;
 }
 
-// .form-control{
-// 	border: 0px solid black;
-// 	border-bottom: 1px solid #96C53D;
-// 	border-top:1px solid #96C53D;
-// 	border-radius:0px;
-// 	resize: none;
-// }
-
+.reviews{
+	border: 1px solid #96C53D;
+	padding: 1em 1em;
+	border-radius:1em;
+}
+.poster{
+	padding-bottom:1em;
+	border-bottom: 1px solid #96C53D;
+}

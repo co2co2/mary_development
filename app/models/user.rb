@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :reviews
   has_many :favourites
+  has_many :ratings
   validates :username, :email, presence: true
   validates :username, length: { in: 3..20 }
   validates :username, uniqueness: true
