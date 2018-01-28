@@ -89,7 +89,7 @@
 <div class="row border text-center extra-info">
   <div class="col-4 col-sm-4 ">
     <h5>Favourited</h5>
-    <p><%= @recipe.favourites.count%></p>
+    <p id="favouritesValue"><%= @recipe.favourites.count%></p>
   </div>
   <div class="col-4 col-sm-4 ">
     <h5>Views</h5>
@@ -171,16 +171,19 @@
 <% end %>
 </div>
 
-
+<div class="mt-5">
 <% if @reviews %>
   <% @reviews.each do |review|%>
   <% if @recipe.user %>
-    <p class="mt-5"><%= link_to (image_tag @recipe.user.avatar.thumb.url), user_path(@recipe.user) %> <%= review.user.username %></p>
+  <div class="reviews mt-1">
+    <p class="poster"><%= link_to (image_tag @recipe.user.avatar.thumb.url), user_path(@recipe.user) %> <%= review.user.username %></p>
     <% else %>
      This Reviewer got Baked!!!!
     <% end %>
     <p><%= review.comment %></p>
     <p><small><%= local_time(review.updated_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %></small></p>
     <%= link_to "Delete", recipe_review_path(@recipe, review), method: :delete %>
+    </div>
   <% end %>
 <% end %>
+</div>

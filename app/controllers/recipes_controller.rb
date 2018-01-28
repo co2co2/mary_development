@@ -59,8 +59,15 @@ class RecipesController < ApplicationController
     end
   end
 
-  def filter
-
+  def rate
+    @user_rating = params[:rating]
+    @review_rating = Review.find_by(user_id: current_user.id, recipe_id: params[recipe_id])
+    @review_rating.rating = user_rating
+    if @review_rating.save
+      puts "we gucci"
+    else
+      puts "shit"
+    end
   end
 
   def favourite
@@ -70,7 +77,7 @@ class RecipesController < ApplicationController
       @favourite.save
     else type == "unfavourite"
       @favourite = Favourite.where(user_id: current_user.id, recipe_id: params[:recipe_id])
-      current_user.favourites.delete(@favourite)
+      current_user.favourites.destroy(@favourite)
     end
     # redirect_back(fallback_location: 'recipes#show')
   end
