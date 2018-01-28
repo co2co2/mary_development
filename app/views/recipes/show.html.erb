@@ -1,5 +1,4 @@
 <!-- Title section -->
-<small><%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %></small>
 <div class="row p-0 title d-flex">
   <h2 class="p-0 d-inline">
     <%= @recipe.title %>
@@ -15,14 +14,18 @@
 
 <!-- Allergy/categories  -->
 <div class="row">
-  <div class="p-2 d-inline offset-lg-2 col-lg-7 col-sm-11">
+  <div class="p-md-0 d-inline offset-lg-2 col-lg-7 col-sm-11">
     <h6><%= @recipe.recipe_category.name %></h6>
     <% @recipe.allergies.each do |allergy|%>
-      | <%= allergy.name %>
+      <% if allergy == @recipe.allergies.first %>
+        <%= allergy.name %>
+      <% else %>
+        | <%= allergy.name %>
+      <% end %>
     <% end %>
   </div>
 
-  <div class="p-2 d-flex justify-content-end align-items-end col-lg-1 col-12 col-sm-1">
+  <div class="p-md-0 d-flex justify-content-end align-items-end col-lg-1 col-12 col-sm-1">
     <% if  user_signed_in? && current_user == @recipe.user%>
     <%= link_to 'Edit', edit_recipe_path(@recipe) %>&nbsp;|&nbsp;
     <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure to delete this recipe?' }  %>
@@ -37,7 +40,7 @@
     <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w' %>
   <% else %>
     <!-- Existing image  -->
-    <div class="col-12 offset-lg-2 col-lg-8 img-fluid">
+    <div class="col-12 offset-lg-2 col-lg-8 img-fluid px-0">
       <%=image_tag @recipe.image, alt: @recipe.title %>
     </div>
   <% end %>
@@ -45,23 +48,21 @@
 
 <!-- Author -->
 <div class="row">
-  <div class="col-6 offset-lg-2 col-lg-4 author">
-    <span>By:
+  <div class="col-6 offset-lg-2 col-lg-4 author px-md-0">
+    <span>
     <% if @recipe.user %>
       <% if @recipe.user.avatar? %>
-
         <%= link_to (image_tag @recipe.user.avatar.thumb.url), user_path(@recipe.user) %>
       <% end %>
-        <%= link_to @recipe.user.username, user_path(@recipe.user) %>
+      Made By: <%= link_to @recipe.user.username, user_path(@recipe.user) %>
 
     <% else %>
       This Creator got Baked!!!!
     <% end %>
-
-  </span>
+    </span>
   </div>
   <!-- Set flexbox for socialmedia and favourites -->
-  <div class="col-6 col-lg-4 d-flex align-items-center justify-content-end">
+  <div class="col-6 col-lg-4 d-flex align-items-center justify-content-end px-md-0">
 
     <%= social_share_button_tag(@recipe.title) %>
 
@@ -80,10 +81,11 @@
 
 <div>
 <!-- Recipe Description -->
-<div class="row description">
-  <div class="offset-lg-2 col-lg-8">
+<div class="row description offset-lg-2 col-lg-8 py-4 px-md-0">
+  <div>
     <p><%= @recipe.description %></p>
   </div>
+  <div class="col-12 px-0 py-3 text-right"><small class="align-self-end">Since <%= local_time(@recipe.created_at, format: '%B %e, %Y %l:%M %P') %></small></div>
 </div>
 <!-- Cook Time -->
 <div class="row border text-center extra-info">
@@ -124,7 +126,7 @@
 
 <!-- Recommended Strain -->
 <div class="row text-center recommended-strain">
-  <div class="col-sm-12">
+  <div class="col-sm-12 mb-3">
     <p>Recommended Strain:</p>
     <h4><%= link_to @recipe.strain.name, strain_path(@recipe.strain_id) %></h4>
   </div>
@@ -134,9 +136,10 @@
 </div>
 
 <!-- Video -->
- <% if @recipe.video? %>
+<% if @recipe.video? %>
 <div class="row video">
   <div class="col-12 col-lg-8 offset-lg-2 ">
+    <h4>Watch how to make <%= @recipe.title %></h4>
 
     <div class="embed-responsive embed-responsive-16by9">
       <iframe class="embed-responsive-item" src="<%= @recipe.video %>" allowfullscreen></iframe>
@@ -162,8 +165,8 @@
   <% end %>
   <!-- <h3>Reviews</h3> -->
   <%= form_for([@recipe, @review], :html=>{class: "offset-lg-2 col-lg-8"}) do |f|%>
-  <h3>Reviews</h3>
     <div class="review-form">
+      <%= f.label :comment, "Write a review" %><br>
       <%= f.text_area :comment, class: "form-control", rows: 3 %><br>
       <%= f.submit class: "btn btn-success"%>
     </div>
@@ -171,18 +174,21 @@
 <% end %>
 </div>
 
-<div class="mt-5">
+<div class="mt-5 offset-lg-2 col-lg-8">
 <% if @reviews %>
+<h1>Reviews</h1>
   <% @reviews.each do |review|%>
-  <% if @recipe.user %>
-  <div class="reviews mt-1">
-    <p class="poster"><%= link_to (image_tag @recipe.user.avatar.thumb.url), user_path(@recipe.user) %> <%= review.user.username %></p>
+  <% if review.user %>
+  <div class="reviews mt-1 mb-2">
+    <p class="poster"><%= link_to (image_tag review.user.avatar.thumb.url), user_path(review.user) %> <%= link_to review.user.username, user_path(review.user) %></p>
     <% else %>
-     This Reviewer got Baked!!!!
+     This Reviewer got Baked!!!
     <% end %>
     <p><%= review.comment %></p>
     <p><small><%= local_time(review.updated_at, format: '%B %e, %Y %l:%M%P', class: 'my-time') %></small></p>
+    <% if user_signed_in? && current_user == review.user %>
     <%= link_to "Delete", recipe_review_path(@recipe, review), method: :delete %>
+    <% end %>
     </div>
   <% end %>
 <% end %>
