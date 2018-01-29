@@ -47,7 +47,7 @@ class RecipesController < ApplicationController
       # test
       # ingredient_set[0-1]
       # ingredient[0-5]
-
+      
       # checkbox
       if params[:specify]
         @recipes = Recipe.filter_specific(@ingredient_set)
@@ -60,13 +60,14 @@ class RecipesController < ApplicationController
   end
 
   def rate
-    @user_rating = params[:rating]
-    @review_rating = Review.find_by(user_id: current_user.id, recipe_id: params[recipe_id])
-    @review_rating.rating = user_rating
-    if @review_rating.save
-      puts "we gucci"
+    @recipe_rating = Rating.find_by(user_id: current_user.id, recipe_id: params[:recipe_id])
+    puts params[:rating]
+    if @recipe_rating != nil
+      puts 'not nill'
+      Rating.update(@recipe_rating.id ,rating: params[:rating])
     else
-      puts "shit"
+      @recipe_rating = current_user.ratings.build(recipe_id: params[:recipe_id], rating: params[:rating])
+      @recipe_rating.save
     end
   end
 
@@ -79,7 +80,6 @@ class RecipesController < ApplicationController
       @favourite = Favourite.where(user_id: current_user.id, recipe_id: params[:recipe_id])
       current_user.favourites.destroy(@favourite)
     end
-    # redirect_back(fallback_location: 'recipes#show')
   end
 
 
@@ -89,11 +89,19 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1
   def show
-    #show reviews from newest to oldest
-    @reviews = @recipe.reviews.order(created_at: :desc)
+    @reviews = @recipe.reviews
     @review = Review.new
     @recipe.views += 1
     @recipe.save
+
+    if @recipe.ratings.count != 0
+       @avg_rating = 0
+      @recipe.ratings.each do |recipe|
+        @avg_rating += recipe.rating
+      end
+    
+      @avg_rating = @avg_rating / (@recipe.ratings.count) 
+    end
 
     if user_signed_in?
       if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
@@ -131,10 +139,10 @@ class RecipesController < ApplicationController
    params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
       ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
       if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-
+  
         ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
           @recipe.measurements[i].ingredient = ingredient
-
+  
       end
     end
   end
