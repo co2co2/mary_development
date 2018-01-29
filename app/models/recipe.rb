@@ -6,7 +6,7 @@ class Recipe < ApplicationRecord
   validates_each :instructions, :measurements do |record, attr, value|
     record.errors.add(attr, "Can't be blank") if value == ''
   end
-  validates :video, :format => URI::regexp(%w(http https))
+
 
   has_many :instructions, dependent: :destroy
   has_many :reviews
