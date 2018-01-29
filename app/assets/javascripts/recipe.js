@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 $('.carousel').carousel()
 $(document).on('turbolinks:load', function() {
-  
+
   //toggle menus
   $(document).ready(function() {
     $('#categoriesBtn').click( function(e) {
@@ -23,6 +23,30 @@ $(document).on('turbolinks:load', function() {
       $('#categories').collapse('hide');
     })
   })
+
+  // reviews ajax call
+  $('#new_review').on('submit', function(e) {
+    // prevent browser from submiting review
+    e.preventDefault();
+
+    // make the ajax callbacks
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method'),
+      data: $(this).serialize(),
+      dataType: 'html'
+    }).done(function(responseData) {
+      $('#user-reviews').prepend(responseData);
+
+      // Clear out text field
+      $('#review_comment').val('');
+
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      alert('Review is too short!');
+    })
+
+  })
+
 
   //favourite ajax call
 
@@ -192,7 +216,9 @@ $(document).on('turbolinks:load', function() {
     } else {
       body.classList.remove('noscroll');
     }
-    var geocoder;
+
+//Geocoder and google map api
+var geocoder;
 
 function initialize() {
   geocoder = new google.maps.Geocoder();
@@ -239,4 +265,21 @@ function hideConcentrateLink() {
 
 function addConcentrateLink() {
   addConcentrate.style.display = 'inline';
+}
+
+function deleteReview() {
+
+  //delete review ajax call
+  $('.delete').parent().on('submit', function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('action'),
+        method: 'DELETE',
+        data: $(this).serialize(),
+      }).done(function(){
+        $(e.target).closest('div').slideUp();
+      }).fail(function() {
+        console.log('failed to delete review.')
+      })
+  });
 }
