@@ -24,6 +24,7 @@ $(document).on('turbolinks:load', function() {
     })
   })
 
+
   // reviews ajax call
   $('#new_review').on('submit', function(e) {
     // prevent browser from submiting review
@@ -46,6 +47,7 @@ $(document).on('turbolinks:load', function() {
     })
 
   })
+
 
 
   //favourite ajax call
@@ -83,6 +85,7 @@ $(document).on('turbolinks:load', function() {
   });
   //star rating on load
   var ratingLength = document.querySelectorAll('.rating > span').length;
+
   // grabs custom data attribute from the show page
   var recipeRating = $('.rating').attr('data-rating');
   // Rounds downwards using | 0
@@ -95,7 +98,7 @@ $(document).on('turbolinks:load', function() {
     if(recipeRating - roundedDownRating != 0){
       displayRating.innerHTML = displayRating.innerHTML + `<style>.rated:before{width:${(recipeRating - roundedDownRating)*100}%;}</style>`;
     }
-  
+
 
     // if ((ratingLength - $(this).index()) == roundedRating) {
     //   $(this).addClass('rated');
@@ -106,6 +109,7 @@ $(document).on('turbolinks:load', function() {
     //   return false;
     // }
   // })
+
 
   // Star rating
   $('.rating > span').click(function(e){

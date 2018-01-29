@@ -47,7 +47,7 @@ class RecipesController < ApplicationController
       # test
       # ingredient_set[0-1]
       # ingredient[0-5]
-      
+
       # checkbox
       if params[:specify]
         @recipes = Recipe.filter_specific(@ingredient_set)
@@ -94,13 +94,14 @@ class RecipesController < ApplicationController
     @recipe.views += 1
     @recipe.save
 
+
     if @recipe.ratings.count != 0
        @avg_rating = 0
-      @recipe.ratings.each do |recipe|
-        @avg_rating += recipe.rating
+       @recipe.ratings.each do |recipe|
+         @avg_rating += recipe.rating
       end
-    
-      @avg_rating = @avg_rating / (@recipe.ratings.count) 
+
+      @avg_rating = @avg_rating / (@recipe.ratings.count)
     end
 
     if user_signed_in?
@@ -139,10 +140,10 @@ class RecipesController < ApplicationController
    params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
       ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
       if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-  
+
         ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
           @recipe.measurements[i].ingredient = ingredient
-  
+
       end
     end
   end
