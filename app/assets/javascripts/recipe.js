@@ -41,7 +41,7 @@ $(document).on('turbolinks:load', function() {
       // Clear out text field
       $('#review_comment').val('');
 
-    }).fail(function() {
+    }).fail(function(jqXHR, textStatus, errorThrown) {
       alert('Review is too short!');
     })
 
@@ -257,16 +257,16 @@ function deleteReview() {
   //delete review ajax call
   $('.delete').parent().on('submit', function(e) {
       e.preventDefault();
-
       $.ajax({
         url: $(this).attr('action'),
-        type: 'DELETE',
+        method: 'DELETE',
         data: $(this).serialize(),
-      }).done(function(data){
-        $('.delete').closest('div').slideUp();
+      }).done(function(){
+        // $('.delete').closest('div').slideUp();
+        e.target.parentNode.parentNode.removeChild(e.target.parentNode);
         console.log('ok to remove')
       }).fail(function() {
-        console.log('failed to delete review')
+        console.log('failed to delete review.')
       })
   });
 }
