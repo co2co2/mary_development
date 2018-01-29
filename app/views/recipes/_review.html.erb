@@ -9,8 +9,6 @@
   <p><small><%= local_time(review.updated_at, format: '%B %e, %Y %l:%M %P') %></small></p>
 
   <% if user_signed_in? && current_user == review.user %>
-    <!-- <%= button_to "Delete", recipe_review_path(@recipe, review), method: :delete, remote: true, class: "delete btn btn-outline-success" %> -->
-
     <%= button_to "Delete", recipe_review_path(@recipe, review), method: :delete, class: "delete btn btn-outline-success", onclick: "deleteReview()"%>
   <% end %>
 </div>

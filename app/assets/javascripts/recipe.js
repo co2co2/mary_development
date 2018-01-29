@@ -262,9 +262,7 @@ function deleteReview() {
         method: 'DELETE',
         data: $(this).serialize(),
       }).done(function(){
-        // $('.delete').closest('div').slideUp();
-        e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-        console.log('ok to remove')
+        $(e.target).closest('div').slideUp();
       }).fail(function() {
         console.log('failed to delete review.')
       })

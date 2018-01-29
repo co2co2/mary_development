@@ -39,11 +39,7 @@ class ReviewsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @review = Review.find(params[:id])
     @review.destroy
-    # 
-    # respond_to do |format|
-    #   format.html { redirect_to recipe_url(@recipe), notice: 'Review deleted.' }
-    #   # format.js
-    # end
+
 	end
 
   def review_params
