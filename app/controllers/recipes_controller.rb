@@ -47,7 +47,7 @@ class RecipesController < ApplicationController
       # test
       # ingredient_set[0-1]
       # ingredient[0-5]
-
+      
       # checkbox
       if params[:specify]
         @recipes = Recipe.filter_specific(@ingredient_set)
@@ -89,15 +89,13 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1
   def show
-    #show reviews from newest to oldest
-    @reviews = @recipe.reviews.order(created_at: :desc)
+    @reviews = @recipe.reviews
     @review = Review.new
     @recipe.views += 1
     @recipe.save
 
-
     if @recipe.ratings.count != 0
-      @avg_rating = 0
+       @avg_rating = 0
       @recipe.ratings.each do |recipe|
         @avg_rating += recipe.rating
       end
@@ -141,10 +139,10 @@ class RecipesController < ApplicationController
    params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
       ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
       if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-
+  
         ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
           @recipe.measurements[i].ingredient = ingredient
-
+  
       end
     end
   end
