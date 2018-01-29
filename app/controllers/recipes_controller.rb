@@ -89,20 +89,19 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1
   def show
-    #show reviews from newest to oldest
-    @reviews = @recipe.reviews.order(created_at: :desc)
+    @reviews = @recipe.reviews
     @review = Review.new
     @recipe.views += 1
     @recipe.save
 
 
     if @recipe.ratings.count != 0
-      @avg_rating = 0
-      @recipe.ratings.each do |recipe|
-        @avg_rating += recipe.rating
+       @avg_rating = 0
+       @recipe.ratings.each do |recipe|
+         @avg_rating += recipe.rating
       end
-    
-      @avg_rating = @avg_rating / (@recipe.ratings.count) 
+
+      @avg_rating = @avg_rating / (@recipe.ratings.count)
     end
 
     if user_signed_in?

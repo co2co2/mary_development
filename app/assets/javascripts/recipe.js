@@ -85,17 +85,32 @@ $(document).on('turbolinks:load', function() {
   });
   //star rating on load
   var ratingLength = document.querySelectorAll('.rating > span').length;
+
+  // grabs custom data attribute from the show page
   var recipeRating = $('.rating').attr('data-rating');
-  var roundedRating = recipeRating | 0;
-  $('.rating > span').each(function(i){
-    if ((ratingLength - $(this).index()) == roundedRating) {
-      $(this).addClass('rated');
-      return false;
-    }else if ((ratingLength - $(this).index()) > roundedRating) {
-      $(this).addClass('rated').append(`<style>.rated:before{width:${(recipeRating - roundedRating)*100}%;}</style>`);
-      return false;
+  // Rounds downwards using | 0
+  var roundedDownRating = recipeRating | 0;
+  var roundedUpRating = Math.ceil(recipeRating)
+  var stars = document.querySelectorAll('.rating > span')
+  // $('.rating > span').each(function(i){
+    var displayRating = stars[ratingLength - roundedUpRating]
+    displayRating.classList.add('rated')
+    if(recipeRating - roundedDownRating != 0){
+      displayRating.innerHTML = displayRating.innerHTML + `<style>.rated:before{width:${(recipeRating - roundedDownRating)*100}%;}</style>`;
     }
-  })
+
+
+    // if ((ratingLength - $(this).index()) == roundedRating) {
+    //   $(this).addClass('rated');
+    //   return false;
+    // }
+    // }else if ((ratingLength - $(this).index()) > roundedRating) {
+    //   $(this).addClass('rated').append(`<style>.rated:before{width:${(recipeRating - roundedRating)*100}%;}</style>`);
+    //   return false;
+    // }
+  // })
+
+
   // Star rating
   $('.rating > span').click(function(e){
     $('.rating > span').removeClass();
