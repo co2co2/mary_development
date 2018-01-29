@@ -152,7 +152,7 @@
             <strong>Site Map</strong>
             <li><%= link_to 'Home', root_path, class: "links" %></li>
             <li><a href="/pages/about" class="links">About Us</a></li>
-            <li><a href="" class="links">Contact</a></li>
+            <li><%= mail_to "bakingwithmary420@gmail.com", "Contact", subject: "About Mary", class:"links" %></li>
             <li><a href="" class="links">Terms & Conditions</a></li>
             <li><a href="" class="links">Beginner to Edibles</a></li>
             <li><a href="" class="links">Search</a></li>
