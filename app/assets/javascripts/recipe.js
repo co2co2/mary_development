@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 $('.carousel').carousel()
 $(document).on('turbolinks:load', function() {
+
   //toggle menus
   $(document).ready(function() {
     $('#categoriesBtn').click( function(e) {
@@ -22,6 +23,7 @@ $(document).on('turbolinks:load', function() {
       $('#categories').collapse('hide');
     })
   })
+
   //favourite ajax call
   $('#fav').on('click',function(e){
     e.preventDefault();
@@ -95,20 +97,19 @@ $(document).on('turbolinks:load', function() {
     })
   });
 
-  // Filter
+  // Ingredients Filter fields
 
   $('.addIngredient').click(function(e){
     e.preventDefault()
     var newIngredient = `
     <div class="ingredient">
-    <a href="/"class="removeIngredient"><img src="https://image.flaticon.com/icons/png/512/54/54351.png
-"></a>
-    <input type="text" name="ingredient[]" id="ingredient_">
+    <a href="/"class="removeIngredient"><img src="https://image.flaticon.com/icons/png/512/54/54351.png"></a>
+    <input type="text" name="ingredient[]" class="ingredient_">
     </div>`
     $(this).closest(".ingredient").before(newIngredient)
     // $(this).removeClass('addIngredient');
   })
-  $(document).on('keyup', '#ingredient_',function(){
+  $(document).on('keyup', '.ingredient_',function(){
     if ($(this).value != "") {
       this.parentElement.children[0].children[0].src="https://image.flaticon.com/icons/png/512/54/54351.png";
     }

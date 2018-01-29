@@ -101,13 +101,6 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal("1 hour and 20 minutes", @newrecipe.minutes_to_hours(80))
   end
 
-  test "find recipies with either of my ingredients " do
-
-  end
-
-  test "filter recipies only with all my ingredients " do
-  
-  end
 
   test "should report error" do
   assert_raises("InvalidInputError") do
