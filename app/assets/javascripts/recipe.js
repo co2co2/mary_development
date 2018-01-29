@@ -90,25 +90,22 @@ $(document).on('turbolinks:load', function() {
   var recipeRating = $('.rating').attr('data-rating');
   // Rounds downwards using | 0
   var roundedDownRating = recipeRating | 0;
-  var roundedUpRating = Math.ceil(recipeRating)
+  if (Math.ceil(recipeRating)) {
+    var roundedUpRating = Math.ceil(recipeRating);
+  }else{
+    var roundedUpRating = 0;
+  }
+  console.log(ratingLength)
   var stars = document.querySelectorAll('.rating > span')
-  // $('.rating > span').each(function(i){
+
     var displayRating = stars[ratingLength - roundedUpRating]
-    displayRating.classList.add('rated')
-    if(recipeRating - roundedDownRating != 0){
-      displayRating.innerHTML = displayRating.innerHTML + `<style>.rated:before{width:${(recipeRating - roundedDownRating)*100}%;}</style>`;
+    if (displayRating){
+      displayRating.classList.add('rated')
+      if(recipeRating - roundedDownRating != 0){
+        displayRating.innerHTML = displayRating.innerHTML + `<style>.rated:before{width:${(recipeRating - roundedDownRating)*100}%;}</style>`;
+      }
     }
 
-
-    // if ((ratingLength - $(this).index()) == roundedRating) {
-    //   $(this).addClass('rated');
-    //   return false;
-    // }
-    // }else if ((ratingLength - $(this).index()) > roundedRating) {
-    //   $(this).addClass('rated').append(`<style>.rated:before{width:${(recipeRating - roundedRating)*100}%;}</style>`);
-    //   return false;
-    // }
-  // })
 
 
   // Star rating
