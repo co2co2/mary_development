@@ -7,6 +7,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def about
+    
+  end
+
   private
   # A method that checks page exists - returns boolean
   def valid_page?
