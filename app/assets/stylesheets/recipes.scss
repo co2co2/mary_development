@@ -28,12 +28,10 @@
 }
 .unfavourite{
   @extend .ion-android-favorite;
-  border: 1px solid red;
 	// content:url("heart-filled.png");
 }
 .favourite{
   @extend .ion-android-favorite-outline;
-  border: 1px solid green;
 	// content:url("like.png");
 }
 
