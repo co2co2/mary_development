@@ -24,6 +24,7 @@ $(document).on('turbolinks:load', function() {
     })
   })
 
+<<<<<<< HEAD
   // reviews ajax call
   $('#new_review').on('submit', function(e) {
     // prevent browser from submiting review
@@ -48,6 +49,8 @@ $(document).on('turbolinks:load', function() {
   })
 
 
+=======
+>>>>>>> coco2
   //favourite ajax call
 
   $('#fav').on('click',function(e){
