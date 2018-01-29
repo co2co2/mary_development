@@ -100,11 +100,16 @@ div > img{
    position: absolute;
    color:#f2ee87;
 }
-
 .rated:before, .rated ~ span:before{
 	content: "\2605";
-   position: absolute;
-   color:#f2ee87;
+	position: absolute;
+	color:#f2ee87;
+}
+.rated:before{
+	left:0;
+	transform: scaleX(-1);
+	overflow:hidden;
+
 }
 .video{
 	margin-bottom: 2em;
