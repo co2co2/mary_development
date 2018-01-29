@@ -7,10 +7,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [[:username],[:avatar],[:bio]])
     devise_parameter_sanitizer.permit(:account_update, keys: [[:username],[:avatar],[:bio]])
   end
-
-  # def not_found
-  #   render html: "<strong>Sorry, we don't have that strain.</strong>".html_safe, status: 404
-  # end
    config.time_zone = Time.now.in_time_zone("Eastern Time (US & Canada)")
 
 end

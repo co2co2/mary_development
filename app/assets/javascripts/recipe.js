@@ -24,6 +24,7 @@ $(document).on('turbolinks:load', function() {
     })
   })
 
+
   // reviews ajax call
   $('#new_review').on('submit', function(e) {
     // prevent browser from submiting review
@@ -46,6 +47,7 @@ $(document).on('turbolinks:load', function() {
     })
 
   })
+
 
 
   //favourite ajax call

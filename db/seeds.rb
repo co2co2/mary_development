@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 def save_effects(strain, type_effects, type_name)
   type_effects.each do |effect|
 
@@ -68,18 +60,27 @@ resbody = JSON.parse(response.body)
 
 
 # Users
-user1 = User.create!(email:'cat@gmail.com', username: 'cat', password:'valid_password', password_confirmation: 'valid_password',
-  remote_avatar_url:'http://4.bp.blogspot.com/-19SuhOvHCGw/Tt3aKiuFUQI/AAAAAAAAAbQ/-lGmEbkMc7s/s1600/woman-cooking-women-at-war-magazine-uk-1942.jpg')
-user2 = User.create!(email:'mary@gmail.com', username: 'mary', password:'valid_password', password_confirmation: 'valid_password',
-  remote_avatar_url:'http://weedmemes.com/wp-content/uploads/2015/12/grow-your-own-harvest-weedmemes.jpg')
-user3 = User.create!(email:'coco@gmail.com', username: 'coco', password:'valid_password', password_confirmation: 'valid_password',
-  remote_avatar_url:'https://i.pinimg.com/736x/54/3e/67/543e67ac2aa73013f73d4893b60b4338--cannabis-quotes-marijuana-humor.jpg')
-user4 = User.create!(email:'lena@gmail.com', username: 'lena', password:'valid_password', password_confirmation: 'valid_password',
-  remote_avatar_url:'https://s-media-cache-ak0.pinimg.com/originals/2d/e7/c4/2de7c46aebbe2111b92e81476ab25f36.jpg')
-user5 = User.create!(email:'william@gmail.com', username: 'william', password:'valid_password', password_confirmation: 'valid_password',
-  remote_avatar_url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4XvFsBYUIwpxWs0t-IeX_AbO-W2MhCl0SCtfR5m6datTAojjC')
-user6 = User.create!(email:'tyler@gmail.com', username: 'tyler', password:'valid_password', password_confirmation: 'valid_password',
-  remote_avatar_url:'https://s-media-cache-ak0.pinimg.com/736x/43/14/b9/4314b9927bf6e205b78939d09029caf0.jpg')
+def create_users
+
+  @user1 = User.create!(email:'cat@gmail.com', username: 'cat', password:'valid_password', password_confirmation: 'valid_password',
+    remote_avatar_url:'http://4.bp.blogspot.com/-19SuhOvHCGw/Tt3aKiuFUQI/AAAAAAAAAbQ/-lGmEbkMc7s/s1600/woman-cooking-women-at-war-magazine-uk-1942.jpg')
+  @user2 = User.create!(email:'mary@gmail.com', username: 'mary', password:'valid_password', password_confirmation: 'valid_password',
+    remote_avatar_url:'http://weedmemes.com/wp-content/uploads/2015/12/grow-your-own-harvest-weedmemes.jpg')
+  @user3 = User.create!(email:'coco@gmail.com', username: 'coco', password:'valid_password', password_confirmation: 'valid_password',
+    remote_avatar_url:'https://i.pinimg.com/736x/54/3e/67/543e67ac2aa73013f73d4893b60b4338--cannabis-quotes-marijuana-humor.jpg')
+  @user4 = User.create!(email:'lena@gmail.com', username: 'lena', password:'valid_password', password_confirmation: 'valid_password',
+    remote_avatar_url:'https://s-media-cache-ak0.pinimg.com/originals/2d/e7/c4/2de7c46aebbe2111b92e81476ab25f36.jpg')
+  @user5 = User.create!(email:'william@gmail.com', username: 'william', password:'valid_password', password_confirmation: 'valid_password',
+    remote_avatar_url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4XvFsBYUIwpxWs0t-IeX_AbO-W2MhCl0SCtfR5m6datTAojjC')
+  @user6 = User.create!(email:'tyler@gmail.com', username: 'tyler', password:'valid_password', password_confirmation: 'valid_password',
+    remote_avatar_url:'https://s-media-cache-ak0.pinimg.com/736x/43/14/b9/4314b9927bf6e205b78939d09029caf0.jpg')
+
+# rescue Exception => e
+
+end
+
+create_users
+
 # Allergies
 
 # Categories
@@ -91,7 +92,7 @@ entrees= RecipeCategory.create!(name: 'Entrées')
 snacks = RecipeCategory.create!(name: 'Snacks')
 sides = RecipeCategory.create!(name: 'Sides')
 # Predefined Concentrate Recipes
-concentrate1 = user2.recipes.create!(recipe_category_id: concentrate_category.id, strain_id:1, title:'Cannabis Coconut Oil', remote_image_url:'https://s3.amazonaws.com/leafly-s3/content/cannabis-and-coconut-oil-uses-benefits-and-a-recipe-to-make-your/QqYwInfNQHedUETFu2Dm_Subhead-2.jpg',video:"https://player.vimeo.com/video/133693820" , description:'coconut oil has among the highest concentration of fatty acids (saturated fats). The surplus of these fatty acids in the coconut oil create a stronger binding agent for cannabinoids. ', prep_time: 360, concentrate: true,
+concentrate1 = @user2.recipes.create!(recipe_category_id: concentrate_category.id, strain_id:1, title:'Cannabis Coconut Oil', remote_image_url:'https://s3.amazonaws.com/leafly-s3/content/cannabis-and-coconut-oil-uses-benefits-and-a-recipe-to-make-your/QqYwInfNQHedUETFu2Dm_Subhead-2.jpg',video:"https://player.vimeo.com/video/133693820" , description:'coconut oil has among the highest concentration of fatty acids (saturated fats). The surplus of these fatty acids in the coconut oil create a stronger binding agent for cannabinoids. ', prep_time: 360, concentrate: true,
 instructions_attributes: [
   { step: 'Grind the cannabis. You can include the entire plant, just the flower, a little bit of both — this is all a matter of preference. Just keep in mind that anything small enough to fit through the strainer will end up in your finished product, so again, do not grind your cannabis to a fine powder.'},
   {step: 'Combine oil and cannabis in your double-boiler or slow cooker, and heat the two together on low or warm for a few hours. This allows for decarboxylation (activation of THC) without scorching (which destroys the active ingredients). Cooking can be done a variety of ways: in a slow cooker on low for 4-6 hours, stirring occasionally; in a double-boiler on low for at least 6 hours (8 is better), stirring occasionally; or in a simple saucepan on low for at least three hours, stirring frequently (a saucepan is most susceptible to scorching). In all cases, a small amount of water can be added to the mixture to help avoid burning. Note: whatever method you choose, temperature of the oil should not exceed 245°F.'},
@@ -106,7 +107,7 @@ measurements_attributes: [
   ]
 )
 # Rick Simpson Oil
-concentrate2 = user1.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Rick Simpson Oil', remote_image_url:'https://d3atagt0rnqk7k.cloudfront.net/wp-content/uploads/2017/05/12162425/rick-simpson-1280x800.jpg', video:'https://player.vimeo.com/video/171258442',description:'Rick Simpson Oil, or RSO is a concentrated form of cannabis oil known to have medical benefits, particularly for cancer.', prep_time: 360, concentrate: true,
+concentrate2 = @user1.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Rick Simpson Oil', remote_image_url:'https://d3atagt0rnqk7k.cloudfront.net/wp-content/uploads/2017/05/12162425/rick-simpson-1280x800.jpg', video:'https://player.vimeo.com/video/171258442',description:'Rick Simpson Oil, or RSO is a concentrated form of cannabis oil known to have medical benefits, particularly for cancer.', prep_time: 360, concentrate: true,
 instructions_attributes: [
   {step: 'Place dry cannabis material into the 5-gallon bucket and pour in the solvent until the plant matter is covered.'},
   {step: 'Stir and crush the plant material with your wooden spoon while adding the solvent to your mixture. Continue stirring the mixture for about three minutes while the THC dissolves into the solvent. This will dissolve about 80% of the THC into the solvent.'},
@@ -126,7 +127,7 @@ measurements_attributes: [
 #  Cannabutter
 
 
-concentrate3 = user1.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis-Infused Butter', remote_image_url:'https://s3.amazonaws.com/leafly-s3/content/recipe-how-to-make-basic-cannabutter/HyiZ4sSkVIDtbpo9tnA6_Cannabutter-Body.jpg',video:"https://player.vimeo.com/video/203408908", description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
+concentrate3 = @user1.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis-Infused Butter', remote_image_url:'https://s3.amazonaws.com/leafly-s3/content/recipe-how-to-make-basic-cannabutter/HyiZ4sSkVIDtbpo9tnA6_Cannabutter-Body.jpg',video:"https://player.vimeo.com/video/203408908", description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
 instructions_attributes: [
   { step: 'Add one cup of water and 1 lb of butter into a stock pot or sauce pan; let the butter melt and begin to simmer on low. Adding water helps to regulate the temperature and prevents the butter from scorching.'},
   {step: 'As butter begins to melt, add in your ground cannabis product.'},
@@ -146,7 +147,7 @@ measurements_attributes: [
 )
 
 
-concentrate4 = user2.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis-Infused Olive Oil', remote_image_url:'http://www.ethiopianimporter.com/imagesexport/72oil-seed.jpg', video:'https://www.youtube.com/embed/hEz0zkzGQGQ', description:'It is super easy to infuse cannabis into your olive oil with the sous vide technique. Since you can fit many mason jars in a sous vide water bath, imagine the all the different flavored oil concoctions you can whip up all in one sitting! This technique is simple and discreet--no smell! ', prep_time: 240, concentrate: true,
+concentrate4 = @user2.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis-Infused Olive Oil', remote_image_url:'http://www.ethiopianimporter.com/imagesexport/72oil-seed.jpg', video:'https://www.youtube.com/embed/hEz0zkzGQGQ', description:'It is super easy to infuse cannabis into your olive oil with the sous vide technique. Since you can fit many mason jars in a sous vide water bath, imagine the all the different flavored oil concoctions you can whip up all in one sitting! This technique is simple and discreet--no smell! ', prep_time: 240, concentrate: true,
 instructions_attributes: [
   { step: 'Pour olive oil in two 12oz mason jars. It is important to use jars specific to canning, so please no repurposed mayo jars. Inspect the jar for cracks. A freezer-safe zip bag may be used as well.'},
   {step: 'Decarb your cannabis to activate the THC and pour half into each jar of olive oil. Seal the jars finger tight.'},
@@ -164,7 +165,7 @@ measurements_attributes: [
   ]
 )
 
-concentrate5 = user5.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis Cooking Oil', remote_image_url:'https://s3.amazonaws.com/leafly/content/recipe-how-to-make-cannabis-cooking-oil/TRaosPRdRpOyuSZfpMWe_large_6896388410.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
+concentrate5 = @user5.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis Cooking Oil', remote_image_url:'https://s3.amazonaws.com/leafly/content/recipe-how-to-make-cannabis-cooking-oil/TRaosPRdRpOyuSZfpMWe_large_6896388410.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
 instructions_attributes: [
   {step: 'Add one cup of water and 1 lb of butter into a stock pot or sauce pan; let the butter melt and begin to simmer on low. Adding water helps to regulate the temperature and prevents the butter from scorching.'},
   {step: 'As butter begins to melt, add in your ground cannabis product.'},
@@ -181,7 +182,7 @@ measurements_attributes: [
 )
 
 
-recipe1 = user3.recipes.create!( recipe_category_id: snacks.id, strain_id:6, title:'Dope Beets', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4c326f085229be305f2d51/5a4c327c53450a16cf26d429/1514943110320/SousWeed_DopeBeetHummus_6B7A9344_LoRes.jpg?format=1500w', description:'The roasted beets add a mellow sweetness and rosy color to a basic hummus recipe. The texture is sultry smooth and goes great with warm pita or crisp veggies. If you have your Sous Weed olive oil prepared, it’s quick to throw together in a blender and is sure to be a hit at your next get-together.', prep_time: 70,
+recipe1 = @user3.recipes.create!( recipe_category_id: snacks.id, strain_id:6, title:'Dope Beets', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4c326f085229be305f2d51/5a4c327c53450a16cf26d429/1514943110320/SousWeed_DopeBeetHummus_6B7A9344_LoRes.jpg?format=1500w', description:'The roasted beets add a mellow sweetness and rosy color to a basic hummus recipe. The texture is sultry smooth and goes great with warm pita or crisp veggies. If you have your Sous Weed olive oil prepared, it’s quick to throw together in a blender and is sure to be a hit at your next get-together.', prep_time: 70,
 instructions_attributes: [
   {step: 'Pre-heat oven to 375ºF.'},
   {step: 'Lightly wrap peeled beets in foil and roast for about an hour.'},
@@ -221,7 +222,7 @@ measurements_attributes: [
   ]
 )
 
-recipe2 = user4.recipes.create!( recipe_category_id:desserts.id, strain_id:7, title:'Smoky-Sweet Pineapple Fruitcake', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5541bb17e4b006d7e513e4de/5a3c68d99140b7cd5735a0ab/1513909447498/SousWeed_BloomFarms_HolidayPairing-3842.jpg?format=2500w', video: 'https://player.vimeo.com/video/144572856', description:'Woodsy, Earthy, Fruity!CBD-heavy to bring down the high, chill-out.', prep_time: 60,
+recipe2 = @user4.recipes.create!( recipe_category_id:desserts.id, strain_id:7, title:'Smoky-Sweet Pineapple Fruitcake', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5541bb17e4b006d7e513e4de/5a3c68d99140b7cd5735a0ab/1513909447498/SousWeed_BloomFarms_HolidayPairing-3842.jpg?format=2500w', video: 'https://player.vimeo.com/video/144572856', description:'Woodsy, Earthy, Fruity!CBD-heavy to bring down the high, chill-out.', prep_time: 60,
 instructions_attributes: [
   {step: 'Preheat oven to 350ºF and grease an 8-in non-stick bundt pan.'},
   {step: 'Melt 3 Tbsp butter in a skillet over medium-high and add brown sugar. Cook until you see bubbles then add pineapple and cook for 2-3 minutes, until softened. Remove from heat and pour into the prepared cake pan.'},
@@ -277,7 +278,7 @@ measurements_attributes: [
     }
   ]
 )
-recipe3 = user5.recipes.create!( recipe_category_id:sides.id, strain_id:8, title:'Stuffed Portabella Mushrooms with Sundried Tomatoes', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c69690d92975090bdbc1f/1513908631359/SousWeed_BloomFarms_HolidayPairing-3935.jpg?format=1500w', description:'Earthy, Sweet, Pine, make you euphoric and talkative', prep_time: 45,
+recipe3 = @user5.recipes.create!( recipe_category_id:sides.id, strain_id:8, title:'Stuffed Portabella Mushrooms with Sundried Tomatoes', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a3c691e8165f53e1ebf2ed8/5a3c69690d92975090bdbc1f/1513908631359/SousWeed_BloomFarms_HolidayPairing-3935.jpg?format=1500w', description:'Earthy, Sweet, Pine, make you euphoric and talkative', prep_time: 45,
 instructions_attributes: [
   {step: 'Preheat oven to 400ºF.'},
   {step: 'In large bowl, toss portobello mushrooms in canola oil and set aside.'},
@@ -323,7 +324,7 @@ measurements_attributes: [
     }
   ]
 )
-recipe4 = user6.recipes.create!( recipe_category_id:appetizers.id, strain_id:9, title:'Chestnut and Winter Squash Soup', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a1db125652dea2e1ad64236/5a1db126652dea2e1ad64248/1511895336976/SousWeed_GreenCacao-2743_lores.jpg?format=1500w', description:'This soup is so comforting,it’s a pretty excellent way to feel cozy and a little festive during the dark months of winter.', prep_time: 60,
+recipe4 = @user6.recipes.create!( recipe_category_id:appetizers.id, strain_id:9, title:'Chestnut and Winter Squash Soup', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a1db125652dea2e1ad64236/5a1db126652dea2e1ad64248/1511895336976/SousWeed_GreenCacao-2743_lores.jpg?format=1500w', description:'This soup is so comforting,it’s a pretty excellent way to feel cozy and a little festive during the dark months of winter.', prep_time: 60,
 instructions_attributes: [
   {step: 'Preheat oven to 425ºF.'},
   {step: 'Place the squash, cut side up, onto a parchment paper lined baking sheet. Drizzle with olive oil and season with salt. Roast the squash until it is completely tender and beginning to brown, 30-45 minutes.Use a spoon to scrape out all the flesh, discarding the outer rind. '},
@@ -372,7 +373,7 @@ measurements_attributes: [
     }
   ]
 )
-recipe5 = user3.recipes.create!( recipe_category_id:beverages.id, strain_id:38, title:'Bloody Mary Jane Recipe', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/55a02f21e4b01086a0803660/55a02f24e4b0fbe24a1aacc8/1436561190136/Bloodymaryjane_lores.jpg?format=1500w', video:'https://player.vimeo.com/video/64525040?color=fedec7',description:' Time to kick off the weekend with a fun twist on a classic brunch cocktail.', prep_time: 60,
+recipe5 = @user3.recipes.create!( recipe_category_id:beverages.id, strain_id:38, title:'Bloody Mary Jane Recipe', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/55a02f21e4b01086a0803660/55a02f24e4b0fbe24a1aacc8/1436561190136/Bloodymaryjane_lores.jpg?format=1500w', video:'https://player.vimeo.com/video/64525040?color=fedec7',description:' Time to kick off the weekend with a fun twist on a classic brunch cocktail.', prep_time: 60,
 instructions_attributes: [
   {step: "On a wire rack over a sheet pan, lay out your tomatoes, garlic, jalapeño, and shallot. Using your culinary blow torch, give the veggies a nice char. If you don't have a blow torch, you can place the veggies in the oven and broil on high for a few minutes to get some color. "},
   {step: 'Put all the charred veggies, cilantro, horseradish, lime juice, Tabasco, Worcestershire, cracked pepper, and sous vide cannabis-infused vodka in a blender and puree until smooth. '},

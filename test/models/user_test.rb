@@ -40,5 +40,5 @@ class UserTest < ActiveSupport::TestCase
   test 'association with favourites' do
     assert @user.favourites
   end
-  
+
 end
