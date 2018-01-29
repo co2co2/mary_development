@@ -73,6 +73,7 @@ $(document).on('turbolinks:load', function() {
   // Star rating
   $('.rating > span').click(function(e){
     $('.rating > span').removeClass();
+    $('style').remove();
     path = window.location.pathname
     recipeId = path.substr(path.lastIndexOf('/')+1)
     $.ajax({

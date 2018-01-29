@@ -4,8 +4,11 @@
 <div class="row p-0 title d-flex">
   <h2 class="p-0 d-inline">
     <%= @recipe.title %>
- 
+    <% if user_signed_in? %>
     <div class="rating" data-rating="<%= @avg_rating %>">
+    <%else %>
+    <div class="rating" data-rating="<%= @avg_rating %>" style="pointer-events: none;">
+    <% end %>
       <span>☆</span>
       <span>☆</span>
       <span>☆</span>
