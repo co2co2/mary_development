@@ -72,11 +72,11 @@
 
     <% if user_signed_in? %>
       <%= link_to recipe_favourite_path(@recipe),class: "#{@favourite_link}",id: "fav", method: "PUT", title:"Save this recipe!" do%>
-        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg",id: "fav-image", class: @favourite_link, title: "Save this recipe!") %>
+        <%= image_tag("heart-empty.svg",id: "fav-image", class: @favourite_link, title: "Save this recipe!") %>
       <% end %>
     <% else %>
       <%= link_to new_user_session_path do%>
-        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite", title: "Save this recipe!") %>
+        <%= image_tag("heart-empty.svg", class: "favourite", title: "Save this recipe!") %>
       <% end %>
     <% end %>
 
