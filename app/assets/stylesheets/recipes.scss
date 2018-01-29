@@ -23,15 +23,17 @@
 
 //Recipes show page
 .favourite,.unfavourite{
-	width:25px;
-	height:25px;
+  font-size: 35px;
 	display:inline;
 }
 .unfavourite{
-	content:url("heart-filled.png");
+  @extend .ion-android-favorite;
+	// content:url("heart-filled.png");
 }
 .favourite{
-	content:url("like.png");
+  @extend .ion-android-favorite-outline;
+
+	// content:url("like.png");
 }
 
 

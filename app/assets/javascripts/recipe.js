@@ -95,7 +95,6 @@ $(document).on('turbolinks:load', function() {
   }else{
     var roundedUpRating = 0;
   }
-  console.log(ratingLength)
   var stars = document.querySelectorAll('.rating > span')
 
     var displayRating = stars[ratingLength - roundedUpRating]

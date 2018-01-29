@@ -110,6 +110,8 @@ class RecipesController < ApplicationController
       else
         @favourite_link = "favourite"
       end
+    else
+      @favourite_link = "favourite"
     end
   end
 
