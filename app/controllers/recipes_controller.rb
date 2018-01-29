@@ -60,7 +60,6 @@ class RecipesController < ApplicationController
   end
 
   def rate
-   
     @recipe_rating = Rating.find_by(user_id: current_user.id, recipe_id: params[:recipe_id])
     puts params[:rating]
     if @recipe_rating != nil
@@ -94,6 +93,16 @@ class RecipesController < ApplicationController
     @review = Review.new
     @recipe.views += 1
     @recipe.save
+
+    if @recipe.ratings.count != 0
+      @avg_rating = 0
+      @recipe.ratings.each do |recipe|
+        @avg_rating += recipe.rating
+      end
+    
+      @avg_rating = @avg_rating / (@recipe.ratings.count) 
+    end
+
     if user_signed_in?
       if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
         @favourite_link = "unfavourite"

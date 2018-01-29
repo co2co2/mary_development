@@ -57,7 +57,20 @@ $(document).on('turbolinks:load', function() {
       });
     }
   });
+  //star rating on load
   var ratingLength = document.querySelectorAll('.rating > span').length;
+  var recipeRating = $('.rating').attr('data-rating');
+  var roundedRating = recipeRating | 0;
+  $('.rating > span').each(function(i){
+    if ((ratingLength - $(this).index()) == roundedRating) {
+      $(this).addClass('rated');
+      return false;
+    }else if ((ratingLength - $(this).index()) > roundedRating) {
+      $(this).addClass('rated').append(`<style>.rated:before{width:${(recipeRating - roundedRating)*100}%;}</style>`);
+      return false;
+    }
+  })
+  // Star rating
   $('.rating > span').click(function(e){
     $('.rating > span').removeClass();
     path = window.location.pathname
