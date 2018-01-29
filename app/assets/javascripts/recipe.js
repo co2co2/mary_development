@@ -212,7 +212,7 @@ $(document).on('turbolinks:load', function() {
       }
     })
     var dialogContent = document.querySelector('.ui-dialog-content')
-    dialogContent.innerText = 'Are you over 19 years old?'
+    dialogContent.innerText = 'Are you over 18 years old?'
   }
 
   // no scroll when modal overlay is on
