@@ -47,6 +47,7 @@ gem 'social-share-button'
 gem 'rails_12factor', group: :production
 # This rails helper let's you easily include svg octicons in your rails apps.
 gem 'octicons_helper'
+gem 'font-ionicons-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

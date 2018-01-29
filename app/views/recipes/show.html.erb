@@ -72,7 +72,7 @@
 
     <% if user_signed_in? %>
       <%= link_to recipe_favourite_path(@recipe),class: "#{@favourite_link}",id: "fav", method: "PUT", title:"Save this recipe!" do%>
-        <%= image_tag("heart-empty.svg",id: "fav-image", class: @favourite_link, title: "Save this recipe!") %>
+        <img src="" id="fav-image" class="<%= @favourite_link %>" alt="Save this recipe!" title="Save this recipe!">
       <% end %>
     <% else %>
       <%= link_to new_user_session_path do%>
