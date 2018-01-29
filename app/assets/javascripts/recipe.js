@@ -24,7 +24,7 @@ $(document).on('turbolinks:load', function() {
     })
   })
 
-<<<<<<< HEAD
+
   // reviews ajax call
   $('#new_review').on('submit', function(e) {
     // prevent browser from submiting review
@@ -49,8 +49,7 @@ $(document).on('turbolinks:load', function() {
   })
 
 
-=======
->>>>>>> coco2
+
   //favourite ajax call
 
   $('#fav').on('click',function(e){
@@ -84,18 +83,33 @@ $(document).on('turbolinks:load', function() {
       });
     }
   });
+  //star rating on load
   var ratingLength = document.querySelectorAll('.rating > span').length;
+  var recipeRating = $('.rating').attr('data-rating');
+  var roundedRating = recipeRating | 0;
+  $('.rating > span').each(function(i){
+    if ((ratingLength - $(this).index()) == roundedRating) {
+      $(this).addClass('rated');
+      return false;
+    }else if ((ratingLength - $(this).index()) > roundedRating) {
+      $(this).addClass('rated').append(`<style>.rated:before{width:${(recipeRating - roundedRating)*100}%;}</style>`);
+      return false;
+    }
+  })
+  // Star rating
   $('.rating > span').click(function(e){
+    $('.rating > span').removeClass();
+    $('style').remove();
     path = window.location.pathname
     recipeId = path.substr(path.lastIndexOf('/')+1)
     $.ajax({
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       url: `/recipes/${recipeId}/rate`,
       method: 'PUT',
-      data: `rating=${ratingLength - $(this).index()}`
+      data: `rating=${ratingLength - $(this).index()}`,
+      custom: $(this)
     }).done(function(){
-      console.log(this)
-    }).fail(function(){
-      console.log(`/recipes/${recipeId}/rate`)
+      this.custom.addClass("rated")
     })
   })
 

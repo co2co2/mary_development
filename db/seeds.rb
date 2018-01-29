@@ -76,8 +76,8 @@ def create_users
     remote_avatar_url:'https://s-media-cache-ak0.pinimg.com/736x/43/14/b9/4314b9927bf6e205b78939d09029caf0.jpg')
 
 # rescue Exception => e
-#
-# end
+
+end
 
 create_users
 

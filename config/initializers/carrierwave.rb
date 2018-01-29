@@ -5,7 +5,7 @@ CarrierWave.configure do |config|
     :provider               => 'AWS',                             # required
     :aws_access_key_id      => ENV['AWSAccessKeyId'],            # required
     :aws_secret_access_key  => ENV['AWSSecretKey'],     # required
-    :region                 => 'us-east-1',                        # optional, defaults to 'us-east-1'
+    :region                 => 'us-east-2',                        # optional, defaults to 'us-east-1'
     # :host                   => "https://s3-us-east-1.amazonaws.com"
   }
   config.fog_directory  = 'marybitmaker'              # required
