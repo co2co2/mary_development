@@ -7,7 +7,7 @@ class RecipeTest < ActiveSupport::TestCase
   end
 
   test "requires a description" do
-		@recipe.description = " "
+		@recipe.description = nil
 		assert_not @recipe.valid?
 	end
   test "description length should not be too short" do
