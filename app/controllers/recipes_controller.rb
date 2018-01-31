@@ -61,9 +61,9 @@ class RecipesController < ApplicationController
 
   def rate
     @recipe_rating = Rating.find_by(user_id: current_user.id, recipe_id: params[:recipe_id])
-    puts params[:rating]
+
     if @recipe_rating != nil
-      puts 'not nill'
+
       Rating.update(@recipe_rating.id ,rating: params[:rating])
     else
       @recipe_rating = current_user.ratings.build(recipe_id: params[:recipe_id], rating: params[:rating])
@@ -106,8 +106,10 @@ class RecipesController < ApplicationController
 
     if user_signed_in?
       if Favourite.exists?(user_id: current_user.id, recipe_id: params[:id])
+        # filled heart
         @favourite_link = "unfavourite"
       else
+        # unfilled
         @favourite_link = "favourite"
       end
     else

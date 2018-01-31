@@ -61,10 +61,11 @@ $(document).on('turbolinks:load', function() {
         method: "PUT",
         data: "type=favourite"
       }).done(function(){
+        // Add full heart
         $('#fav').addClass('unfavourite')
+        // empty heart
         $('#fav').removeClass('favourite')
-        $('#fav-image').addClass('unfavourite')
-        $('#fav-image').removeClass('favourite')
+
         var num = parseInt($('#favouritesValue').text()) + 1;
         $('#favouritesValue').text(num);
       });
@@ -76,8 +77,7 @@ $(document).on('turbolinks:load', function() {
       }).done(function(){
         $('#fav').addClass('favourite')
         $('#fav').removeClass('unfavourite')
-        $('#fav-image').addClass('favourite')
-        $('#fav-image').removeClass('unfavourite')
+
         var num = parseInt($('#favouritesValue').text()) - 1;
         $('#favouritesValue').text(num);
       });
@@ -90,6 +90,7 @@ $(document).on('turbolinks:load', function() {
   var recipeRating = $('.rating').attr('data-rating');
   // Rounds downwards using | 0
   var roundedDownRating = recipeRating | 0;
+  // Round up
   if (Math.ceil(recipeRating)) {
     var roundedUpRating = Math.ceil(recipeRating);
   }else{
