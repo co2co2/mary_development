@@ -35,17 +35,12 @@ Used Factorybot for testing.
 ## APIS
 
 *https://api.otreeba.com/v1/
-
-* http://strains.evanbusse.com/index.html
-
+*http://strains.evanbusse.com/index.html
 *https://developers.google.com/maps/
 
 ## Authors
 
-* [William Situ](https://github.com/Buraisx)
-
-* [Lena He](https://github.com/leneehe) 
-
+*[William Situ](https://github.com/Buraisx)
+*[Lena He](https://github.com/leneehe) 
 *[Coco Yeung](https://github.com/co2co2)
-
 *[Tyler Teng](https://github.com/tylteng)
