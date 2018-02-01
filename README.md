@@ -42,7 +42,7 @@ Used Factorybot for testing.
 
 ## Workflow
 
-Pair progromming
+Pair programming
 
 Daily scrum
 
