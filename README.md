@@ -19,6 +19,8 @@ Hosted on Heroku at: <https://bakingwithmary.herokuapp.com/>
 
 * CarrierWave
 
+* AWS S3
+
 ## Features
 
 Most of our features come from the multiple search filters we have, coupled by google maps integration to find nearby dispensaries.
