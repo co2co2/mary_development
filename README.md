@@ -9,7 +9,7 @@ Hosted on Heroku at: <https://bakingwithmary.herokuapp.com/>
 
 **Agile:** Trello, Slack
 
-**Front-End:** Bootstrap, JQuery/Ajax
+**Front-End:** Bootstrap, SASS, JQuery/Ajax
 
 **Back-End:** Ruby On Rails, Postgresql 
 
@@ -39,6 +39,14 @@ Used Factorybot for testing.
 *http://strains.evanbusse.com/index.html
 
 *https://developers.google.com/maps/
+
+## Workflow
+
+Pair progromming
+
+Daily scrum
+
+3-4 sprints
 
 ## Authors
 
