@@ -72,12 +72,7 @@
 
     <%= social_share_button_tag(@recipe.title) %>
 
-    <% if user_signed_in? %>
-      <%= link_to recipe_favourite_path(@recipe), class: "#{@favourite_link}",id: "fav", method: "PUT", title:"Save this recipe!" do %>
-      <% end %>
-    <% else %>
-      <%= link_to new_user_session_path, class: @favourite_link do %>
-      <% end %>
+    <%= link_to recipe_favourite_path(@recipe), class: "#{@favourite_link}",id: "fav", method: "PUT", title:"Save this recipe!" do %>
     <% end %>
 
   </div>
