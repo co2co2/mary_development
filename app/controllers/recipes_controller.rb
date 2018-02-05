@@ -1,7 +1,7 @@
 
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: %i[index show search_results filter]
+  before_action :authenticate_user!, except: %i[index favourite show search_results filter]
 
   def strain_name
     Strain.try(:name)
@@ -72,6 +72,11 @@ class RecipesController < ApplicationController
   end
 
   def favourite
+    unless current_user
+      redirect_to new_user_session_path, notice: 'you have to sign in first.'
+      return
+    end
+
     type = params[:type]
     if type == "favourite"
       @favourite = current_user.favourites.build(recipe_id: params[:recipe_id])
@@ -157,6 +162,10 @@ class RecipesController < ApplicationController
         allergy = Allergy.find(key)
        @recipe.allergies << allergy
      end
+   end
+
+   if params[:recipe][:concentrate] == '1' || params[:recipe][:recipe_category_id] == RecipeCategory.find_by(name: "Concentrates").id
+     @recipe.concentrate = true
    end
 
     respond_to do |format|
