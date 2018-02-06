@@ -84,7 +84,8 @@ h3{
 div > img{
 	width:100%;
 }
-.rated:before, .rated ~ span:before{
+.rated:before, .rated ~ span:before,
+.rated > span:hover ~ span:before {
 	content: "\2605";
 	position: absolute;
 	color:#f2ee87;
