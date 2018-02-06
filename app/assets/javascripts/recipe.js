@@ -49,7 +49,7 @@ $(document).on('turbolinks:load', function() {
       {
 
       var messageLi = document.querySelector('#messageLi');
-      $(messageLi).append('Review is too short or empty!');
+      $(messageLi).text('Review is too short or empty!');
       $('#errorDiv').show();
     }
       else {
