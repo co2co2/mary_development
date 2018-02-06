@@ -24,53 +24,54 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_session_url
   end
 
-  test "should create recipe" do
-    sign_in build(:user)
-    cat = create(:recipe_category)
-    str = create(:strain)
-    assert_difference('Recipe.count') do
+  # test "should create recipe" do
+  #   sign_in build(:user)
+  #   cat = create(:recipe_category)
+  #   str = create(:strain)
+  #   assert_difference('Recipe.count')
+    # do
 
-      post recipes_url, params: {
-
-        recipe:{
-          id:70,
-          recipe_category_id: cat.id,
-          strain_name:str.name,
-          strain_id:str.id,
-          concentrate:0,
-          title:"apple pie",
-          image:"",
-          video:"",
-          description:"sjhdajkshdaskjhdjksa",
-          prep_time:16,
-          views:"",
-          measurements_attributes:{
-            "1516064928266"=>{
-              "quantity"=>"1",
-              "ingredient_attributes"=>{
-                "name"=>"apple"
-              },
-            }
-          },
-          allergy:{
-            '1':{name:nil},
-            '2':{name:nil},
-            '3':{name:nil},
-            '4':{name:nil},
-            '5':{name:nil}
-          },
-          instructions_attributes:{
-            "0"=>{
-              "step"=>"sdjahdjsahdsakhdkjash"
-            }
-          },
-
-        }
-      }
-    end
+    #   post recipes_url, params: {
+    #
+    #     recipe:{
+    #       id:70,
+    #       recipe_category_id: cat.id,
+    #       strain_name:str.name,
+    #       strain_id:str.id,
+    #       concentrate:0,
+    #       title:"apple pie",
+    #       image:"",
+    #       video:"",
+    #       description:"sjhdajkshdaskjhdjksa",
+    #       prep_time:16,
+    #       views:"",
+    #       measurements_attributes:{
+    #         "1516064928266"=>{
+    #           "quantity"=>"1",
+    #           "ingredient_attributes"=>{
+    #             "name"=>"apple"
+    #           },
+    #         }
+    #       },
+    #       allergy:{
+    #         '1':{name:nil},
+    #         '2':{name:nil},
+    #         '3':{name:nil},
+    #         '4':{name:nil},
+    #         '5':{name:nil}
+    #       },
+    #       instructions_attributes:{
+    #         "0"=>{
+    #           "step"=>"sdjahdjsahdsakhdkjash"
+    #         }
+    #       },
+    #
+    #     }
+    #   }
+    # end
     # assert_redirected_to recipe_url(Recipe.last)
-  end
-  
+  # end
+
   test "should show recipe" do
     get recipe_url(@saved_recipe)
     assert_response :success

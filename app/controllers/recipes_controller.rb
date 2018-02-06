@@ -94,7 +94,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1
   def show
-    @reviews = @recipe.reviews
+    @reviews = @recipe.reviews.order(created_at: :desc)
     @review = Review.new
     @recipe.views += 1
     @recipe.save
