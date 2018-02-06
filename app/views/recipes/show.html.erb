@@ -152,19 +152,15 @@
 <!-- Reviews Section -->
 <div class="row">
   <% if user_signed_in? %>
-    <div class="offset-lg-2 col-lg-8">
+    <div class="offset-lg-2 col-lg-8" id="errorDiv">
       <h1>Reviews</h1>
-      <% if @review.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
-          <ul>
-          <% @review.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
+        <div id="error_explanation">
+        <ul>
+        <li id= "messageLi"></li>
+        </ul>
         </div>
-      <% end %>
+
     </div>
     <!-- Write a review form -->
     <%= form_for([@recipe, @review], :html=>{class: "offset-lg-2 col-lg-8"}) do |f|%>
@@ -173,6 +169,7 @@
         <%= f.text_area :comment, class: "form-control", rows: 3 %><br>
         <%= f.submit data: {disable_with: false}, class: "btn btn-success" %>
       </div>
+
     <% end %>
   <% end %>
 </div>

@@ -17,36 +17,51 @@ def save_effects(strain, type_effects, type_name)
 end
 
 # Use HTTParty to get save strains
+index = 0
+
+
 res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
 body = JSON.parse(res.body)
-# Get strains picture
-response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655a6cda57d9606038d31d653fbacb020&count=50&page=2")
-resbody = JSON.parse(response.body)
+bodyCount = body.keys.count
 
-  body.keys[0..49].each_with_index do |s, index|
+# Get strains picture
+
+  i = 1
+5.times do
+response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655a6cda57d9606038d31d653fbacb020&count=50&page=#{i}")
+  resbody = JSON.parse(response.body)
+  resbody["data"].each do |s|
     # Use canabis report api to get image
 
     # Make new strain
     strain = Strain.new
-    strain.name = s
-    strain.race = body[s]["race"]
-    strain.flavours = body[s]["flavors"]
-    strain.image = resbody["data"][index]["image"]
+    strainVal = body.shift
+
+    strain.name = strainVal[0]
+    strain.race = strainVal[1].values[1]
+
+    strain.flavours = strainVal[1].values[2]
+    strain.image = s["image"]
     strain.save
 
     # get positive effects
-    positives = body[s]["effects"]["positive"]
+    positives = strainVal[1].values[3]["positive"]
     save_effects(strain, positives, "positive")
 
     # get negative effects
-    negatives = body[s]["effects"]["negative"]
+    negatives = strainVal[1].values[3]["negative"]
     save_effects(strain, negatives, "negative")
 
     # get medical effects
-    medicals = body[s]["effects"]["medical"]
+    medicals = strainVal[1].values[3]["medical"]
     save_effects(strain, medicals, "medical")
 
-  end
+    p "....................... #{body.keys.count}"
+
+end
+   i = i + 1
+
+end
 
 # destroy all previous data
 

@@ -4,6 +4,7 @@ $(document).on('turbolinks:load', function() {
 
   //toggle menus
   $(document).ready(function() {
+    $('#errorDiv').hide();
     $('#categoriesBtn').click( function(e) {
       $('#categories').collapse('show');
       $('#effects').collapse('hide');
@@ -31,6 +32,7 @@ $(document).on('turbolinks:load', function() {
     e.preventDefault();
 
     // make the ajax callbacks
+
     $.ajax({
       url: $(this).attr('action'),
       method: $(this).attr('method'),
@@ -38,12 +40,21 @@ $(document).on('turbolinks:load', function() {
       dataType: 'html'
     }).done(function(responseData) {
       $('#user-reviews').prepend(responseData);
-
+      $('#errorDiv').hide();
       // Clear out text field
       $('#review_comment').val('');
 
     }).fail(function(jqXHR, textStatus, errorThrown) {
-      alert('Review is too short!');
+      if(jqXHR.status == 406)
+      {
+
+      var messageLi = document.querySelector('#messageLi');
+      $(messageLi).append('Review is too short or empty!');
+      $('#errorDiv').show();
+    }
+      else {
+        alert('Oops! Review was not saved.. Try Again!!');
+      }
     })
 
   })
