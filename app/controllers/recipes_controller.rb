@@ -41,7 +41,7 @@ class RecipesController < ApplicationController
             @ingredient_set[i] = @ingredients_ids
         end#checked empty params
       end #looped ingredient params
-   
+
       # checkbox
       if params[:specify]
         # AND search
@@ -186,6 +186,10 @@ class RecipesController < ApplicationController
           @recipe.allergies << allergy
        end
       end
+
+    if params[:recipe][:concentrate] == '1' || params[:recipe][:recipe_category_id] == RecipeCategory.find_by(name: "Concentrates").id
+      @recipe.concentrate = true
+    end
 
     respond_to do |format|
       if @recipe.update(recipe_params)
