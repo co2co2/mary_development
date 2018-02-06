@@ -26,7 +26,7 @@ class RecipesController < ApplicationController
       @ingredient_set = Array.new(params[:ingredient].length)
 
       accepted_ingredients.each_with_index do |ingredient,i|
-  
+
           @ingredients = Ingredient.where("lower(name) LIKE ?","%#{ingredient.singularize.downcase}%")
           # DO this if singularized ingredients are blank
           if @ingredients.blank?
@@ -44,9 +44,9 @@ class RecipesController < ApplicationController
           end #checked for nil object
             # set ingredient category to contain array of ingredient ids
             @ingredient_set[i] = @ingredients_ids
-     
+
       end #looped all ingredients
-   
+
       # checkbox
       if params[:specify]
         # AND search
@@ -169,6 +169,8 @@ class RecipesController < ApplicationController
 
    if params[:recipe][:concentrate] == '1' || params[:recipe][:recipe_category_id] == RecipeCategory.find_by(name: "Concentrates").id
      @recipe.concentrate = true
+   else
+     @recipe.concentrate = false
    end
 
     respond_to do |format|
@@ -193,6 +195,12 @@ class RecipesController < ApplicationController
           @recipe.allergies << allergy
        end
       end
+
+    if params[:recipe][:concentrate] == '1' || params[:recipe][:recipe_category_id] == RecipeCategory.find_by(name: "Concentrates").id
+      @recipe.concentrate = true
+    else
+      @recipe.concentrate = false
+    end
 
     respond_to do |format|
       if @recipe.update(recipe_params)
