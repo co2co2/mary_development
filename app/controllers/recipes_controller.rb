@@ -162,6 +162,8 @@ class RecipesController < ApplicationController
 
    if params[:recipe][:concentrate] == '1' || params[:recipe][:recipe_category_id] == RecipeCategory.find_by(name: "Concentrates").id
      @recipe.concentrate = true
+   else
+     @recipe.concentrate = false
    end
 
     respond_to do |format|
@@ -189,6 +191,8 @@ class RecipesController < ApplicationController
 
     if params[:recipe][:concentrate] == '1' || params[:recipe][:recipe_category_id] == RecipeCategory.find_by(name: "Concentrates").id
       @recipe.concentrate = true
+    else
+      @recipe.concentrate = false
     end
 
     respond_to do |format|
