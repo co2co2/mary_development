@@ -38,14 +38,13 @@ class Recipe < ApplicationRecord
 
   def self.filter_specific(ingredient_set)
     recipes_list = Array.new(ingredient_set.length)
- 
-    ingredient_set.compact.each_with_index do |ingredient,i|
+
+    ingredient_set.each_with_index do |ingredient,i|
       recipes_list[i] = Array.new(ingredient.length)
       ingredient.each_with_index do |ingredient_id,j|
         recipes_list[i][j] = Ingredient.find(ingredient_id).recipes
       end
     end
-
     return recipes_list.map {|x| x.flatten}.reduce {|common,current| common & current}
 
   end
