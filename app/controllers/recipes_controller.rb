@@ -150,10 +150,12 @@ class RecipesController < ApplicationController
    params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
       ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
       if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-
         ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-          @recipe.measurements[i].ingredient = ingredient
+        @recipe.measurements[i].ingredient = ingredient
 
+      elsif Ingredient.find_by(name: ing_name)
+        ingredient = Ingredient.find_by(name: ing_name)
+        @recipe.measurements[i].ingredient = ingredient
       end
     end
   end
