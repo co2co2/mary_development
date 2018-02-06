@@ -15,44 +15,45 @@ class RecipesController < ApplicationController
     # Search bar
     if params[:search]
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
-      # ingredient filter
+    # ingredient filter
     elsif params[:ingredient]
+      # INPUT ['eggs','oil']
+      # array[0] EGGS inclusion
+      # array[1] OIL inclusion
+      # OUTPUT[[1,2,3,4][,5,6,7]]
       # if ingredient params length 2, length will be two
+      accepted_ingredients = params[:ingredient].reject(&:blank?)
       @ingredient_set = Array.new(params[:ingredient].length)
-      @ingredients = []
 
-      params[:ingredient].each_with_index do |ingredient,i|
-        if !ingredient.empty?
+      accepted_ingredients.each_with_index do |ingredient,i|
 
-          ingredient_id = Ingredient.where("lower(name) LIKE ?","%#{ingredient.singularize.downcase}%")
-          # Query for egg
-          # query for egg yolk
-          # Query for eggs
-          # youd get 3 ingredients
-          if !ingredient_id.empty?
-            @ingredients = []
-            ingredient_id.each_with_index do |ingredient,j|
-              @ingredients << ingredient.id
+          @ingredients = Ingredient.where("lower(name) LIKE ?","%#{ingredient.singularize.downcase}%")
+          # DO this if singularized ingredients are blank
+          if @ingredients.blank?
+            @ingredients = Ingredient.where("lower(name) LIKE ?","%#{ingredient.pluralize.downcase}%")
+          end
+          # DO this if plural ingredients and singular ingredients are NOT empty
+          if !@ingredients.empty?
+            # array of ingredient ids belonging to that category
+            @ingredients_ids = []
+            # loop through based on how many ingredients we got back
+            @ingredients.each do |ingredient|
+              # store each id in array
+              @ingredients_ids << ingredient.id
             end #loop for ingredient LIKE query
           end #checked for nil object
-            @ingredient_set[i] = @ingredients
-             #@ingredients[0][0]
-               #@ingredients[0][1]
-                #@ingredients[0][2]
-                 #@ingredients[1][0]
-               #@ingredients[1][1]
-                #@ingredients[1][2]
-        end#checked empty params
-      end #looped ingredient params
-      # test
-      # ingredient_set[0-1]
-      # ingredient[0-5]
+            # set ingredient category to contain array of ingredient ids
+            @ingredient_set[i] = @ingredients_ids
+
+      end #looped all ingredients
 
       # checkbox
       if params[:specify]
+        # AND search
         @recipes = Recipe.filter_specific(@ingredient_set)
       else
-        @recipes = Recipe.filter_ingredients(@ingredients)
+        # OR Search
+        @recipes = Recipe.filter_ingredients(@ingredient_set.flatten)
       end
     else
       @recipes = Recipe.all.order("created_at DESC")
@@ -149,10 +150,12 @@ class RecipesController < ApplicationController
    params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
       ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
       if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-
         ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-          @recipe.measurements[i].ingredient = ingredient
+        @recipe.measurements[i].ingredient = ingredient
 
+      elsif Ingredient.find_by(name: ing_name)
+        ingredient = Ingredient.find_by(name: ing_name)
+        @recipe.measurements[i].ingredient = ingredient
       end
     end
   end
@@ -166,6 +169,8 @@ class RecipesController < ApplicationController
 
    if params[:recipe][:concentrate] == '1' || params[:recipe][:recipe_category_id] == RecipeCategory.find_by(name: "Concentrates").id
      @recipe.concentrate = true
+   else
+     @recipe.concentrate = false
    end
 
     respond_to do |format|
@@ -190,6 +195,12 @@ class RecipesController < ApplicationController
           @recipe.allergies << allergy
        end
       end
+
+    if params[:recipe][:concentrate] == '1' || params[:recipe][:recipe_category_id] == RecipeCategory.find_by(name: "Concentrates").id
+      @recipe.concentrate = true
+    else
+      @recipe.concentrate = false
+    end
 
     respond_to do |format|
       if @recipe.update(recipe_params)
