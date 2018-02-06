@@ -23,15 +23,15 @@
 
 //Recipes show page
 .favourite,.unfavourite{
-	width:25px;
-	height:25px;
+  font-size: 35px;
 	display:inline;
 }
 .unfavourite{
-	content:url("https://image.flaticon.com/icons/png/512/148/148836.png");
+  @extend .ion-android-favorite;
+	// content:url("heart-filled.png");
 }
 .favourite{
-	content:url("https://image.flaticon.com/icons/svg/149/149217.svg");
+  @extend .ion-android-favorite-outline;
 }
 
 
@@ -84,6 +84,17 @@ h3{
 div > img{
 	width:100%;
 }
+.rated:before, .rated ~ span:before,
+.rated > span:hover ~ span:before {
+	content: "\2605";
+	position: absolute;
+	color:#f2ee87;
+}
+.rated:before{
+	left:0;
+	transform: scaleX(-1);
+	overflow:hidden;
+}
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
@@ -101,11 +112,6 @@ div > img{
    color:#f2ee87;
 }
 
-.rated:before, .rated ~ span:before{
-	content: "\2605";
-   position: absolute;
-   color:#f2ee87;
-}
 .video{
 	margin-bottom: 2em;
 }

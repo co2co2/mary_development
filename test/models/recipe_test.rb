@@ -7,7 +7,7 @@ class RecipeTest < ActiveSupport::TestCase
   end
 
   test "requires a description" do
-		@recipe.description = " "
+		@recipe.description = nil
 		assert_not @recipe.valid?
 	end
   test "description length should not be too short" do
@@ -88,13 +88,17 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal [recipes[6], recipes[5],recipes[4]],  Recipe.recent
   end
 
-  test "socpe user_favourites" do
-
-
+  test "recipe get favourites" do
+    assert @newrecipe.favourites
   end
 
-  test "top 3 most_favourite recipes" do
+  test "association with strain" do
+    assert @recipe.strain
+  end
 
+  test "minute to hours method" do
+    @newrecipe.prep_time = 80
+    assert_equal("1 hour and 20 minutes", @newrecipe.minutes_to_hours(80))
   end
 
 

@@ -24,6 +24,7 @@ $(document).on('turbolinks:load', function() {
     })
   })
 
+
   // reviews ajax call
   $('#new_review').on('submit', function(e) {
     // prevent browser from submiting review
@@ -48,6 +49,7 @@ $(document).on('turbolinks:load', function() {
   })
 
 
+
   //favourite ajax call
 
   $('#fav').on('click',function(e){
@@ -59,10 +61,11 @@ $(document).on('turbolinks:load', function() {
         method: "PUT",
         data: "type=favourite"
       }).done(function(){
+        // Add full heart
         $('#fav').addClass('unfavourite')
+        // empty heart
         $('#fav').removeClass('favourite')
-        $('#fav-image').addClass('unfavourite')
-        $('#fav-image').removeClass('favourite')
+
         var num = parseInt($('#favouritesValue').text()) + 1;
         $('#favouritesValue').text(num);
       });
@@ -74,25 +77,51 @@ $(document).on('turbolinks:load', function() {
       }).done(function(){
         $('#fav').addClass('favourite')
         $('#fav').removeClass('unfavourite')
-        $('#fav-image').addClass('favourite')
-        $('#fav-image').removeClass('unfavourite')
+
         var num = parseInt($('#favouritesValue').text()) - 1;
         $('#favouritesValue').text(num);
       });
     }
   });
+  //star rating on load
   var ratingLength = document.querySelectorAll('.rating > span').length;
+
+  // grabs custom data attribute from the show page
+  var recipeRating = $('.rating').attr('data-rating');
+  // Rounds downwards using | 0
+  var roundedDownRating = recipeRating | 0;
+  // Round up
+  if (Math.ceil(recipeRating)) {
+    var roundedUpRating = Math.ceil(recipeRating);
+  }else{
+    var roundedUpRating = 0;
+  }
+  var stars = document.querySelectorAll('.rating > span')
+
+    var displayRating = stars[ratingLength - roundedUpRating]
+    if (displayRating){
+      displayRating.classList.add('rated')
+      if(recipeRating - roundedDownRating != 0){
+        displayRating.innerHTML = displayRating.innerHTML + `<style>.rated:before{width:${(recipeRating - roundedDownRating)*100}%;}</style>`;
+      }
+    }
+
+
+
+  // Star rating
   $('.rating > span').click(function(e){
+    $('.rating > span').removeClass();
+    $('style').remove();
     path = window.location.pathname
     recipeId = path.substr(path.lastIndexOf('/')+1)
     $.ajax({
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       url: `/recipes/${recipeId}/rate`,
       method: 'PUT',
-      data: `rating=${ratingLength - $(this).index()}`
+      data: `rating=${ratingLength - $(this).index()}`,
+      custom: $(this)
     }).done(function(){
-      console.log(this)
-    }).fail(function(){
-      console.log(`/recipes/${recipeId}/rate`)
+      this.custom.addClass("rated")
     })
   })
 
@@ -183,7 +212,7 @@ $(document).on('turbolinks:load', function() {
       }
     })
     var dialogContent = document.querySelector('.ui-dialog-content')
-    dialogContent.innerText = 'Are you over 19 years old?'
+    dialogContent.innerText = 'Are you over 18 years old?'
   }
 
   // no scroll when modal overlay is on

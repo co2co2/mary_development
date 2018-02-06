@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'pry'
+gem 'pry-remote'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
@@ -40,12 +42,14 @@ gem 'geocoder'
 
 gem 'awesome_print', require:"ap"
 gem 'carrierwave','~> 1.0'
+gem "fog-aws"
 gem 'mini_magick'
 gem 'local_time'
 gem 'social-share-button'
 gem 'rails_12factor', group: :production
 # This rails helper let's you easily include svg octicons in your rails apps.
 gem 'octicons_helper'
+gem 'font-ionicons-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -55,6 +59,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'pry-rails'
 
 end
 

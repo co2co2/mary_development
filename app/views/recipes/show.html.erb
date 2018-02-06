@@ -2,7 +2,11 @@
 <div class="row p-0 title d-flex">
   <h2 class="p-0 d-inline">
     <%= @recipe.title %>
-    <div class="rating ">
+    <% if user_signed_in? %>
+    <div class="rating" data-rating="<%= @avg_rating %>">
+    <%else %>
+    <div class="rating" data-rating="<%= @avg_rating %>" style="pointer-events: none;">
+    <% end %>
       <span>☆</span>
       <span>☆</span>
       <span>☆</span>
@@ -37,7 +41,9 @@
 <div class="row">
   <!-- Image placeholder for no image -->
   <% if @recipe.image.url == "" || @recipe.image.url == nil %>
+    <div class="col-12 offset-lg-2 col-lg-8 img-fluid px-0">
     <%= image_tag 'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4843f041920273ab6f703d/5a4843f00d92977993f8d63e/1514685433874/SousWeed_BeijinhodeCoco-5162_LoRes.jpg?format=450w' %>
+    </div>
   <% else %>
     <!-- Existing image  -->
     <div class="col-12 offset-lg-2 col-lg-8 img-fluid px-0">
@@ -66,14 +72,7 @@
 
     <%= social_share_button_tag(@recipe.title) %>
 
-    <% if user_signed_in? %>
-      <%= link_to recipe_favourite_path(@recipe),class: "#{@favourite_link}",id: "fav", method: "PUT", title:"Save this recipe!" do%>
-        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg",id: "fav-image", class: @favourite_link, title: "Save this recipe!") %>
-      <% end %>
-    <% else %>
-      <%= link_to new_user_session_path do%>
-        <%= image_tag("https://image.flaticon.com/icons/svg/149/149217.svg", class: "favourite", title: "Save this recipe!") %>
-      <% end %>
+    <%= link_to recipe_favourite_path(@recipe), class: "#{@favourite_link}",id: "fav", method: "PUT", title:"Save this recipe!" do %>
     <% end %>
 
   </div>
