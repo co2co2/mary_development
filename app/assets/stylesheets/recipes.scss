@@ -32,7 +32,6 @@
 }
 .favourite{
   @extend .ion-android-favorite-outline;
-	// content:url("like.png");
 }
 
 
@@ -85,6 +84,16 @@ h3{
 div > img{
 	width:100%;
 }
+.rated:before, .rated ~ span:before{
+	content: "\2605";
+	position: absolute;
+	color:#f2ee87;
+}
+.rated:before{
+	left:0;
+	transform: scaleX(-1);
+	overflow:hidden;
+}
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
@@ -101,16 +110,7 @@ div > img{
    position: absolute;
    color:#f2ee87;
 }
-.rated:before, .rated ~ span:before{
-	content: "\2605";
-	position: absolute;
-	color:#f2ee87;
-}
-.rated:before{
-	left:0;
-	transform: scaleX(-1);
-	overflow:hidden;
-}
+
 .video{
 	margin-bottom: 2em;
 }
