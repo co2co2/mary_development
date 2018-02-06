@@ -17,17 +17,22 @@ class RecipesController < ApplicationController
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
     # ingredient filter
     elsif params[:ingredient]
+      # INPUT ['eggs','oil']
+      # array[0] EGGS inclusion
+      # array[1] OIL inclusion
+      # OUTPUT[[1,2,3,4][,5,6,7]]
       # if ingredient params length 2, length will be two
+      accepted_ingredients = params[:ingredient].reject(&:blank?)
       @ingredient_set = Array.new(params[:ingredient].length)
 
-      params[:ingredient].each_with_index do |ingredient,i|
-        if !ingredient.empty?
+      accepted_ingredients.each_with_index do |ingredient,i|
 
           @ingredients = Ingredient.where("lower(name) LIKE ?","%#{ingredient.singularize.downcase}%")
-          # Query for egg
-          # query for egg yolk
-          # Query for eggs
-          # youd get 3 ingredients
+          # DO this if singularized ingredients are blank
+          if @ingredients.blank?
+            @ingredients = Ingredient.where("lower(name) LIKE ?","%#{ingredient.pluralize.downcase}%")
+          end
+          # DO this if plural ingredients and singular ingredients are NOT empty
           if !@ingredients.empty?
             # array of ingredient ids belonging to that category
             @ingredients_ids = []
@@ -39,8 +44,8 @@ class RecipesController < ApplicationController
           end #checked for nil object
             # set ingredient category to contain array of ingredient ids
             @ingredient_set[i] = @ingredients_ids
-        end#checked empty params
-      end #looped ingredient params
+
+      end #looped all ingredients
 
       # checkbox
       if params[:specify]
@@ -48,7 +53,7 @@ class RecipesController < ApplicationController
         @recipes = Recipe.filter_specific(@ingredient_set)
       else
         # OR Search
-        @recipes = Recipe.filter_ingredients(@ingredients_ids)
+        @recipes = Recipe.filter_ingredients(@ingredient_set.flatten)
       end
     else
       @recipes = Recipe.all.order("created_at DESC")
@@ -145,10 +150,12 @@ class RecipesController < ApplicationController
    params[:recipe][:measurements_attributes].keys.each_with_index do |k, i|
       ing_name = params[:recipe][:measurements_attributes][k][:ingredient_attributes][:name]
       if Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-
         ingredient = Ingredient.find_by(name: ing_name, concentrate_recipe_id: nil)
-          @recipe.measurements[i].ingredient = ingredient
+        @recipe.measurements[i].ingredient = ingredient
 
+      elsif Ingredient.find_by(name: ing_name)
+        ingredient = Ingredient.find_by(name: ing_name)
+        @recipe.measurements[i].ingredient = ingredient
       end
     end
   end
