@@ -17,8 +17,6 @@ def save_effects(strain, type_effects, type_name)
 end
 
 # Use HTTParty to get save strains
-index = 0
-
 
 res = HTTParty.get('http://strainapi.evanbusse.com/sj4h0h8/strains/search/all')
 body = JSON.parse(res.body)
@@ -26,10 +24,11 @@ bodyCount = body.keys.count
 
 # Get strains picture
 
-  i = 1
-  imageArray = []
-7.times do
-response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655a6cda57d9606038d31d653fbacb020&count=50&page=#{i}")
+imageArray = []
+
+# 5 consecutive times is the api limit for Otreeba
+5.times do
+  response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655a6cda57d9606038d31d653fbacb020&count=50&page=#{i}")
   resbody = JSON.parse(response.body)
   resbody["data"].each do |s|
       imageArray << s["image"]
@@ -40,8 +39,8 @@ end
     # Use canabis report api to get image
 
     # Make new strain
-    (bodyCount/imageArray.count).times do
-    imageArray.each do |image|
+(bodyCount/imageArray.count).times do
+  imageArray.each do |image|
     strain = Strain.new
     strainVal = body.shift
 
@@ -65,13 +64,8 @@ end
     save_effects(strain, medicals, "medical")
 
     p "....................... #{body.keys.count}"
-    end
   end
-
-# end
-#    i = i + 1
-
-# end
+end
 
 # destroy all previous data
 
@@ -106,7 +100,6 @@ end
 
 create_users
 
-# Allergies
 
 # Categories
 concentrate_category = RecipeCategory.create!(name: 'Concentrates')
@@ -116,6 +109,8 @@ desserts = RecipeCategory.create!(name: 'Desserts')
 entrees= RecipeCategory.create!(name: 'Entrées')
 snacks = RecipeCategory.create!(name: 'Snacks')
 sides = RecipeCategory.create!(name: 'Sides')
+
+
 # Predefined Concentrate Recipes
 concentrate1 = @user2.recipes.create!(recipe_category_id: concentrate_category.id, strain_id:1, title:'Cannabis Coconut Oil', remote_image_url:'https://s3.amazonaws.com/leafly-s3/content/cannabis-and-coconut-oil-uses-benefits-and-a-recipe-to-make-your/QqYwInfNQHedUETFu2Dm_Subhead-2.jpg',video:"https://player.vimeo.com/video/133693820" , description:'coconut oil has among the highest concentration of fatty acids (saturated fats). The surplus of these fatty acids in the coconut oil create a stronger binding agent for cannabinoids. ', prep_time: 360, concentrate: true,
 instructions_attributes: [
@@ -150,8 +145,6 @@ measurements_attributes: [
   ]
 )
 #  Cannabutter
-
-
 concentrate3 = @user1.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis-Infused Butter', remote_image_url:'https://s3.amazonaws.com/leafly-s3/content/recipe-how-to-make-basic-cannabutter/HyiZ4sSkVIDtbpo9tnA6_Cannabutter-Body.jpg',video:"https://player.vimeo.com/video/203408908", description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
 instructions_attributes: [
   { step: 'Add one cup of water and 1 lb of butter into a stock pot or sauce pan; let the butter melt and begin to simmer on low. Adding water helps to regulate the temperature and prevents the butter from scorching.'},
@@ -170,8 +163,7 @@ measurements_attributes: [
     }
   ]
 )
-
-
+# Canna olive oil
 concentrate4 = @user2.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis-Infused Olive Oil', remote_image_url:'http://www.ethiopianimporter.com/imagesexport/72oil-seed.jpg', video:'https://www.youtube.com/embed/hEz0zkzGQGQ', description:'It is super easy to infuse cannabis into your olive oil with the sous vide technique. Since you can fit many mason jars in a sous vide water bath, imagine the all the different flavored oil concoctions you can whip up all in one sitting! This technique is simple and discreet--no smell! ', prep_time: 240, concentrate: true,
 instructions_attributes: [
   { step: 'Pour olive oil in two 12oz mason jars. It is important to use jars specific to canning, so please no repurposed mayo jars. Inspect the jar for cracks. A freezer-safe zip bag may be used as well.'},
@@ -189,7 +181,7 @@ measurements_attributes: [
     }
   ]
 )
-
+# Canna cooking oil
 concentrate5 = @user5.recipes.create!( recipe_category_id:concentrate_category.id, strain_id:1, title:'Cannabis Cooking Oil', remote_image_url:'https://s3.amazonaws.com/leafly/content/recipe-how-to-make-cannabis-cooking-oil/TRaosPRdRpOyuSZfpMWe_large_6896388410.jpg', description:'cannabis-infused butter (cannabutter) is one of the simplest and most common ways to make medicated foods, yet making infused butter properly can be a little bit tricky. In order for THC to properly decarboxylate—change from its acid form to its psychoactive form—the cannabis needs to be heated at low temperatures over long periods of time.', prep_time: 180, concentrate: true,
 instructions_attributes: [
   {step: 'Add one cup of water and 1 lb of butter into a stock pot or sauce pan; let the butter melt and begin to simmer on low. Adding water helps to regulate the temperature and prevents the butter from scorching.'},
@@ -206,7 +198,7 @@ measurements_attributes: [
   ]
 )
 
-
+# Meal Recipes
 recipe1 = @user3.recipes.create!( recipe_category_id: snacks.id, strain_id:6, title:'Dope Beets', remote_image_url:'https://static1.squarespace.com/static/5541baefe4b0d1854a60b4bc/5a4c326f085229be305f2d51/5a4c327c53450a16cf26d429/1514943110320/SousWeed_DopeBeetHummus_6B7A9344_LoRes.jpg?format=1500w', description:'The roasted beets add a mellow sweetness and rosy color to a basic hummus recipe. The texture is sultry smooth and goes great with warm pita or crisp veggies. If you have your Sous Weed olive oil prepared, it’s quick to throw together in a blender and is sure to be a hit at your next get-together.', prep_time: 70,
 instructions_attributes: [
   {step: 'Pre-heat oven to 375ºF.'},
@@ -445,8 +437,7 @@ measurements_attributes: [
   ]
 )
 
-
-
+# Allergies
 peanutFree = Allergy.create!(name:'Peanut-free')
 glutenFree = Allergy.create!(name:'Gluten-free')
 vegetarian = Allergy.create!(name:'Vegetarian')
@@ -458,4 +449,3 @@ recipe2.allergies << glutenFree
 recipe3.allergies << vegetarian
 recipe1.allergies << vegan
 recipe2.allergies << soyFree
-# binding.pry
