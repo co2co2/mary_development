@@ -27,13 +27,21 @@ bodyCount = body.keys.count
 # Get strains picture
 
   i = 1
+  imageArray = []
 5.times do
 response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655a6cda57d9606038d31d653fbacb020&count=50&page=#{i}")
   resbody = JSON.parse(response.body)
   resbody["data"].each do |s|
+      imageArray << s["image"]
+
+  end
+  p "....................... #{imageArray.count}"
+end
     # Use canabis report api to get image
 
     # Make new strain
+    (body.keys.count/imageArray.count).times do
+    imageArray.each do |image|
     strain = Strain.new
     strainVal = body.shift
 
@@ -41,7 +49,7 @@ response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655
     strain.race = strainVal[1].values[1]
 
     strain.flavours = strainVal[1].values[2]
-    strain.image = s["image"]
+    strain.image = image
     strain.save
 
     # get positive effects
@@ -57,11 +65,13 @@ response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655
     save_effects(strain, medicals, "medical")
 
     p "....................... #{body.keys.count}"
+    end
+  end
 
-end
-   i = i + 1
+# end
+#    i = i + 1
 
-end
+# end
 
 # destroy all previous data
 
