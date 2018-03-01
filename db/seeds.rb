@@ -28,7 +28,7 @@ bodyCount = body.keys.count
 
   i = 1
   imageArray = []
-5.times do
+7.times do
 response = HTTParty.get("https://api.otreeba.com/v1/strains?x-api-key=e731945655a6cda57d9606038d31d653fbacb020&count=50&page=#{i}")
   resbody = JSON.parse(response.body)
   resbody["data"].each do |s|
@@ -40,7 +40,7 @@ end
     # Use canabis report api to get image
 
     # Make new strain
-    (body.keys.count/imageArray.count).times do
+    (bodyCount/imageArray.count).times do
     imageArray.each do |image|
     strain = Strain.new
     strainVal = body.shift
